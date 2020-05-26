@@ -1,4 +1,4 @@
-# IBM Cloud MySDK Node.js SDK
+# IBM Watson Health Cognitive Services Node.js SDK
 Node.js client library to interact with various IBM Watson Health Cognitive Services APIs(https://cloud.ibm.com/apidocs?category=wh-acd).
 
 

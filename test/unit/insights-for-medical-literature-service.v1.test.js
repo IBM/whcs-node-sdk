@@ -20,7 +20,7 @@ const extend = require('extend');
 const core = require('ibm-cloud-sdk-core');
 const { NoAuthAuthenticator, unitTestUtils } = core;
 
-const InsightsForMedicalLiteratureServiceV1 = require('../../dist/insights-for-medical-literature-service/v1');
+const InsightsForMedicalLiteratureServiceV1 = require('../../dist/insights-for-medical-literature/v1');
 
 const {
   getOptions,
@@ -547,30 +547,22 @@ describe('InsightsForMedicalLiteratureServiceV1', () => {
       const stringBuilderModel = {
       };
 
+      // EntryModelModel
+      const entryModelModel = {
+      };
+
       // AnnotationModel
       const annotationModelModel = {
-        unique_id: 38,
-        sticky_ids: [38],
+        uniqueId: 38,
         ontology: 'testString',
         section: 'testString',
-        preferred_name: 'testString',
+        preferredName: 'testString',
         cui: 'testString',
-        attribute_id: 'testString',
+        attributeId: 'testString',
         qualifiers: ['testString'],
         type: 'testString',
         negated: true,
         hypothetical: true,
-        unit: 'testString',
-        min_value: 'testString',
-        max_value: 'testString',
-        operator: 'testString',
-        nlu_source_type: 'testString',
-        nlu_relation: 'testString',
-        nlu_target_type: 'testString',
-        nlu_entity_index: 'testString',
-        nlu_mention_index: 'testString',
-        nlu_relation_id: 'testString',
-        nlu_side: 'testString',
         begin: 38,
         end: 38,
         score: 36.0,
@@ -694,9 +686,6 @@ describe('InsightsForMedicalLiteratureServiceV1', () => {
         const cuis = ['testString'];
         const text = ['testString'];
         const types = ['testString'];
-        const attributes = ['testString'];
-        const values = ['testString'];
-        const nluRelations = ['testString'];
         const limit = 38;
         const searchTagBegin = 'testString';
         const searchTagEnd = 'testString';
@@ -710,9 +699,6 @@ describe('InsightsForMedicalLiteratureServiceV1', () => {
           cuis: cuis,
           text: text,
           types: types,
-          attributes: attributes,
-          values: values,
-          nluRelations: nluRelations,
           limit: limit,
           searchTagBegin: searchTagBegin,
           searchTagEnd: searchTagEnd,
@@ -740,9 +726,6 @@ describe('InsightsForMedicalLiteratureServiceV1', () => {
         expect(options.qs['cuis']).toEqual(cuis);
         expect(options.qs['text']).toEqual(text);
         expect(options.qs['types']).toEqual(types);
-        expect(options.qs['attributes']).toEqual(attributes);
-        expect(options.qs['values']).toEqual(values);
-        expect(options.qs['nlu_relations']).toEqual(nluRelations);
         expect(options.qs['_limit']).toEqual(limit);
         expect(options.qs['search_tag_begin']).toEqual(searchTagBegin);
         expect(options.qs['search_tag_end']).toEqual(searchTagEnd);
@@ -793,6 +776,352 @@ describe('InsightsForMedicalLiteratureServiceV1', () => {
         expectToBePromise(getSearchMatchesPromise);
 
         getSearchMatchesPromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
+  describe('getServiceStatus', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation getServiceStatus
+        const accept = 'application/json';
+        const format = 'json';
+        const livenessCheck = 'true';
+        const params = {
+          accept: accept,
+          format: format,
+          livenessCheck: livenessCheck,
+        };
+
+        const getServiceStatusResult = insightsForMedicalLiteratureService.getServiceStatus(params);
+
+        // all methods should return a Promise
+        expectToBePromise(getServiceStatusResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v1/status', 'GET');
+        const expectedAccept = accept;
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        checkUserHeader(createRequestMock, 'Accept', accept);
+        expect(options.qs['format']).toEqual(format);
+        expect(options.qs['liveness_check']).toEqual(livenessCheck);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        insightsForMedicalLiteratureService.getServiceStatus(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+
+      test('should not have any problems when no parameters are passed in', () => {
+        // invoke the method with no parameters
+        insightsForMedicalLiteratureService.getServiceStatus({});
+        checkForSuccessfulExecution(createRequestMock);
+      });
+    });
+  });
+  describe('getHealthCheckStatus', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation getHealthCheckStatus
+        const accept = 'application/json';
+        const format = 'json';
+        const params = {
+          accept: accept,
+          format: format,
+        };
+
+        const getHealthCheckStatusResult = insightsForMedicalLiteratureService.getHealthCheckStatus(params);
+
+        // all methods should return a Promise
+        expectToBePromise(getHealthCheckStatusResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v1/status/health_check', 'GET');
+        const expectedAccept = accept;
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        checkUserHeader(createRequestMock, 'Accept', accept);
+        expect(options.qs['format']).toEqual(format);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        insightsForMedicalLiteratureService.getHealthCheckStatus(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+
+      test('should not have any problems when no parameters are passed in', () => {
+        // invoke the method with no parameters
+        insightsForMedicalLiteratureService.getHealthCheckStatus({});
+        checkForSuccessfulExecution(createRequestMock);
+      });
+    });
+  });
+  describe('search', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation search
+        const corpus = 'testString';
+        const body = 'testString';
+        const verbose = true;
+        const params = {
+          corpus: corpus,
+          body: body,
+          verbose: verbose,
+        };
+
+        const searchResult = insightsForMedicalLiteratureService.search(params);
+
+        // all methods should return a Promise
+        expectToBePromise(searchResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v1/corpora/{corpus}/search', 'POST');
+        const expectedAccept = 'application/json';
+        const expectedContentType = 'application/json';
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.body).toEqual(body);
+        expect(options.qs['version']).toEqual(service.version);
+        expect(options.qs['verbose']).toEqual(verbose);
+        expect(options.path['corpus']).toEqual(corpus);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const corpus = 'testString';
+        const body = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          corpus,
+          body,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        insightsForMedicalLiteratureService.search(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await insightsForMedicalLiteratureService.search({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const searchPromise = insightsForMedicalLiteratureService.search();
+        expectToBePromise(searchPromise);
+
+        searchPromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
+  describe('getFields', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation getFields
+        const corpus = 'testString';
+        const params = {
+          corpus: corpus,
+        };
+
+        const getFieldsResult = insightsForMedicalLiteratureService.getFields(params);
+
+        // all methods should return a Promise
+        expectToBePromise(getFieldsResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v1/corpora/{corpus}/search/metadata', 'GET');
+        const expectedAccept = 'application/json';
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.qs['version']).toEqual(service.version);
+        expect(options.path['corpus']).toEqual(corpus);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const corpus = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          corpus,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        insightsForMedicalLiteratureService.getFields(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await insightsForMedicalLiteratureService.getFields({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const getFieldsPromise = insightsForMedicalLiteratureService.getFields();
+        expectToBePromise(getFieldsPromise);
+
+        getFieldsPromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
+  describe('typeahead', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation typeahead
+        const corpus = 'testString';
+        const query = 'testString';
+        const ontologies = ['concepts'];
+        const types = ['testString'];
+        const category = 'disorders';
+        const verbose = true;
+        const limit = 38;
+        const maxHitCount = 38;
+        const noDuplicates = true;
+        const params = {
+          corpus: corpus,
+          query: query,
+          ontologies: ontologies,
+          types: types,
+          category: category,
+          verbose: verbose,
+          limit: limit,
+          maxHitCount: maxHitCount,
+          noDuplicates: noDuplicates,
+        };
+
+        const typeaheadResult = insightsForMedicalLiteratureService.typeahead(params);
+
+        // all methods should return a Promise
+        expectToBePromise(typeaheadResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v1/corpora/{corpus}/search/typeahead', 'GET');
+        const expectedAccept = 'application/json';
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.qs['version']).toEqual(service.version);
+        expect(options.qs['query']).toEqual(query);
+        expect(options.qs['ontologies']).toEqual(ontologies);
+        expect(options.qs['types']).toEqual(types);
+        expect(options.qs['category']).toEqual(category);
+        expect(options.qs['verbose']).toEqual(verbose);
+        expect(options.qs['_limit']).toEqual(limit);
+        expect(options.qs['max_hit_count']).toEqual(maxHitCount);
+        expect(options.qs['no_duplicates']).toEqual(noDuplicates);
+        expect(options.path['corpus']).toEqual(corpus);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const corpus = 'testString';
+        const query = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          corpus,
+          query,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        insightsForMedicalLiteratureService.typeahead(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await insightsForMedicalLiteratureService.typeahead({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const typeaheadPromise = insightsForMedicalLiteratureService.typeahead();
+        expectToBePromise(typeaheadPromise);
+
+        typeaheadPromise.catch(err => {
           expect(err.message).toMatch(/Missing required parameters/);
           done();
         });
@@ -1289,352 +1618,6 @@ describe('InsightsForMedicalLiteratureServiceV1', () => {
       });
     });
   });
-  describe('getServiceStatus', () => {
-    describe('positive tests', () => {
-      test('should pass the right params to createRequest', () => {
-        // Construct the params object for operation getServiceStatus
-        const accept = 'application/json';
-        const format = 'json';
-        const livenessCheck = 'true';
-        const params = {
-          accept: accept,
-          format: format,
-          livenessCheck: livenessCheck,
-        };
-
-        const getServiceStatusResult = insightsForMedicalLiteratureService.getServiceStatus(params);
-
-        // all methods should return a Promise
-        expectToBePromise(getServiceStatusResult);
-
-        // assert that create request was called
-        expect(createRequestMock).toHaveBeenCalledTimes(1);
-
-        const options = getOptions(createRequestMock);
-
-        checkUrlAndMethod(options, '/v1/status', 'GET');
-        const expectedAccept = accept;
-        const expectedContentType = undefined;
-        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
-        checkUserHeader(createRequestMock, 'Accept', accept);
-        expect(options.qs['format']).toEqual(format);
-        expect(options.qs['liveness_check']).toEqual(livenessCheck);
-      });
-
-      test('should prioritize user-given headers', () => {
-        // parameters
-        const userAccept = 'fake/accept';
-        const userContentType = 'fake/contentType';
-        const params = {
-          headers: {
-            Accept: userAccept,
-            'Content-Type': userContentType,
-          },
-        };
-
-        insightsForMedicalLiteratureService.getServiceStatus(params);
-        checkMediaHeaders(createRequestMock, userAccept, userContentType);
-      });
-
-      test('should not have any problems when no parameters are passed in', () => {
-        // invoke the method with no parameters
-        insightsForMedicalLiteratureService.getServiceStatus({});
-        checkForSuccessfulExecution(createRequestMock);
-      });
-    });
-  });
-  describe('getHealthCheckStatus', () => {
-    describe('positive tests', () => {
-      test('should pass the right params to createRequest', () => {
-        // Construct the params object for operation getHealthCheckStatus
-        const accept = 'application/json';
-        const format = 'json';
-        const params = {
-          accept: accept,
-          format: format,
-        };
-
-        const getHealthCheckStatusResult = insightsForMedicalLiteratureService.getHealthCheckStatus(params);
-
-        // all methods should return a Promise
-        expectToBePromise(getHealthCheckStatusResult);
-
-        // assert that create request was called
-        expect(createRequestMock).toHaveBeenCalledTimes(1);
-
-        const options = getOptions(createRequestMock);
-
-        checkUrlAndMethod(options, '/v1/status/health_check', 'GET');
-        const expectedAccept = accept;
-        const expectedContentType = undefined;
-        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
-        checkUserHeader(createRequestMock, 'Accept', accept);
-        expect(options.qs['format']).toEqual(format);
-      });
-
-      test('should prioritize user-given headers', () => {
-        // parameters
-        const userAccept = 'fake/accept';
-        const userContentType = 'fake/contentType';
-        const params = {
-          headers: {
-            Accept: userAccept,
-            'Content-Type': userContentType,
-          },
-        };
-
-        insightsForMedicalLiteratureService.getHealthCheckStatus(params);
-        checkMediaHeaders(createRequestMock, userAccept, userContentType);
-      });
-
-      test('should not have any problems when no parameters are passed in', () => {
-        // invoke the method with no parameters
-        insightsForMedicalLiteratureService.getHealthCheckStatus({});
-        checkForSuccessfulExecution(createRequestMock);
-      });
-    });
-  });
-  describe('search', () => {
-    describe('positive tests', () => {
-      test('should pass the right params to createRequest', () => {
-        // Construct the params object for operation search
-        const corpus = 'testString';
-        const body = 'testString';
-        const verbose = true;
-        const params = {
-          corpus: corpus,
-          body: body,
-          verbose: verbose,
-        };
-
-        const searchResult = insightsForMedicalLiteratureService.search(params);
-
-        // all methods should return a Promise
-        expectToBePromise(searchResult);
-
-        // assert that create request was called
-        expect(createRequestMock).toHaveBeenCalledTimes(1);
-
-        const options = getOptions(createRequestMock);
-
-        checkUrlAndMethod(options, '/v1/corpora/{corpus}/search', 'POST');
-        const expectedAccept = 'application/json';
-        const expectedContentType = 'application/json';
-        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
-        expect(options.body).toEqual(body);
-        expect(options.qs['version']).toEqual(service.version);
-        expect(options.qs['verbose']).toEqual(verbose);
-        expect(options.path['corpus']).toEqual(corpus);
-      });
-
-      test('should prioritize user-given headers', () => {
-        // parameters
-        const corpus = 'testString';
-        const body = 'testString';
-        const userAccept = 'fake/accept';
-        const userContentType = 'fake/contentType';
-        const params = {
-          corpus,
-          body,
-          headers: {
-            Accept: userAccept,
-            'Content-Type': userContentType,
-          },
-        };
-
-        insightsForMedicalLiteratureService.search(params);
-        checkMediaHeaders(createRequestMock, userAccept, userContentType);
-      });
-    });
-
-    describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
-        let err;
-        try {
-          await insightsForMedicalLiteratureService.search({});
-        } catch (e) {
-          err = e;
-        }
-
-        expect(err.message).toMatch(/Missing required parameters/);
-        done();
-      });
-
-      test('should reject promise when required params are not given', done => {
-        const searchPromise = insightsForMedicalLiteratureService.search();
-        expectToBePromise(searchPromise);
-
-        searchPromise.catch(err => {
-          expect(err.message).toMatch(/Missing required parameters/);
-          done();
-        });
-      });
-    });
-  });
-  describe('getFields', () => {
-    describe('positive tests', () => {
-      test('should pass the right params to createRequest', () => {
-        // Construct the params object for operation getFields
-        const corpus = 'testString';
-        const params = {
-          corpus: corpus,
-        };
-
-        const getFieldsResult = insightsForMedicalLiteratureService.getFields(params);
-
-        // all methods should return a Promise
-        expectToBePromise(getFieldsResult);
-
-        // assert that create request was called
-        expect(createRequestMock).toHaveBeenCalledTimes(1);
-
-        const options = getOptions(createRequestMock);
-
-        checkUrlAndMethod(options, '/v1/corpora/{corpus}/search/metadata', 'GET');
-        const expectedAccept = 'application/json';
-        const expectedContentType = undefined;
-        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
-        expect(options.qs['version']).toEqual(service.version);
-        expect(options.path['corpus']).toEqual(corpus);
-      });
-
-      test('should prioritize user-given headers', () => {
-        // parameters
-        const corpus = 'testString';
-        const userAccept = 'fake/accept';
-        const userContentType = 'fake/contentType';
-        const params = {
-          corpus,
-          headers: {
-            Accept: userAccept,
-            'Content-Type': userContentType,
-          },
-        };
-
-        insightsForMedicalLiteratureService.getFields(params);
-        checkMediaHeaders(createRequestMock, userAccept, userContentType);
-      });
-    });
-
-    describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
-        let err;
-        try {
-          await insightsForMedicalLiteratureService.getFields({});
-        } catch (e) {
-          err = e;
-        }
-
-        expect(err.message).toMatch(/Missing required parameters/);
-        done();
-      });
-
-      test('should reject promise when required params are not given', done => {
-        const getFieldsPromise = insightsForMedicalLiteratureService.getFields();
-        expectToBePromise(getFieldsPromise);
-
-        getFieldsPromise.catch(err => {
-          expect(err.message).toMatch(/Missing required parameters/);
-          done();
-        });
-      });
-    });
-  });
-  describe('typeahead', () => {
-    describe('positive tests', () => {
-      test('should pass the right params to createRequest', () => {
-        // Construct the params object for operation typeahead
-        const corpus = 'testString';
-        const query = 'testString';
-        const ontologies = ['concepts'];
-        const types = ['testString'];
-        const category = 'disorders';
-        const verbose = true;
-        const limit = 38;
-        const maxHitCount = 38;
-        const noDuplicates = true;
-        const params = {
-          corpus: corpus,
-          query: query,
-          ontologies: ontologies,
-          types: types,
-          category: category,
-          verbose: verbose,
-          limit: limit,
-          maxHitCount: maxHitCount,
-          noDuplicates: noDuplicates,
-        };
-
-        const typeaheadResult = insightsForMedicalLiteratureService.typeahead(params);
-
-        // all methods should return a Promise
-        expectToBePromise(typeaheadResult);
-
-        // assert that create request was called
-        expect(createRequestMock).toHaveBeenCalledTimes(1);
-
-        const options = getOptions(createRequestMock);
-
-        checkUrlAndMethod(options, '/v1/corpora/{corpus}/search/typeahead', 'GET');
-        const expectedAccept = 'application/json';
-        const expectedContentType = undefined;
-        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
-        expect(options.qs['version']).toEqual(service.version);
-        expect(options.qs['query']).toEqual(query);
-        expect(options.qs['ontologies']).toEqual(ontologies);
-        expect(options.qs['types']).toEqual(types);
-        expect(options.qs['category']).toEqual(category);
-        expect(options.qs['verbose']).toEqual(verbose);
-        expect(options.qs['_limit']).toEqual(limit);
-        expect(options.qs['max_hit_count']).toEqual(maxHitCount);
-        expect(options.qs['no_duplicates']).toEqual(noDuplicates);
-        expect(options.path['corpus']).toEqual(corpus);
-      });
-
-      test('should prioritize user-given headers', () => {
-        // parameters
-        const corpus = 'testString';
-        const query = 'testString';
-        const userAccept = 'fake/accept';
-        const userContentType = 'fake/contentType';
-        const params = {
-          corpus,
-          query,
-          headers: {
-            Accept: userAccept,
-            'Content-Type': userContentType,
-          },
-        };
-
-        insightsForMedicalLiteratureService.typeahead(params);
-        checkMediaHeaders(createRequestMock, userAccept, userContentType);
-      });
-    });
-
-    describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
-        let err;
-        try {
-          await insightsForMedicalLiteratureService.typeahead({});
-        } catch (e) {
-          err = e;
-        }
-
-        expect(err.message).toMatch(/Missing required parameters/);
-        done();
-      });
-
-      test('should reject promise when required params are not given', done => {
-        const typeaheadPromise = insightsForMedicalLiteratureService.typeahead();
-        expectToBePromise(typeaheadPromise);
-
-        typeaheadPromise.catch(err => {
-          expect(err.message).toMatch(/Missing required parameters/);
-          done();
-        });
-      });
-    });
-  });
   describe('getConcepts', () => {
     describe('positive tests', () => {
       test('should pass the right params to createRequest', () => {
@@ -1735,10 +1718,10 @@ describe('InsightsForMedicalLiteratureServiceV1', () => {
         cui: 'testString',
         definition: ['testString'],
         parents: ['testString'],
-        preferred_name: 'testString',
+        preferredName: 'testString',
         semtypes: ['testString'],
         siblings: ['testString'],
-        surface_forms: ['testString'],
+        surfaceForms: ['testString'],
         variants: ['testString'],
         vocab: 'testString',
         related: ['testString'],
@@ -1748,7 +1731,7 @@ describe('InsightsForMedicalLiteratureServiceV1', () => {
 
       // PossbileValues
       const possbileValuesModel = {
-        display_value: 'testString',
+        displayValue: 'testString',
         value: 'testString',
       };
 
@@ -1765,7 +1748,7 @@ describe('InsightsForMedicalLiteratureServiceV1', () => {
         minimum_value: 'testString',
         multi_value: true,
         units: 'testString',
-        value_type: 'testString',
+        valueType: 'testString',
         possible_values: [possbileValuesModel],
       };
 

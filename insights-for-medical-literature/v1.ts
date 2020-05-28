@@ -587,14 +587,6 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
    * @param {string[]} [params.text] - Case insensitive text searches.
    * @param {string[]} [params.types] - Highlight all text spans matching these semantic types.  Semantic types for the
    * corpus can be found using the /v1/corpora/{corpus}/types method.
-   * @param {string[]} [params.attributes] - Highlight all text spans matching these attributes.  An attribute may also
-   * specify a range value (e.g., age:years:65-100) or  a string value (e.g., gender:female).  The attribute may be
-   * qualified with one or more qualifiers (e.g., Treated,Severe>>diabetes)  An attribute may target a specific CUI.
-   * (e.g., C0003864::disease).
-   * @param {string[]} [params.values] - Highlight all text spans matching these values.  e.g., age:years:within:65-100
-   * or gender:female  a string value (e.g., gender:female).
-   * @param {string[]} [params.nluRelations] - Highlight all text spans matching these NLU relations.  e.g.,
-   * druggroup,treat,indication.
    * @param {number} [params.limit] - Limit the number of matching passages per search concept/search term (1 to 250).
    * Default is 50.
    * @param {string} [params.searchTagBegin] - HTML tag used to highlight search concepts found in the text.  Default is
@@ -624,9 +616,6 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'cuis': _params.cuis,
         'text': _params.text,
         'types': _params.types,
-        'attributes': _params.attributes,
-        'values': _params.values,
-        'nlu_relations': _params.nluRelations,
         '_limit': _params.limit,
         'search_tag_begin': _params.searchTagBegin,
         'search_tag_end': _params.searchTagEnd,
@@ -645,394 +634,6 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
       const parameters = {
         options: {
           url: '/v1/corpora/{corpus}/documents/{document_id}/search_matches',
-          method: 'GET',
-          qs: query,
-          path,
-        },
-        defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
-        }),
-      };
-
-      return resolve(this.createRequest(parameters));
-    });
-  };
-
-  /*************************
-   * corpora
-   ************************/
-
-  /**
-   * Retrieves the available corpus names and configuration.
-   *
-   * The response returns an array of available corpus names and optionally includes detailed configuation parameters.
-   *
-   * @param {Object} [params] - The parameters to send to the service.
-   * @param {boolean} [params.verbose] - Verbose output.  Default verbose = false.
-   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CorporaConfig>>}
-   */
-  public getCorporaConfig(params?: InsightsForMedicalLiteratureServiceV1.GetCorporaConfigParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CorporaConfig>> {
-    const _params = extend({}, params);
-
-    return new Promise((resolve, reject) => {
-      const query = {
-        'version': this.version,
-        'verbose': _params.verbose
-      };
-
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorporaConfig');
-
-      const parameters = {
-        options: {
-          url: '/v1/corpora',
-          method: 'GET',
-          qs: query,
-        },
-        defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
-        }),
-      };
-
-      return resolve(this.createRequest(parameters));
-    });
-  };
-
-  /**
-   * Define service repository data model.
-   *
-   * The response returns whether the instance schema was properly created.  <P>This API should be used for defining a
-   * custom corpus schema.<P>Example POST body:<pre>{
-   *    corpusName : 'string'
-   *   "enrichmentTargets" : [
-   *    {
-   *     "contentField": 'string',
-   *     "enrichmentField : 'string'
-   *    }
-   *   ],
-   *   "metadataFields" : [
-   *    {
-   *     "fieldName": 'string',
-   *     "fieldType : 'string'
-   *    }
-   *   ],
-   *   "referenceIndices" : {
-   *    "dictionaryIndex" : "my_umls",
-   *    "attributeIndex" : "my_attributes",
-   *    "meshIndex" : "my_mesh",
-   *   }
-   * }
-   * </pre>.
-   *
-   * @param {Object} [params] - The parameters to send to the service.
-   * @param {JsonObject[]} [params.enrichmentTargets] - Input and Output field names.
-   * @param {JsonObject[]} [params.metadataFields] - Metadata field names.
-   * @param {string} [params.corpusName] - Corpus name.
-   * @param {JsonObject} [params.references] - Reference indices.
-   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CorporaConfig>>}
-   */
-  public setCorpusSchema(params?: InsightsForMedicalLiteratureServiceV1.SetCorpusSchemaParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CorporaConfig>> {
-    const _params = extend({}, params);
-
-    return new Promise((resolve, reject) => {
-      const body = {
-        'enrichmentTargets': _params.enrichmentTargets,
-        'metadataFields': _params.metadataFields,
-        'corpusName': _params.corpusName,
-        'references': _params.references
-      };
-
-      const query = {
-        'version': this.version
-      };
-
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'setCorpusSchema');
-
-      const parameters = {
-        options: {
-          url: '/v1/corpora',
-          method: 'POST',
-          body,
-          qs: query,
-        },
-        defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          }, _params.headers),
-        }),
-      };
-
-      return resolve(this.createRequest(parameters));
-    });
-  };
-
-  /**
-   * Delete a corpus.
-   *
-   * The response returns whether the instance schema was properly deleted.
-   *
-   * @param {Object} params - The parameters to send to the service.
-   * @param {string} params.instance - corpus schema.
-   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CorporaConfig>>}
-   */
-  public deleteCorpusSchema(params: InsightsForMedicalLiteratureServiceV1.DeleteCorpusSchemaParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CorporaConfig>> {
-    const _params = extend({}, params);
-    const requiredParams = ['instance'];
-
-    return new Promise((resolve, reject) => {
-      const missingParams = getMissingParams(_params, requiredParams);
-      if (missingParams) {
-        return reject(missingParams);
-      }
-
-      const query = {
-        'version': this.version,
-        'instance': _params.instance
-      };
-
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteCorpusSchema');
-
-      const parameters = {
-        options: {
-          url: '/v1/corpora',
-          method: 'DELETE',
-          qs: query,
-        },
-        defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
-        }),
-      };
-
-      return resolve(this.createRequest(parameters));
-    });
-  };
-
-  /**
-   * Define service repository.
-   *
-   * The response returns whether the service successfully connected to the specified repository.  <P>This API should be
-   * used for providing a custom enriched corpus.<P>Example POST body:<pre>{
-   *    userName : 'string',
-   *    password : 'string'
-   *    repositoryUri : 'uri'
-   * }
-   * </pre>.
-   *
-   * @param {Object} [params] - The parameters to send to the service.
-   * @param {string} [params.userName] - Repository connection userid.
-   * @param {string} [params.password] - Repository connection password.
-   * @param {string} [params.corpusUri] - Repository connection URI.
-   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CorporaConfig>>}
-   */
-  public setCorpusConfig(params?: InsightsForMedicalLiteratureServiceV1.SetCorpusConfigParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CorporaConfig>> {
-    const _params = extend({}, params);
-
-    return new Promise((resolve, reject) => {
-      const body = {
-        'userName': _params.userName,
-        'password': _params.password,
-        'corpusURI': _params.corpusUri
-      };
-
-      const query = {
-        'version': this.version
-      };
-
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'setCorpusConfig');
-
-      const parameters = {
-        options: {
-          url: '/v1/corpora/configure',
-          method: 'POST',
-          body,
-          qs: query,
-        },
-        defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          }, _params.headers),
-        }),
-      };
-
-      return resolve(this.createRequest(parameters));
-    });
-  };
-
-  /**
-   * Enable monitoring for a custom instance.
-   *
-   * This API is meant to be used for IBM Cloud automated monitoring of custom plan instances.  A service api-key with
-   * read only role can be submitted to enable monitoring.
-   *
-   * @param {Object} params - The parameters to send to the service.
-   * @param {string} params.apikey - Apikey with read only permissions for monitoring.
-   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.Empty>>}
-   */
-  public monitorCorpus(params: InsightsForMedicalLiteratureServiceV1.MonitorCorpusParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.Empty>> {
-    const _params = extend({}, params);
-    const requiredParams = ['apikey'];
-
-    return new Promise((resolve, reject) => {
-      const missingParams = getMissingParams(_params, requiredParams);
-      if (missingParams) {
-        return reject(missingParams);
-      }
-
-      const query = {
-        'version': this.version,
-        'apikey': _params.apikey
-      };
-
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'monitorCorpus');
-
-      const parameters = {
-        options: {
-          url: '/v1/corpora/monitor',
-          method: 'PUT',
-          qs: query,
-        },
-        defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-          }, _params.headers),
-        }),
-      };
-
-      return resolve(this.createRequest(parameters));
-    });
-  };
-
-  /**
-   * Toggle Search Activity Tracking.
-   *
-   * The response returns whether the tracking was enabled or disabled.
-   *
-   * @param {Object} [params] - The parameters to send to the service.
-   * @param {boolean} [params.enableTracking] - Enable corpus read event tracking.  Default is false.
-   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.Empty>>}
-   */
-  public enableCorpusSearchTracking(params?: InsightsForMedicalLiteratureServiceV1.EnableCorpusSearchTrackingParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.Empty>> {
-    const _params = extend({}, params);
-
-    return new Promise((resolve, reject) => {
-      const query = {
-        'version': this.version,
-        'enable_tracking': _params.enableTracking
-      };
-
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'enableCorpusSearchTracking');
-
-      const parameters = {
-        options: {
-          url: '/v1/corpora/tracking',
-          method: 'PUT',
-          qs: query,
-        },
-        defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-          }, _params.headers),
-        }),
-      };
-
-      return resolve(this.createRequest(parameters));
-    });
-  };
-
-  /**
-   * Retrieves the corpus configuration.
-   *
-   * The response returns the corpus configuration.
-   *
-   * @param {Object} params - The parameters to send to the service.
-   * @param {string} params.corpus - Corpus name.
-   * @param {boolean} [params.verbose] - Verbose output.  Default verbose = false.
-   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CorporaConfig>>}
-   */
-  public getCorpusConfig(params: InsightsForMedicalLiteratureServiceV1.GetCorpusConfigParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CorporaConfig>> {
-    const _params = extend({}, params);
-    const requiredParams = ['corpus'];
-
-    return new Promise((resolve, reject) => {
-      const missingParams = getMissingParams(_params, requiredParams);
-      if (missingParams) {
-        return reject(missingParams);
-      }
-
-      const query = {
-        'version': this.version,
-        'verbose': _params.verbose
-      };
-
-      const path = {
-        'corpus': _params.corpus
-      };
-
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
-
-      const parameters = {
-        options: {
-          url: '/v1/corpora/{corpus}',
-          method: 'GET',
-          qs: query,
-          path,
-        },
-        defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
-        }),
-      };
-
-      return resolve(this.createRequest(parameters));
-    });
-  };
-
-  /**
-   * Retrieves statistics for a corpus.
-   *
-   * The response returns internal statistics for the corpus.
-   *
-   * @param {Object} params - The parameters to send to the service.
-   * @param {string} params.corpus - Corpus name.
-   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.StatisticsModel>>}
-   */
-  public getStatistics(params: InsightsForMedicalLiteratureServiceV1.GetStatisticsParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.StatisticsModel>> {
-    const _params = extend({}, params);
-    const requiredParams = ['corpus'];
-
-    return new Promise((resolve, reject) => {
-      const missingParams = getMissingParams(_params, requiredParams);
-      if (missingParams) {
-        return reject(missingParams);
-      }
-
-      const query = {
-        'version': this.version
-      };
-
-      const path = {
-        'corpus': _params.corpus
-      };
-
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getStatistics');
-
-      const parameters = {
-        options: {
-          url: '/v1/corpora/{corpus}/statistics',
           method: 'GET',
           qs: query,
           path,
@@ -1319,6 +920,394 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
       const parameters = {
         options: {
           url: '/v1/corpora/{corpus}/search/typeahead',
+          method: 'GET',
+          qs: query,
+          path,
+        },
+        defaultOptions: extend(true, {}, this.baseOptions, {
+          headers: extend(true, sdkHeaders, {
+            'Accept': 'application/json',
+          }, _params.headers),
+        }),
+      };
+
+      return resolve(this.createRequest(parameters));
+    });
+  };
+
+  /*************************
+   * corpora
+   ************************/
+
+  /**
+   * Retrieves the available corpus names and configuration.
+   *
+   * The response returns an array of available corpus names and optionally includes detailed configuation parameters.
+   *
+   * @param {Object} [params] - The parameters to send to the service.
+   * @param {boolean} [params.verbose] - Verbose output.  Default verbose = false.
+   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
+   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CorporaConfig>>}
+   */
+  public getCorporaConfig(params?: InsightsForMedicalLiteratureServiceV1.GetCorporaConfigParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CorporaConfig>> {
+    const _params = extend({}, params);
+
+    return new Promise((resolve, reject) => {
+      const query = {
+        'version': this.version,
+        'verbose': _params.verbose
+      };
+
+      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorporaConfig');
+
+      const parameters = {
+        options: {
+          url: '/v1/corpora',
+          method: 'GET',
+          qs: query,
+        },
+        defaultOptions: extend(true, {}, this.baseOptions, {
+          headers: extend(true, sdkHeaders, {
+            'Accept': 'application/json',
+          }, _params.headers),
+        }),
+      };
+
+      return resolve(this.createRequest(parameters));
+    });
+  };
+
+  /**
+   * Define service repository data model.
+   *
+   * The response returns whether the instance schema was properly created.  <P>This API should be used for defining a
+   * custom corpus schema.<P>Example POST body:<pre>{
+   *    corpusName : 'string'
+   *   "enrichmentTargets" : [
+   *    {
+   *     "contentField": 'string',
+   *     "enrichmentField : 'string'
+   *    }
+   *   ],
+   *   "metadataFields" : [
+   *    {
+   *     "fieldName": 'string',
+   *     "fieldType : 'string'
+   *    }
+   *   ],
+   *   "referenceIndices" : {
+   *    "dictionaryIndex" : "my_umls",
+   *    "attributeIndex" : "my_attributes",
+   *    "meshIndex" : "my_mesh",
+   *   }
+   * }
+   * </pre>.
+   *
+   * @param {Object} [params] - The parameters to send to the service.
+   * @param {JsonObject[]} [params.enrichmentTargets] - Input and Output field names.
+   * @param {JsonObject[]} [params.metadataFields] - Metadata field names.
+   * @param {string} [params.corpusName] - Corpus name.
+   * @param {JsonObject} [params.references] - Reference indices.
+   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
+   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.ConfigurationStatusModel>>}
+   */
+  public setCorpusSchema(params?: InsightsForMedicalLiteratureServiceV1.SetCorpusSchemaParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.ConfigurationStatusModel>> {
+    const _params = extend({}, params);
+
+    return new Promise((resolve, reject) => {
+      const body = {
+        'enrichmentTargets': _params.enrichmentTargets,
+        'metadataFields': _params.metadataFields,
+        'corpusName': _params.corpusName,
+        'references': _params.references
+      };
+
+      const query = {
+        'version': this.version
+      };
+
+      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'setCorpusSchema');
+
+      const parameters = {
+        options: {
+          url: '/v1/corpora',
+          method: 'POST',
+          body,
+          qs: query,
+        },
+        defaultOptions: extend(true, {}, this.baseOptions, {
+          headers: extend(true, sdkHeaders, {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          }, _params.headers),
+        }),
+      };
+
+      return resolve(this.createRequest(parameters));
+    });
+  };
+
+  /**
+   * Delete a corpus.
+   *
+   * The response returns whether the instance schema was properly deleted.
+   *
+   * @param {Object} params - The parameters to send to the service.
+   * @param {string} params.instance - corpus schema.
+   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
+   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.ConfigurationStatusModel>>}
+   */
+  public deleteCorpusSchema(params: InsightsForMedicalLiteratureServiceV1.DeleteCorpusSchemaParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.ConfigurationStatusModel>> {
+    const _params = extend({}, params);
+    const requiredParams = ['instance'];
+
+    return new Promise((resolve, reject) => {
+      const missingParams = getMissingParams(_params, requiredParams);
+      if (missingParams) {
+        return reject(missingParams);
+      }
+
+      const query = {
+        'version': this.version,
+        'instance': _params.instance
+      };
+
+      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteCorpusSchema');
+
+      const parameters = {
+        options: {
+          url: '/v1/corpora',
+          method: 'DELETE',
+          qs: query,
+        },
+        defaultOptions: extend(true, {}, this.baseOptions, {
+          headers: extend(true, sdkHeaders, {
+            'Accept': 'application/json',
+          }, _params.headers),
+        }),
+      };
+
+      return resolve(this.createRequest(parameters));
+    });
+  };
+
+  /**
+   * Define service repository.
+   *
+   * The response returns whether the service successfully tested a connection to the specified repository and submitted
+   * the new configuration.<P>This API should be used for providing a custom enriched corpus.<P>Example POST body:<pre>{
+   *    userName : 'string',
+   *    password : 'string'
+   *    repositoryUri : 'uri'
+   * }
+   * </pre>.
+   *
+   * @param {Object} [params] - The parameters to send to the service.
+   * @param {string} [params.userName] - Repository connection userid.
+   * @param {string} [params.password] - Repository connection password.
+   * @param {string} [params.corpusUri] - Repository connection URI.
+   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
+   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.ConfigurationStatusModel>>}
+   */
+  public setCorpusConfig(params?: InsightsForMedicalLiteratureServiceV1.SetCorpusConfigParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.ConfigurationStatusModel>> {
+    const _params = extend({}, params);
+
+    return new Promise((resolve, reject) => {
+      const body = {
+        'userName': _params.userName,
+        'password': _params.password,
+        'corpusURI': _params.corpusUri
+      };
+
+      const query = {
+        'version': this.version
+      };
+
+      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'setCorpusConfig');
+
+      const parameters = {
+        options: {
+          url: '/v1/corpora/configure',
+          method: 'POST',
+          body,
+          qs: query,
+        },
+        defaultOptions: extend(true, {}, this.baseOptions, {
+          headers: extend(true, sdkHeaders, {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          }, _params.headers),
+        }),
+      };
+
+      return resolve(this.createRequest(parameters));
+    });
+  };
+
+  /**
+   * Enable monitoring for a custom instance.
+   *
+   * This API is meant to be used for IBM Cloud automated monitoring of custom plan instances.  A service api-key with
+   * read only role can be submitted to enable monitoring.
+   *
+   * @param {Object} params - The parameters to send to the service.
+   * @param {string} params.apikey - Apikey with read only permissions for monitoring.
+   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
+   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.Empty>>}
+   */
+  public monitorCorpus(params: InsightsForMedicalLiteratureServiceV1.MonitorCorpusParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.Empty>> {
+    const _params = extend({}, params);
+    const requiredParams = ['apikey'];
+
+    return new Promise((resolve, reject) => {
+      const missingParams = getMissingParams(_params, requiredParams);
+      if (missingParams) {
+        return reject(missingParams);
+      }
+
+      const query = {
+        'version': this.version,
+        'apikey': _params.apikey
+      };
+
+      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'monitorCorpus');
+
+      const parameters = {
+        options: {
+          url: '/v1/corpora/monitor',
+          method: 'PUT',
+          qs: query,
+        },
+        defaultOptions: extend(true, {}, this.baseOptions, {
+          headers: extend(true, sdkHeaders, {
+          }, _params.headers),
+        }),
+      };
+
+      return resolve(this.createRequest(parameters));
+    });
+  };
+
+  /**
+   * Toggle Search Activity Tracking.
+   *
+   * The response returns whether the request to enable or disable tracking was accepted.
+   *
+   * @param {Object} [params] - The parameters to send to the service.
+   * @param {boolean} [params.enableTracking] - Enable corpus read event tracking.  Default is false.
+   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
+   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.Empty>>}
+   */
+  public enableCorpusSearchTracking(params?: InsightsForMedicalLiteratureServiceV1.EnableCorpusSearchTrackingParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.Empty>> {
+    const _params = extend({}, params);
+
+    return new Promise((resolve, reject) => {
+      const query = {
+        'version': this.version,
+        'enable_tracking': _params.enableTracking
+      };
+
+      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'enableCorpusSearchTracking');
+
+      const parameters = {
+        options: {
+          url: '/v1/corpora/tracking',
+          method: 'PUT',
+          qs: query,
+        },
+        defaultOptions: extend(true, {}, this.baseOptions, {
+          headers: extend(true, sdkHeaders, {
+          }, _params.headers),
+        }),
+      };
+
+      return resolve(this.createRequest(parameters));
+    });
+  };
+
+  /**
+   * Retrieves the corpus configuration.
+   *
+   * The response returns the corpus configuration.
+   *
+   * @param {Object} params - The parameters to send to the service.
+   * @param {string} params.corpus - Corpus name.
+   * @param {boolean} [params.verbose] - Verbose output.  Default verbose = false.
+   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
+   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CorporaConfig>>}
+   */
+  public getCorpusConfig(params: InsightsForMedicalLiteratureServiceV1.GetCorpusConfigParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CorporaConfig>> {
+    const _params = extend({}, params);
+    const requiredParams = ['corpus'];
+
+    return new Promise((resolve, reject) => {
+      const missingParams = getMissingParams(_params, requiredParams);
+      if (missingParams) {
+        return reject(missingParams);
+      }
+
+      const query = {
+        'version': this.version,
+        'verbose': _params.verbose
+      };
+
+      const path = {
+        'corpus': _params.corpus
+      };
+
+      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+
+      const parameters = {
+        options: {
+          url: '/v1/corpora/{corpus}',
+          method: 'GET',
+          qs: query,
+          path,
+        },
+        defaultOptions: extend(true, {}, this.baseOptions, {
+          headers: extend(true, sdkHeaders, {
+            'Accept': 'application/json',
+          }, _params.headers),
+        }),
+      };
+
+      return resolve(this.createRequest(parameters));
+    });
+  };
+
+  /**
+   * Retrieves statistics for a corpus.
+   *
+   * The response returns internal statistics for the corpus.
+   *
+   * @param {Object} params - The parameters to send to the service.
+   * @param {string} params.corpus - Corpus name.
+   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
+   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.StatisticsModel>>}
+   */
+  public getStatistics(params: InsightsForMedicalLiteratureServiceV1.GetStatisticsParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.StatisticsModel>> {
+    const _params = extend({}, params);
+    const requiredParams = ['corpus'];
+
+    return new Promise((resolve, reject) => {
+      const missingParams = getMissingParams(_params, requiredParams);
+      if (missingParams) {
+        return reject(missingParams);
+      }
+
+      const query = {
+        'version': this.version
+      };
+
+      const path = {
+        'corpus': _params.corpus
+      };
+
+      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getStatistics');
+
+      const parameters = {
+        options: {
+          url: '/v1/corpora/{corpus}/statistics',
           method: 'GET',
           qs: query,
           path,
@@ -1946,17 +1935,6 @@ namespace InsightsForMedicalLiteratureServiceV1 {
      *  the /v1/corpora/{corpus}/types method.
      */
     types?: string[];
-    /** Highlight all text spans matching these attributes.  An attribute may also specify a range value (e.g.,
-     *  age:years:65-100) or  a string value (e.g., gender:female).  The attribute may be qualified with one or more
-     *  qualifiers (e.g., Treated,Severe>>diabetes)  An attribute may target a specific CUI.  (e.g., C0003864::disease).
-     */
-    attributes?: string[];
-    /** Highlight all text spans matching these values.  e.g., age:years:within:65-100 or gender:female  a string
-     *  value (e.g., gender:female).
-     */
-    values?: string[];
-    /** Highlight all text spans matching these NLU relations.  e.g., druggroup,treat,indication. */
-    nluRelations?: string[];
     /** Limit the number of matching passages per search concept/search term (1 to 250).  Default is 50. */
     limit?: number;
     /** HTML tag used to highlight search concepts found in the text.  Default is '&ltb&gt'. */
@@ -1971,74 +1949,6 @@ namespace InsightsForMedicalLiteratureServiceV1 {
      *  highlightedBody, highlightedSections.
      */
     fields?: string;
-    headers?: OutgoingHttpHeaders;
-  }
-
-  /** Parameters for the `getCorporaConfig` operation. */
-  export interface GetCorporaConfigParams {
-    /** Verbose output.  Default verbose = false. */
-    verbose?: boolean;
-    headers?: OutgoingHttpHeaders;
-  }
-
-  /** Parameters for the `setCorpusSchema` operation. */
-  export interface SetCorpusSchemaParams {
-    /** Input and Output field names. */
-    enrichmentTargets?: JsonObject[];
-    /** Metadata field names. */
-    metadataFields?: JsonObject[];
-    /** Corpus name. */
-    corpusName?: string;
-    /** Reference indices. */
-    references?: JsonObject;
-    headers?: OutgoingHttpHeaders;
-  }
-
-  /** Parameters for the `deleteCorpusSchema` operation. */
-  export interface DeleteCorpusSchemaParams {
-    /** corpus schema. */
-    instance: string;
-    headers?: OutgoingHttpHeaders;
-  }
-
-  /** Parameters for the `setCorpusConfig` operation. */
-  export interface SetCorpusConfigParams {
-    /** Repository connection userid. */
-    userName?: string;
-    /** Repository connection password. */
-    password?: string;
-    /** Repository connection URI. */
-    corpusUri?: string;
-    headers?: OutgoingHttpHeaders;
-  }
-
-  /** Parameters for the `monitorCorpus` operation. */
-  export interface MonitorCorpusParams {
-    /** Apikey with read only permissions for monitoring. */
-    apikey: string;
-    headers?: OutgoingHttpHeaders;
-  }
-
-  /** Parameters for the `enableCorpusSearchTracking` operation. */
-  export interface EnableCorpusSearchTrackingParams {
-    /** Enable corpus read event tracking.  Default is false. */
-    enableTracking?: boolean;
-    headers?: OutgoingHttpHeaders;
-  }
-
-  /** Parameters for the `getCorpusConfig` operation. */
-  export interface GetCorpusConfigParams {
-    /** Corpus name. */
-    corpus: string;
-    /** Verbose output.  Default verbose = false. */
-    verbose?: boolean;
-    headers?: OutgoingHttpHeaders;
-  }
-
-  /** Parameters for the `getStatistics` operation. */
-  export interface GetStatisticsParams {
-    /** Corpus name. */
-    corpus: string;
     headers?: OutgoingHttpHeaders;
   }
 
@@ -2181,6 +2091,74 @@ namespace InsightsForMedicalLiteratureServiceV1 {
       DRUGS = 'drugs',
       GENES = 'genes',
     }
+  }
+
+  /** Parameters for the `getCorporaConfig` operation. */
+  export interface GetCorporaConfigParams {
+    /** Verbose output.  Default verbose = false. */
+    verbose?: boolean;
+    headers?: OutgoingHttpHeaders;
+  }
+
+  /** Parameters for the `setCorpusSchema` operation. */
+  export interface SetCorpusSchemaParams {
+    /** Input and Output field names. */
+    enrichmentTargets?: JsonObject[];
+    /** Metadata field names. */
+    metadataFields?: JsonObject[];
+    /** Corpus name. */
+    corpusName?: string;
+    /** Reference indices. */
+    references?: JsonObject;
+    headers?: OutgoingHttpHeaders;
+  }
+
+  /** Parameters for the `deleteCorpusSchema` operation. */
+  export interface DeleteCorpusSchemaParams {
+    /** corpus schema. */
+    instance: string;
+    headers?: OutgoingHttpHeaders;
+  }
+
+  /** Parameters for the `setCorpusConfig` operation. */
+  export interface SetCorpusConfigParams {
+    /** Repository connection userid. */
+    userName?: string;
+    /** Repository connection password. */
+    password?: string;
+    /** Repository connection URI. */
+    corpusUri?: string;
+    headers?: OutgoingHttpHeaders;
+  }
+
+  /** Parameters for the `monitorCorpus` operation. */
+  export interface MonitorCorpusParams {
+    /** Apikey with read only permissions for monitoring. */
+    apikey: string;
+    headers?: OutgoingHttpHeaders;
+  }
+
+  /** Parameters for the `enableCorpusSearchTracking` operation. */
+  export interface EnableCorpusSearchTrackingParams {
+    /** Enable corpus read event tracking.  Default is false. */
+    enableTracking?: boolean;
+    headers?: OutgoingHttpHeaders;
+  }
+
+  /** Parameters for the `getCorpusConfig` operation. */
+  export interface GetCorpusConfigParams {
+    /** Corpus name. */
+    corpus: string;
+    /** Verbose output.  Default verbose = false. */
+    verbose?: boolean;
+    headers?: OutgoingHttpHeaders;
+  }
+
+  /** Parameters for the `getStatistics` operation. */
+  export interface GetStatisticsParams {
+    /** Corpus name. */
+    corpus: string;
+    headers?: OutgoingHttpHeaders;
   }
 
   /** Parameters for the `getConcepts` operation. */
@@ -2362,13 +2340,13 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     minimum_value?: string;
     multi_value?: boolean;
     units?: string;
-    value_type?: string;
+    valueType?: string;
     possible_values?: PossbileValues[];
   }
 
   /** BoolOperand. */
   export interface BoolOperand {
-    bool_operand?: string;
+    operandName?: string;
   }
 
   /** DictonaryEntry. */
@@ -2377,10 +2355,10 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     cui?: string;
     definition?: string[];
     parents?: string[];
-    preferred_name?: string;
+    preferredName?: string;
     semtypes?: string[];
     siblings?: string[];
-    surface_forms?: string[];
+    surfaceForms?: string[];
     variants?: string[];
     vocab?: string;
     related?: string[];
@@ -2397,7 +2375,7 @@ namespace InsightsForMedicalLiteratureServiceV1 {
   /** Object representing repository message. */
   export interface Message {
     /** Message semantic type. */
-    message_type?: string;
+    messageType?: string;
     /** Message link. */
     url?: string;
     /** Message request. */
@@ -2415,7 +2393,7 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     /** Corpus name. */
     corpus?: string;
     /** Corpus description. */
-    corpus_description?: string;
+    corpusDescription?: string;
     /** Metadata fields. */
     fields?: JsonObject;
   }
@@ -2423,23 +2401,23 @@ namespace InsightsForMedicalLiteratureServiceV1 {
   /** PassagesModel. */
   export interface PassagesModel {
     /** Document passages. */
-    all_passages?: Passage[];
-    /** Search term to passages. */
-    search_term_to_passages?: JsonObject;
+    allPassages?: Passage[];
+    /** Passagess by search term. */
+    passagesBySearchTerm?: JsonObject;
   }
 
   /** PossbileValues. */
   export interface PossbileValues {
-    display_value?: string;
+    displayValue?: string;
     value?: string;
   }
 
   /** RankedDocLinks. */
   export interface RankedDocLinks {
     /** Links for search matches. */
-    href_search_matches?: string;
+    hrefSearchMatches?: string;
     /** Links for categorized search matches. */
-    href_categories?: string;
+    hrefCategories?: string;
   }
 
   /** StringBuilder. */
@@ -2451,25 +2429,23 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     /** Name of the aggregation. */
     name?: string;
     /** Corpus frequency of the aggregation. */
-    document_count?: number;
+    documentCount?: number;
   }
 
   /** Model for congntive asset annotations. */
   export interface AnnotationModel {
     /** Unique identifer of annotation. */
-    unique_id?: number;
-    /** List of identifiers associated with annotation. */
-    sticky_ids?: number[];
+    uniqueId?: number;
     /** Source ontology of annotation. */
     ontology?: string;
     /** Document section for annotation. */
     section?: string;
     /** Ontology provide normalized name of annotation. */
-    preferred_name?: string;
+    preferredName?: string;
     /** Ontology provided unique identifier of annotation. */
     cui?: string;
     /** Attribute identifier of annotation. */
-    attribute_id?: string;
+    attributeId?: string;
     /** Qualifier for attribute annotation. */
     qualifiers?: string[];
     /** Ontology provided semantic type of annotation. */
@@ -2478,24 +2454,6 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     negated?: boolean;
     /** Whether the annotation is a hypothetical span. */
     hypothetical?: boolean;
-    /** Unit of measure for attribute value annotation. */
-    unit?: string;
-    /** Minumum value for attribute value annotation. */
-    min_value?: string;
-    /** Maximum value for attribute value annotation. */
-    max_value?: string;
-    /** Mathematical operator for attribute value annotation. */
-    operator?: string;
-    /** Ontology type of source relation annotation. */
-    nlu_source_type?: string;
-    /** Relation name for annotation. */
-    nlu_relation?: string;
-    /** Ontology type of target relation annotation. */
-    nlu_target_type?: string;
-    nlu_entity_index?: string;
-    nlu_mention_index?: string;
-    nlu_relation_id?: string;
-    nlu_side?: string;
     /** Starting offset of annotation. */
     begin?: number;
     /** Ending offset of annotation. */
@@ -2515,27 +2473,27 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     /** Source ontology for artifact. */
     ontology?: string;
     /** Ontology provided normalized name for artifact. */
-    preferred_name?: string;
+    preferredName?: string;
     /** Ontology provided alternative name for artifact. */
-    alternative_name?: string;
+    alternativeName?: string;
     /** Ontology semantic type for artifact. */
-    semantic_type?: string;
+    semanticType?: string;
     /** Search weight assigned to artifact. */
     rank?: number;
     /** Number of corpus documents artifact was found in. */
-    hit_count?: number;
+    hitCount?: number;
     /** Relevance score for artifact. */
     score?: number;
     /** List of artifact synonyms. */
-    surface_forms?: string[];
+    surfaceForms?: string[];
   }
 
   /** Object representing an attribute artifact. */
   export interface Attribute {
     /** Unique identifier for attribute artifact. */
-    attribute_id?: string;
+    attributeId?: string;
     /** Display name for attribute artifact. */
-    display_name?: string;
+    displayName?: string;
     /** Corpus frequency for attribute artifact. */
     count?: number;
   }
@@ -2549,20 +2507,20 @@ namespace InsightsForMedicalLiteratureServiceV1 {
   /** Object representingn boolean operands search criteria. */
   export interface BooleanOperands {
     /** Boolean search condition. */
-    bool_expression?: string;
+    boolExpression?: string;
     /** Ontology artifacts supporing boolean search condition. */
-    bool_operands?: BoolOperand[];
+    boolOperands?: BoolOperand[];
   }
 
   /** Model representing ontology categories. */
   export interface CategoriesModel {
     /** License for corpus. */
-    model_license?: string;
-    highlighted_title?: StringBuilder;
-    highlighted_abstract?: StringBuilder;
-    highlighted_body?: StringBuilder;
+    modelLicense?: string;
+    highlightedTitle?: StringBuilder;
+    highlightedAbstract?: StringBuilder;
+    highlightedBody?: StringBuilder;
     /** Document sections with annotation tags. */
-    highlighted_sections?: JsonObject;
+    highlightedSections?: JsonObject;
     /** Document passages with annotation tags. */
     passages?: JsonObject;
     /** List of document annotations. */
@@ -2582,15 +2540,15 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     /** Unique identifier for ontolgoy artifact in search results. */
     cui?: string;
     /** Ontology defined semantic type for artifact in search results. */
-    preferred_name?: string;
+    preferredName?: string;
     /** Ontology defined normalized name for artifact in search results. */
-    alternative_name?: string;
+    alternativeName?: string;
     /** Ontology defined alternative name for artifact in search results. */
-    semantic_type?: string;
+    semanticType?: string;
     /** Corpus frequency of artifact. */
     count?: number;
     /** Corpus frequency of artifact. */
-    hit_count?: number;
+    hitCount?: number;
     /** Relevancy score of artifact in search results. */
     score?: number;
     /** Corpus frequency count. */
@@ -2602,17 +2560,7 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     /** Corpus frequency count. */
     related?: Count;
     /** Document identifiers for artifacts in search results. */
-    document_ids?: string[];
-    /** attribute data type for artifact in search results. */
-    data_type?: string;
-    /** Attribute value unit for artifact. */
-    unit?: string;
-    /** Attribute value operator for artifact. */
-    operator?: string;
-    /** Minimum value for attribute artifact. */
-    min_value?: string;
-    /** Maximum value for attribute artifact. */
-    max_value?: string;
+    documentIds?: string[];
     /** Source vocabulary of arttifact. */
     vocab?: string;
     /** Artifact properties. */
@@ -2626,19 +2574,19 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     /** Source onology of artifact. */
     ontology?: string;
     /** Ontology defined normalized name for artifact. */
-    preferred_name?: string;
+    preferredName?: string;
     /** Ontology defined semanic types for artifact. */
-    semantic_types?: string[];
+    semanticTypes?: string[];
     /** Ontology defined synonyms for artifact. */
-    surface_forms?: string[];
+    surfaceForms?: string[];
     /** Ontology provided definition for artifact. */
     definition?: string;
     /** Whether the artifact has parent artifacts in the ontology. */
-    has_parents?: boolean;
+    hasParents?: boolean;
     /** Whether the artifact has child artifacts in the ontology. */
-    has_children?: boolean;
+    hasChildren?: boolean;
     /** Whether the artifact has sibling artifacts in the ontology. */
-    has_siblings?: boolean;
+    hasSiblings?: boolean;
   }
 
   /** List of ontolgoy artifacts. */
@@ -2650,9 +2598,7 @@ namespace InsightsForMedicalLiteratureServiceV1 {
   /** Model representing an ontology annotation. */
   export interface ConceptModel {
     /** Service generated unique identifier of ontology artifact. */
-    unique_id?: number;
-    /** Identifiers associated with artifact unique identifier. */
-    sticky_ids?: number[];
+    uniqueId?: number;
     /** Document section where artifact was found. */
     section?: string;
     /** Ontology semantic type for artifact (if applicable). */
@@ -2662,11 +2608,11 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     /** Ending offset of artifact in document section. */
     end?: number;
     /** Actual document section text artifact represents. */
-    covered_text?: string;
+    coveredText?: string;
     /** Ontology defined unique identifier of artifact. */
     cui?: string;
     /** Ontology defined normalized name of artifact. */
-    preferred_name?: string;
+    preferredName?: string;
     /** Ontology providing the artifact. */
     source?: string;
     /** Whether span represented by artifact is negated. */
@@ -2676,35 +2622,17 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     /** Time based offset of artifact in a video transcript (if applicable). */
     timestamp?: number;
     /** Identifier of attribute where artifact is defined (if applicable). */
-    attribute_id?: string;
-    /** List of qualifers defined for an attribute artifact. */
-    qualifiers?: string[];
-    /** Unit of measure for attribute defined artifact (if applicable). */
-    unit?: string;
-    /** Starting range value for attribute artifact (if applicable). */
-    min_value?: string;
-    /** Ending range value for attribute artifact (if applicable). */
-    max_value?: string;
-    /** Mathmatical operator for attribute artifact (if applicable). */
-    operator?: string;
+    attributeId?: string;
     /** List of additional artifact features. */
     features?: JsonObject;
-    /** Model coreference chain to which artifact belongs. */
-    nlu_entity_index?: string;
-    /** Artifact position in Model coreference chain. */
-    nlu_mention_index?: string;
-    /** Relation unique identifier artifact is associated with. */
-    nlu_relation_id?: string;
-    /** Whether artifact is a source or target of a relationship. */
-    nlu_side?: string;
-    /** Model type for artifact when the source of a relationship. */
-    nlu_source_type?: string;
-    /** Name of the realtion an artifact is associated with. */
-    nlu_relation?: string;
-    /** Model type for artifact when the target of a relationship. */
-    nlu_target_type?: string;
     /** Number of times artifact is mentioned in the corpus. */
     hits?: number;
+  }
+
+  /** Model presenting status of a submitted configuration request. */
+  export interface ConfigurationStatusModel {
+    /** The status of the submited request. */
+    status?: string;
   }
 
   /** Model respresenting configured corpora. */
@@ -2716,15 +2644,15 @@ namespace InsightsForMedicalLiteratureServiceV1 {
   /** Object representing a configured corpus. */
   export interface CorpusModel {
     /** Name of the corpus. */
-    corpus_name?: string;
+    corpusName?: string;
     /** Ontologies found in the corpus. */
     ontologies?: string[];
     /** Descriptive name of the corpus. */
-    descriptive_name?: string;
+    descriptiveName?: string;
     /** BVT status of the corpus. */
     bvt?: boolean;
     /** Repository location of the corpus. */
-    elasticsearch_index?: string;
+    elasticsearchIndex?: string;
   }
 
   /** Corpus frequency count. */
@@ -2740,9 +2668,7 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     /** List of ontolgy artifacts found in the document. */
     concepts?: ConceptModel[];
     /** List of ontolgy attribute value artifacts found in the document. */
-    attribute_values?: ConceptModel[];
-    /** List of ontology relations found in the document. */
-    relations?: RelationModel[];
+    attributeValues?: ConceptModel[];
     mesh?: ConceptModel[];
     text?: ConceptModel[];
   }
@@ -2774,7 +2700,7 @@ namespace InsightsForMedicalLiteratureServiceV1 {
   /** Corpus frequency of artifact. */
   export interface HitCount {
     /** Corpus frequency of artifact. */
-    hit_count?: number;
+    hitCount?: number;
   }
 
   /** Object representing a match entry. */
@@ -2794,59 +2720,43 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     /** List of document fields in the corpus. */
     fields?: JsonObject;
     /** List of fields that where enriched. */
-    section_field_names?: string[];
+    sectionFieldNames?: string[];
     /** List of fields enriched with attributes. */
-    attr_section_field_names?: string[];
+    attrSectionFieldNames?: string[];
     /** List of fields enriched with attribute qualifiers. */
-    qualifier_section_field_names?: string[];
+    qualifierSectionFieldNames?: string[];
     /** List of fields with MeSH annotations. */
-    mesh_section_field_names?: string[];
-    field_index_map?: JsonObject;
+    meshSectionFieldNames?: string[];
+    fieldIndexMap?: JsonObject;
   }
 
   /** Object representing a document passage. */
   export interface Passage {
     /** Document section for passage. */
-    document_section?: string;
+    documentSection?: string;
     text?: StringBuilder;
     /** Timestamp of passage in video transcript. */
     timestamp?: number;
     /** Preferred name for highlighted text span. */
-    preferred_name?: string;
-  }
-
-  /** Object representing an artifact qualifier. */
-  export interface Qualifer {
-    /** Unique identifier for attribute qualifier. */
-    id?: string;
-    /** Name of attribute qualifier. */
-    name?: string;
-  }
-
-  /** Object representing an attribute value range. */
-  export interface RangeModel {
-    /** Operator assigned to attribute value. */
-    operator?: string;
-    /** Minimum value assigned to attribute value. */
-    min?: string;
-    /** Maximum value assigned to attribute value. */
-    max?: string;
-    /** Corpus frequency for attribute value. */
-    count?: number;
+    preferredName?: string;
+    /** Concept unique identifier for highlighted text span. */
+    cui?: string;
+    /** Concept hit count or mentions in the corpus. */
+    hitCount?: number;
   }
 
   /** Object representing a document search result. */
   export interface RankedDocument {
     /** Document identifier. */
-    document_id?: string;
+    documentId?: string;
     /** Document title. */
     title?: string;
     /** Additional document fields. */
     metadata?: JsonObject;
     /** Document section. */
-    section_name?: string;
+    sectionName?: string;
     /** Document section identifier. */
-    section_id?: string;
+    sectionId?: string;
     /** Document corpus. */
     corpus?: string;
     links?: RankedDocLinks;
@@ -2862,21 +2772,21 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     /** Source ontology for artifact. */
     ontology?: string;
     /** Ontology provided normalized name for artifact. */
-    preferred_name?: string;
+    preferredName?: string;
     /** Ontology provided alternative name for artifact. */
-    alternative_name?: string;
+    alternativeName?: string;
     /** Ontology semantic type for artifact. */
-    semantic_type?: string;
+    semanticType?: string;
     /** Search weight assigned to artifact. */
     rank?: number;
     /** Number of corpus documents artifact was found in. */
-    hit_count?: number;
+    hitCount?: number;
     /** Relevance score for artifact. */
     score?: number;
     /** List of artifact synonyms. */
-    surface_forms?: string[];
+    surfaceForms?: string[];
     /** List of artifacts for the relation. */
-    next_concepts?: RelatedConceptModel[];
+    nextConcepts?: RelatedConceptModel[];
   }
 
   /** Model for concept ontology relations. */
@@ -2885,51 +2795,39 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     concepts?: RelatedConceptModel[];
   }
 
-  /** Object representing an ontology relation. */
-  export interface RelationModel {
-    /** Relation unique identifier artifact is associated with. */
-    relation_id?: string;
-    /** Name of the realtion an artifact is associated with. */
-    relation?: string;
-    /** Objeft representing a document text span. */
-    source?: TextSpan;
-    /** Objeft representing a document text span. */
-    target?: TextSpan;
-  }
-
   /** Object representing a corpus search match. */
   export interface SearchMatchesModel {
     /** Unique identifier for matched document in corpus. */
-    external_id?: string;
+    externalId?: string;
     /** Unique identifier for matched document in corpus. */
-    document_id?: string;
+    documentId?: string;
     /** Unique identifier for matched document parent in corpus. */
-    parent_document_id?: string;
+    parentDocumentId?: string;
     /** Publication name for matched document in corpus. */
-    publication_name?: string;
+    publicationName?: string;
     /** Publication date for matched document in corpus. */
-    publication_date?: string;
+    publicationDate?: string;
     /** Publication URL for matched document in corpus. */
-    publication_url?: string;
+    publicationURL?: string;
     /** Authors of matched document in corpus. */
     authors?: string[];
     /** Title of matched document in corpus. */
     title?: string;
     /** Usage license for matched document in corpus. */
-    medline_license?: string;
+    medlineLicense?: string;
     /** Pubmed link for matched document in corpus. */
-    href_pub_med?: string;
-    href_pmc?: string;
-    href_doi?: string;
+    hrefPubMed?: string;
+    hrefPmc?: string;
+    hrefDoi?: string;
     /** Link to PDF for matched document in corpus. */
-    pdf_url?: string;
+    pdfUrl?: string;
     /** Link to sourc origin for matched document in corpus. */
-    reference_url?: string;
-    highlighted_title?: StringBuilder;
-    highlighted_abstract?: StringBuilder;
-    highlighted_body?: StringBuilder;
+    referenceUrl?: string;
+    highlightedTitle?: StringBuilder;
+    highlightedAbstract?: StringBuilder;
+    highlightedBody?: StringBuilder;
     /** Matched document sections with annotation tags. */
-    highlighted_sections?: JsonObject;
+    highlightedSections?: JsonObject;
     /** Matched document passages with annotation tags. */
     passages?: JsonObject;
     /** Matched document annotations. */
@@ -2941,51 +2839,45 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     /** Link. */
     href?: string;
     /** Page number. */
-    page_number?: number;
+    pageNumber?: number;
     /** Search result limit. */
     get_limit?: number;
     /** Total number of search matches in the corpus. */
-    total_document_count?: number;
+    totalDocumentCount?: number;
     /** Ontology artifact results from search. */
     concepts?: Concept[];
     /** Ontology semantic types. */
     types?: string[];
     /** Attribute artifact results from search. */
     attributes?: Attribute[];
-    /** Attribute artifact value results from search. */
-    values?: Concept[];
-    /** Attribute value range results from search. */
-    ranges?: JsonObject;
     /** Type-ahead suggestion results in search. */
     typeahead?: Concept[];
     /** Aggregate result targets in search. */
     aggregations?: JsonObject;
     /** Date range of results from search. */
-    date_histograms?: JsonObject;
-    /** Attribute qualifier results from search. */
-    qualifiers?: Qualifer[];
+    dateHistograms?: JsonObject;
     /** Object representing repository response. */
     backend?: Backend;
     /** Search expression that includes all levels of criteria expression. */
-    expanded_query?: JsonObject;
+    expandedQuery?: JsonObject;
     /** Object representingn boolean operands search criteria. */
-    parsed_bool_expression?: BooleanOperands;
+    parsedBoolExpression?: BooleanOperands;
     /** Whether ontolgoy artifacts were provided in search conditions. */
-    concepts_exist?: JsonObject;
-    cursor_id?: string;
+    conceptsExist?: JsonObject;
+    cursorId?: string;
     vocabs?: string[];
     /** Annotations returned for the document. */
     annotations?: JsonObject;
     metadata?: MetadataFields;
     /** Documents returned from search. */
     documents?: RankedDocument[];
-    sub_queries?: SearchModel[];
+    subQueries?: SearchModel[];
   }
 
   /** Object representing a document sentence. */
   export interface SentenceModel {
     /** Document section for sentence. */
-    document_section?: string;
+    documentSection?: string;
     text?: StringBuilder;
     /** Starting sentence offset. */
     begin?: number;
@@ -3000,31 +2892,31 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     /** version of the service. */
     version?: string;
     /** service uptime since last restart. */
-    up_time?: string;
+    upTime?: string;
     /** scurrent service state. */
-    service_state?: string;
+    serviceState?: string;
     /** service state details. */
-    state_details?: string;
+    stateDetails?: string;
     /** service uptime since last restart. */
-    host_name?: string;
+    hostName?: string;
     /** total number of requests during uptime. */
-    request_count?: number;
+    requestCount?: number;
     /** Maximum memory used during uptime. */
-    max_memory_mb?: number;
+    maxMemoryMb?: number;
     /** Megabytes of committed memory. */
-    commited_memory_mb?: number;
+    commitedMemoryMb?: number;
     /** Megabytes of memory used. */
-    in_use_memory_mb?: number;
+    inUseMemoryMb?: number;
     /** number of available processors. */
-    available_processors?: number;
+    availableProcessors?: number;
     /** number of concurrent requests. */
-    concurrent_requests?: number;
+    concurrentRequests?: number;
     /** configured maximum concurrent request limit. */
-    max_concurrent_requests?: number;
+    maxConcurrentRequests?: number;
     /** number of rejected requests. */
-    total_rejected_requests?: number;
+    totalRejectedRequests?: number;
     /** number of blocked requests. */
-    total_blocked_requests?: number;
+    totalBlockedRequests?: number;
   }
 
   /** Object representing a corpus statistic. */
@@ -3057,22 +2949,6 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     corpus?: string;
     /** Host environment. */
     host?: string;
-  }
-
-  /** Objeft representing a document text span. */
-  export interface TextSpan {
-    /** Document section where artifact was found. */
-    section?: string;
-    /** Start of text span. */
-    begin?: number;
-    /** End of text span. */
-    end?: number;
-    /** Covered text span. */
-    covered_text?: string;
-    /** Documemnt provider. */
-    source?: string;
-    /** Text span type. */
-    type?: string;
   }
 
   /** Model representing unstructed text. */

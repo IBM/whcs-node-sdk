@@ -20,7 +20,11 @@ const extend = require('extend');
 const core = require('ibm-cloud-sdk-core');
 const { NoAuthAuthenticator, unitTestUtils } = core;
 
-const AnnotatorForClinicalDataAcdV1 = require('../../dist/annotator-for-clinical-data-acd/v1');
+const AnnotatorForClinicalDataAcdV1 = require('../../dist/annotator-for-clinical-data/v1');
+
+// don't know what this should look like
+const entityModel = {
+}
 
 const {
   getOptions,

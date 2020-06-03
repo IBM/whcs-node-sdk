@@ -654,44 +654,6 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
    ************************/
 
   /**
-   * Get status of service.
-   *
-   * @param {Object} [params] - The parameters to send to the service.
-   * @param {string} [params.accept] - The type of the response: application/json or application/xml.
-   * @param {string} [params.format] - Override response format.
-   * @param {string} [params.livenessCheck] - Perform a shallow liveness check.
-   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.ServiceStatus>>}
-   */
-  public getServiceStatus(params?: InsightsForMedicalLiteratureServiceV1.GetServiceStatusParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.ServiceStatus>> {
-    const _params = extend({}, params);
-
-    return new Promise((resolve, reject) => {
-      const query = {
-        'format': _params.format,
-        'liveness_check': _params.livenessCheck
-      };
-
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getServiceStatus');
-
-      const parameters = {
-        options: {
-          url: '/v1/status',
-          method: 'GET',
-          qs: query,
-        },
-        defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': _params.accept
-          }, _params.headers),
-        }),
-      };
-
-      return resolve(this.createRequest(parameters));
-    });
-  };
-
-  /**
    * Determine if service is running correctly.
    *
    * This resource differs from /status in that it will will always return a 500 error if the service state is not OK.
@@ -1275,54 +1237,6 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
     });
   };
 
-  /**
-   * Retrieves statistics for a corpus.
-   *
-   * The response returns internal statistics for the corpus.
-   *
-   * @param {Object} params - The parameters to send to the service.
-   * @param {string} params.corpus - Corpus name.
-   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.StatisticsModel>>}
-   */
-  public getStatistics(params: InsightsForMedicalLiteratureServiceV1.GetStatisticsParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.StatisticsModel>> {
-    const _params = extend({}, params);
-    const requiredParams = ['corpus'];
-
-    return new Promise((resolve, reject) => {
-      const missingParams = getMissingParams(_params, requiredParams);
-      if (missingParams) {
-        return reject(missingParams);
-      }
-
-      const query = {
-        'version': this.version
-      };
-
-      const path = {
-        'corpus': _params.corpus
-      };
-
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getStatistics');
-
-      const parameters = {
-        options: {
-          url: '/v1/corpora/{corpus}/statistics',
-          method: 'GET',
-          qs: query,
-          path,
-        },
-        defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
-        }),
-      };
-
-      return resolve(this.createRequest(parameters));
-    });
-  };
-
   /*************************
    * concepts
    ************************/
@@ -1695,70 +1609,6 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
     });
   };
 
-  /*************************
-   * debug
-   ************************/
-
-  /**
-   * Tokenize the input text into concepts.
-   *
-   * The response returns a list of tokenized concepts for the specified ontologies.
-   *
-   * @param {Object} params - The parameters to send to the service.
-   * @param {string} params.corpus - Corpus name.
-   * @param {string} params.flow - Flow name (not used).
-   * @param {string} params.body - Text.
-   * @param {string[]} [params.ontologies] - Detect artifacts in the selected ontology(ies).
-   * @param {number} [params.maxWords] - Maximum number of words per detected surface form. Default is 4.
-   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CommonDataModel>>}
-   */
-  public tokenize(params: InsightsForMedicalLiteratureServiceV1.TokenizeParams): Promise<InsightsForMedicalLiteratureServiceV1.Response<InsightsForMedicalLiteratureServiceV1.CommonDataModel>> {
-    const _params = extend({}, params);
-    const requiredParams = ['corpus', 'flow', 'body'];
-
-    return new Promise((resolve, reject) => {
-      const missingParams = getMissingParams(_params, requiredParams);
-      if (missingParams) {
-        return reject(missingParams);
-      }
-
-      const body = _params.body;
-      const query = {
-        'version': this.version,
-        'ontologies': _params.ontologies,
-        'max_words': _params.maxWords
-      };
-
-      const path = {
-        'corpus': _params.corpus,
-        'flow': _params.flow
-      };
-
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'tokenize');
-
-      const parameters = {
-        options: {
-          url: '/v1/corpora/{corpus}/debug/analyze/{flow}',
-          method: 'POST',
-          body,
-          qs: query,
-          path,
-        },
-        defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          }, _params.headers),
-        }),
-      };
-
-      return resolve(this.createRequest(parameters));
-    });
-  };
-
-}
-
 /*************************
  * interfaces
  ************************/
@@ -1952,36 +1802,6 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     headers?: OutgoingHttpHeaders;
   }
 
-  /** Parameters for the `getServiceStatus` operation. */
-  export interface GetServiceStatusParams {
-    /** The type of the response: application/json or application/xml. */
-    accept?: GetServiceStatusConstants.Accept | string;
-    /** Override response format. */
-    format?: GetServiceStatusConstants.Format | string;
-    /** Perform a shallow liveness check. */
-    livenessCheck?: GetServiceStatusConstants.LivenessCheck | string;
-    headers?: OutgoingHttpHeaders;
-  }
-
-  /** Constants for the `getServiceStatus` operation. */
-  export namespace GetServiceStatusConstants {
-    /** The type of the response: application/json or application/xml. */
-    export enum Accept {
-      APPLICATION_JSON = 'application/json',
-      APPLICATION_XML = 'application/xml',
-    }
-    /** Override response format. */
-    export enum Format {
-      JSON = 'json',
-      XML = 'xml',
-    }
-    /** Perform a shallow liveness check. */
-    export enum LivenessCheck {
-      TRUE = 'true',
-      FALSE = 'false',
-    }
-  }
-
   /** Parameters for the `getHealthCheckStatus` operation. */
   export interface GetHealthCheckStatusParams {
     /** The type of the response: application/json or application/xml. */
@@ -2154,13 +1974,6 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     headers?: OutgoingHttpHeaders;
   }
 
-  /** Parameters for the `getStatistics` operation. */
-  export interface GetStatisticsParams {
-    /** Corpus name. */
-    corpus: string;
-    headers?: OutgoingHttpHeaders;
-  }
-
   /** Parameters for the `getConcepts` operation. */
   export interface GetConceptsParams {
     /** Corpus name. */
@@ -2297,30 +2110,6 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     /** Number of possible concepts to return. Default is 250. */
     limit?: number;
     headers?: OutgoingHttpHeaders;
-  }
-
-  /** Parameters for the `tokenize` operation. */
-  export interface TokenizeParams {
-    /** Corpus name. */
-    corpus: string;
-    /** Flow name (not used). */
-    flow: string;
-    /** Text. */
-    body: string;
-    /** Detect artifacts in the selected ontology(ies). */
-    ontologies?: TokenizeConstants.Ontologies[] | string[];
-    /** Maximum number of words per detected surface form. Default is 4. */
-    maxWords?: number;
-    headers?: OutgoingHttpHeaders;
-  }
-
-  /** Constants for the `tokenize` operation. */
-  export namespace TokenizeConstants {
-    /** Detect artifacts in the selected ontology(ies). */
-    export enum Ontologies {
-      MESH = 'mesh',
-      CONCEPTS = 'concepts',
-    }
   }
 
   /*************************
@@ -2889,66 +2678,10 @@ namespace InsightsForMedicalLiteratureServiceV1 {
 
   /** Object representing service runtime status. */
   export interface ServiceStatus {
-    /** version of the service. */
-    version?: string;
-    /** service uptime since last restart. */
-    upTime?: string;
     /** scurrent service state. */
     serviceState?: string;
     /** service state details. */
     stateDetails?: string;
-    /** service uptime since last restart. */
-    hostName?: string;
-    /** total number of requests during uptime. */
-    requestCount?: number;
-    /** Maximum memory used during uptime. */
-    maxMemoryMb?: number;
-    /** Megabytes of committed memory. */
-    commitedMemoryMb?: number;
-    /** Megabytes of memory used. */
-    inUseMemoryMb?: number;
-    /** number of available processors. */
-    availableProcessors?: number;
-    /** number of concurrent requests. */
-    concurrentRequests?: number;
-    /** configured maximum concurrent request limit. */
-    maxConcurrentRequests?: number;
-    /** number of rejected requests. */
-    totalRejectedRequests?: number;
-    /** number of blocked requests. */
-    totalBlockedRequests?: number;
-  }
-
-  /** Object representing a corpus statistic. */
-  export interface StatModel {
-    /** Statistic name. */
-    name?: string;
-    /** Count value for statistic. */
-    count?: number;
-    /** Total nanoseconds value for statistic. */
-    cumulative_usecs?: number;
-    /** Minimum nanosecond value for statistic. */
-    minimum_usecs?: number;
-    /** Maximum nanoseconds value for statistic. */
-    maximum_usecs?: number;
-    /** Total quantity value for statistic. */
-    cumulative_quantity?: number;
-    /** Quantity type for statistic. */
-    quantity_type?: string;
-    /** Minimum quantity value for statistic. */
-    minimum_quantity?: number;
-    /** Maximum quantity value for statistic. */
-    maximum_quantity?: number;
-  }
-
-  /** Object representing corpus statistics. */
-  export interface StatisticsModel {
-    /** Activity statistics for instance. */
-    stats?: JsonObject;
-    /** Corpus instance is accessing. */
-    corpus?: string;
-    /** Host environment. */
-    host?: string;
   }
 
   /** Model representing unstructed text. */

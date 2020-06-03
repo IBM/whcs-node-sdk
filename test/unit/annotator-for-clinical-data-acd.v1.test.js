@@ -1585,60 +1585,6 @@ describe('AnnotatorForClinicalDataAcdV1', () => {
       });
     });
   });
-  describe('getServiceStatus', () => {
-    describe('positive tests', () => {
-      test('should pass the right params to createRequest', () => {
-        // Construct the params object for operation getServiceStatus
-        const accept = 'application/json';
-        const format = 'json';
-        const livenessCheck = 'true';
-        const params = {
-          accept: accept,
-          format: format,
-          livenessCheck: livenessCheck,
-        };
-
-        const getServiceStatusResult = annotatorForClinicalDataAcd.getServiceStatus(params);
-
-        // all methods should return a Promise
-        expectToBePromise(getServiceStatusResult);
-
-        // assert that create request was called
-        expect(createRequestMock).toHaveBeenCalledTimes(1);
-
-        const options = getOptions(createRequestMock);
-
-        checkUrlAndMethod(options, '/v1/status', 'GET');
-        const expectedAccept = accept;
-        const expectedContentType = undefined;
-        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
-        checkUserHeader(createRequestMock, 'Accept', accept);
-        expect(options.qs['format']).toEqual(format);
-        expect(options.qs['liveness_check']).toEqual(livenessCheck);
-      });
-
-      test('should prioritize user-given headers', () => {
-        // parameters
-        const userAccept = 'fake/accept';
-        const userContentType = 'fake/contentType';
-        const params = {
-          headers: {
-            Accept: userAccept,
-            'Content-Type': userContentType,
-          },
-        };
-
-        annotatorForClinicalDataAcd.getServiceStatus(params);
-        checkMediaHeaders(createRequestMock, userAccept, userContentType);
-      });
-
-      test('should not have any problems when no parameters are passed in', () => {
-        // invoke the method with no parameters
-        annotatorForClinicalDataAcd.getServiceStatus({});
-        checkForSuccessfulExecution(createRequestMock);
-      });
-    });
-  });
   describe('getHealthCheckStatus', () => {
     describe('positive tests', () => {
       test('should pass the right params to createRequest', () => {

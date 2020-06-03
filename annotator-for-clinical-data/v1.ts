@@ -1173,44 +1173,6 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
    ************************/
 
   /**
-   * Get status of service.
-   *
-   * @param {Object} [params] - The parameters to send to the service.
-   * @param {string} [params.accept] - The type of the response: application/json or application/xml.
-   * @param {string} [params.format] - Override response format.
-   * @param {string} [params.livenessCheck] - Perform a shallow liveness check.
-   * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.ServiceStatus>>}
-   */
-  public getServiceStatus(params?: AnnotatorForClinicalDataAcdV1.GetServiceStatusParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.ServiceStatus>> {
-    const _params = extend({}, params);
-
-    return new Promise((resolve, reject) => {
-      const query = {
-        'format': _params.format,
-        'liveness_check': _params.livenessCheck
-      };
-
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getServiceStatus');
-
-      const parameters = {
-        options: {
-          url: '/v1/status',
-          method: 'GET',
-          qs: query,
-        },
-        defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': _params.accept
-          }, _params.headers),
-        }),
-      };
-
-      return resolve(this.createRequest(parameters));
-    });
-  };
-
-  /**
    * Determine if service is running correctly.
    *
    * This resource differs from /status in that it will will always return a 500 error if the service state is not OK.
@@ -1482,36 +1444,6 @@ namespace AnnotatorForClinicalDataAcdV1 {
     headers?: OutgoingHttpHeaders;
   }
 
-  /** Parameters for the `getServiceStatus` operation. */
-  export interface GetServiceStatusParams {
-    /** The type of the response: application/json or application/xml. */
-    accept?: GetServiceStatusConstants.Accept | string;
-    /** Override response format. */
-    format?: GetServiceStatusConstants.Format | string;
-    /** Perform a shallow liveness check. */
-    livenessCheck?: GetServiceStatusConstants.LivenessCheck | string;
-    headers?: OutgoingHttpHeaders;
-  }
-
-  /** Constants for the `getServiceStatus` operation. */
-  export namespace GetServiceStatusConstants {
-    /** The type of the response: application/json or application/xml. */
-    export enum Accept {
-      APPLICATION_JSON = 'application/json',
-      APPLICATION_XML = 'application/xml',
-    }
-    /** Override response format. */
-    export enum Format {
-      JSON = 'json',
-      XML = 'xml',
-    }
-    /** Perform a shallow liveness check. */
-    export enum LivenessCheck {
-      TRUE = 'true',
-      FALSE = 'false',
-    }
-  }
-
   /** Parameters for the `getHealthCheckStatus` operation. */
   export interface GetHealthCheckStatusParams {
     /** The type of the response: application/json or application/xml. */
@@ -1670,34 +1602,10 @@ namespace AnnotatorForClinicalDataAcdV1 {
 
   /** Object representing service runtime status. */
   export interface ServiceStatus {
-    /** version of the service. */
-    version?: string;
-    /** service uptime since last restart. */
-    up_time?: string;
     /** scurrent service state. */
     service_state?: string;
     /** service state details. */
     state_details?: string;
-    /** service uptime since last restart. */
-    host_name?: string;
-    /** total number of requests during uptime. */
-    request_count?: number;
-    /** Maximum memory used during uptime. */
-    max_memory_mb?: number;
-    /** Megabytes of committed memory. */
-    commited_memory_mb?: number;
-    /** Megabytes of memory used. */
-    in_use_memory_mb?: number;
-    /** number of available processors. */
-    available_processors?: number;
-    /** number of concurrent requests. */
-    concurrent_requests?: number;
-    /** configured maximum concurrent request limit. */
-    max_concurrent_requests?: number;
-    /** number of rejected requests. */
-    total_rejected_requests?: number;
-    /** number of blocked requests. */
-    total_blocked_requests?: number;
   }
 
 }

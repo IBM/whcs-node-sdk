@@ -575,27 +575,19 @@ describe('InsightsForMedicalLiteratureServiceV1', () => {
         // Construct the params object for operation getDocumentMultipleCategories
         const corpus = 'testString';
         const documentId = 'testString';
-        const modelLicense = 'testString';
-        const highlightedTitle = stringBuilderModel;
-        const highlightedAbstract = stringBuilderModel;
-        const highlightedBody = stringBuilderModel;
-        const highlightedSections = { 'key1' : stringBuilderModel };
-        const passages = { 'key1' : { 'key1' : entryModelModel } };
-        const annotations = { 'key1' : annotationModelModel };
         const highlightTagBegin = 'testString';
         const highlightTagEnd = 'testString';
         const fields = 'testString';
         const limit = 38;
+        const category = {
+          'name': 'testString',
+          'category': 'testString'
+        };
+        const categories = [category];
         const params = {
           corpus: corpus,
           documentId: documentId,
-          modelLicense: modelLicense,
-          highlightedTitle: highlightedTitle,
-          highlightedAbstract: highlightedAbstract,
-          highlightedBody: highlightedBody,
-          highlightedSections: highlightedSections,
-          passages: passages,
-          annotations: annotations,
+          categories: categories,
           highlightTagBegin: highlightTagBegin,
           highlightTagEnd: highlightTagEnd,
           fields: fields,
@@ -616,13 +608,7 @@ describe('InsightsForMedicalLiteratureServiceV1', () => {
         const expectedAccept = 'application/json';
         const expectedContentType = 'application/json';
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
-        expect(options.body['modelLicense']).toEqual(modelLicense);
-        expect(options.body['highlightedTitle']).toEqual(highlightedTitle);
-        expect(options.body['highlightedAbstract']).toEqual(highlightedAbstract);
-        expect(options.body['highlightedBody']).toEqual(highlightedBody);
-        expect(options.body['highlightedSections']).toEqual(highlightedSections);
-        expect(options.body['passages']).toEqual(passages);
-        expect(options.body['annotations']).toEqual(annotations);
+        expect(options.body['categories']).toEqual(categories);
         expect(options.qs['version']).toEqual(service.version);
         expect(options.qs['highlight_tag_begin']).toEqual(highlightTagBegin);
         expect(options.qs['highlight_tag_end']).toEqual(highlightTagEnd);

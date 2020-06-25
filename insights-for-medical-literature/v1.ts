@@ -16,7 +16,7 @@
 
 import * as extend from 'extend';
 import { IncomingHttpHeaders, OutgoingHttpHeaders } from 'http';
-import { Authenticator, BaseService, getAuthenticatorFromEnvironment, getMissingParams, UserOptions } from 'ibm-cloud-sdk-core';
+import { Authenticator, BaseService, getAuthenticatorFromEnvironment, getMissingParams, UserOptions, IamAuthenticator } from 'ibm-cloud-sdk-core';
 import { getSdkHeaders } from '../lib/common';
 
 /**
@@ -75,7 +75,7 @@ import { getSdkHeaders } from '../lib/common';
 
 class InsightsForMedicalLiteratureServiceV1 extends BaseService {
 
-  static DEFAULT_SERVICE_URL: string = 'https://insights-for-medical-literature-service.cloud.ibm.com/services/medical_insights/api';
+  static DEFAULT_SERVICE_URL: string = 'https://cloud.ibm.com/wh-iml/api';
   static DEFAULT_SERVICE_NAME: string = 'insights_for_medical_literature_service';
 
   /*************************
@@ -133,6 +133,7 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
     if (missingParams) {
       throw missingParams;
     }
+
     super(options);
     if (options.serviceUrl) {
       this.setServiceUrl(options.serviceUrl);
@@ -170,12 +171,14 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
       const query = {
         'version': this.version
       };
-
       const path = {
         'corpus': _params.corpus
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getDocuments');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -185,7 +188,7 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
+          headers: extend(true,  {
             'Accept': 'application/json',
           }, _params.headers),
         }),
@@ -249,7 +252,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'corpus': _params.corpus
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'addCorpusDocument');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -305,7 +311,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'document_id': _params.documentId
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getDocumentInfo');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -361,7 +370,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'document_id': _params.documentId
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getDocumentAnnotations');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -429,7 +441,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'document_id': _params.documentId
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getDocumentCategories');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -483,13 +498,7 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
    * @param {Object} params - The parameters to send to the service.
    * @param {string} params.corpus - Corpus name.
    * @param {string} params.documentId - Document ID.
-   * @param {string} [params.modelLicense] - License for corpus.
-   * @param {StringBuilder} [params.highlightedTitle] -
-   * @param {StringBuilder} [params.highlightedAbstract] -
-   * @param {StringBuilder} [params.highlightedBody] -
-   * @param {JsonObject} [params.highlightedSections] - Document sections with annotation tags.
-   * @param {JsonObject} [params.passages] - Document passages with annotation tags.
-   * @param {JsonObject} [params.annotations] - List of document annotations.
+   * @param {Object} params.categories - Categories.
    * @param {string} [params.highlightTagBegin] - HTML tag used to highlight concepts found in the text.  Default is
    * '&ltb&gt'.
    * @param {string} [params.highlightTagEnd] - HTML tag used to highlight concepts found in the text.  Default is
@@ -511,13 +520,7 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
       }
 
       const body = {
-        'modelLicense': _params.modelLicense,
-        'highlightedTitle': _params.highlightedTitle,
-        'highlightedAbstract': _params.highlightedAbstract,
-        'highlightedBody': _params.highlightedBody,
-        'highlightedSections': _params.highlightedSections,
-        'passages': _params.passages,
-        'annotations': _params.annotations
+        'categories': _params.categories
       };
 
       const query = {
@@ -533,7 +536,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'document_id': _params.documentId
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getDocumentMultipleCategories');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -629,7 +635,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'document_id': _params.documentId
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getSearchMatches');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -673,7 +682,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'format': _params.format
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getHealthCheckStatus');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -682,7 +694,7 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
+          headers: extend(true,  {
             'Accept': _params.accept
           }, _params.headers),
         }),
@@ -759,7 +771,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'corpus': _params.corpus
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'search');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -809,7 +824,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'corpus': _params.corpus
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getFields');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -877,7 +895,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'corpus': _params.corpus
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'typeahead');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -920,7 +941,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'verbose': _params.verbose
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorporaConfig');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -929,7 +953,7 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
+          headers: extend(true,  {
             'Accept': 'application/json',
           }, _params.headers),
         }),
@@ -988,7 +1012,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'version': this.version
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'setCorpusSchema');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -1034,7 +1061,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'instance': _params.instance
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteCorpusSchema');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -1085,7 +1115,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'version': this.version
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'setCorpusConfig');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -1132,7 +1165,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'apikey': _params.apikey
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'monitorCorpus');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -1169,7 +1205,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'enable_tracking': _params.enableTracking
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'enableCorpusSearchTracking');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -1217,8 +1256,11 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'corpus': _params.corpus
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
-
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
+      
       const parameters = {
         options: {
           url: '/v1/corpora/{corpus}',
@@ -1290,7 +1332,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'corpus': _params.corpus
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getConcepts');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -1343,7 +1388,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'corpus': _params.corpus
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'addArtifact');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -1405,7 +1453,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'name_or_id': _params.nameOrId
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCuiInfo');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -1457,7 +1508,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'name_or_id': _params.nameOrId
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getHitCount');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -1532,7 +1586,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'name_or_id': _params.nameOrId
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getRelatedConcepts');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -1589,7 +1646,10 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
         'name_or_id': _params.nameOrId
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getSimilarConcepts');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureServiceV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      }
 
       const parameters = {
         options: {
@@ -1608,7 +1668,7 @@ class InsightsForMedicalLiteratureServiceV1 extends BaseService {
       return resolve(this.createRequest(parameters));
     });
   };
-
+}
 /*************************
  * interfaces
  ************************/
@@ -1740,17 +1800,8 @@ namespace InsightsForMedicalLiteratureServiceV1 {
     corpus: string;
     /** Document ID. */
     documentId: string;
-    /** License for corpus. */
-    modelLicense?: string;
-    highlightedTitle?: StringBuilder;
-    highlightedAbstract?: StringBuilder;
-    highlightedBody?: StringBuilder;
-    /** Document sections with annotation tags. */
-    highlightedSections?: JsonObject;
-    /** Document passages with annotation tags. */
-    passages?: JsonObject;
-    /** List of document annotations. */
-    annotations?: JsonObject;
+    /** List of document categories. */
+    categories?: JsonObject;
     /** HTML tag used to highlight concepts found in the text.  Default is '&ltb&gt'. */
     highlightTagBegin?: string;
     /** HTML tag used to highlight concepts found in the text.  Default is '&lt/b&gt'. */

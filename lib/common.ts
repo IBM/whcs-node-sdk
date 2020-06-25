@@ -10,12 +10,13 @@ export type SdkHeaders = {
 
 export function getSdkHeaders(serviceName: string, serviceVersion: string, operationId: string): SdkHeaders | {} {
   // disable analytics headers in the browser - they cause cors issues
-  const isBrowser = typeof window !== 'undefined';
-  if (isBrowser) {
-    return {};
-  }
+  //const isBrowser = typeof window !== 'undefined';
+  //if (isBrowser) {
+  //  console.log("browser")
+  //  return {};
+  //}
 
-  const sdkName = 'watson-apis-node-sdk';
+  const sdkName = 'whcs-node-sdk';
   const sdkVersion = pkg.version;
   const osName = os.platform();
   const osVersion = os.release();
@@ -24,9 +25,8 @@ export function getSdkHeaders(serviceName: string, serviceVersion: string, opera
   // note - all node methods are asynchronous, 'async' will always be true
 
   const headers = {
-    'User-Agent': `${sdkName}-${sdkVersion} ${osName} ${osVersion} ${nodeVersion}`,
-    'X-IBMCloud-SDK-Analytics': `service_name=${serviceName};service_version=${serviceVersion};operation_id=${operationId};async=true`,
+    'User-Agent': `${sdkName}/${sdkVersion} ${osName} ${osVersion} ${nodeVersion}`,
+ //   'X-IBMCloud-SDK-Analytics': `service_name=${serviceName};service_version=${serviceVersion};operation_id=${operationId};async=true`,
   }
-
   return headers;
 }

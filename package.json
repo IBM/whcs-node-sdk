@@ -4,16 +4,32 @@
   "description": "ACD/IML SDK",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc && cp package.json dist/",
+    "jest": "jest",
+    "test": "npm run build && jest test/",
+    "test-unit": "npm runbuild && jest test/unit",
+    "test-integration": "npm run build && jest test/integration",
+    "report-coverage": "codecov"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "dependencies": {
     "extend": "^3.0.2",
     "http": "0.0.1-security",
     "ibm-cloud-sdk-core": "^2.4.1"
   },
   "devDependencies": {
-    "jest": "^26.0.1"
+    "jest": "^26.0.1",
+    "typescript": "^3.9.5",
+    "codecov": "^3.5.0"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage",
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/test/"
+    ],
+    "verbose": false,
+    "silent": false
   }
 }

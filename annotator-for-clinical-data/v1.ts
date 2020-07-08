@@ -104,9 +104,9 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
    *
    * @param {Object} [params] - The parameters to send to the service.
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.ListStringWrapper>>}
+   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.AcdProfiles>>}
    */
-  public getProfiles(params?: AnnotatorForClinicalDataAcdV1.GetProfilesParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.ListStringWrapper>> {
+  public getProfiles(params?: AnnotatorForClinicalDataAcdV1.GetProfilesParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.AcdProfiles>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
@@ -114,7 +114,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'version': this.version
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getProfiles');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getProfiles');
+      };
 
       const parameters = {
         options: {
@@ -188,7 +191,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'version': this.version
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'createProfile');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'createProfile');
+      };
 
       const parameters = {
         options: {
@@ -236,7 +242,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'id': _params.id
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getProfile');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getProfile');
+      };
 
       const parameters = {
         options: {
@@ -304,7 +313,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'id': _params.id
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'updateProfile');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'udpateProfile');
+      };
 
       const parameters = {
         options: {
@@ -353,7 +365,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'id': _params.id
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteProfile');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteProfile');
+      };
 
       const parameters = {
         options: {
@@ -383,17 +398,19 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
    *
    * @param {Object} [params] - The parameters to send to the service.
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.ListStringWrapper>>}
+   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.AcdFlows>>}
    */
-  public getFlows(params?: AnnotatorForClinicalDataAcdV1.GetFlowsParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.ListStringWrapper>> {
+  public getFlows(params?: AnnotatorForClinicalDataAcdV1.GetFlowsParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.AcdFlows>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const query = {
         'version': this.version
       };
-
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getFlows');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getFlows');
+      };
 
       const parameters = {
         options: {
@@ -471,7 +488,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'version': this.version
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'createFlows');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'createFlows');
+      };
 
       const parameters = {
         options: {
@@ -519,7 +539,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'id': _params.id
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getFlowsById');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getFlowsById');
+      };
 
       const parameters = {
         options: {
@@ -587,7 +610,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'id': _params.id
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'updateFlows');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'updateFlows');
+      };
 
       const parameters = {
         options: {
@@ -636,7 +662,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'id': _params.id
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteFlows');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteFlows');
+      };
 
       const parameters = {
         options: {
@@ -714,9 +743,9 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
    * Otherwise, these annotations and modified text will be removed from the container.
    * @param {boolean} [params.returnAnalyzedText] - Set this to true to show the analyzed text in the response.
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.Empty>>}
+   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.UnstructuredContainer>>}
    */
-  public runPipeline(params?: AnnotatorForClinicalDataAcdV1.RunPipelineParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.Empty>> {
+  public runPipeline(params?: AnnotatorForClinicalDataAcdV1.RunPipelineParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.UnstructuredContainer>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
@@ -731,7 +760,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'return_analyzed_text': _params.returnAnalyzedText
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'runPipeline');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'runPipeline');
+      };
 
       const parameters = {
         options: {
@@ -775,9 +807,9 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
    * container and the modified text before restoring to original form will be returned in the metadata.  Otherwise,
    * these annotations and modified text will be removed from the container.
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.Empty>>}
+   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.UnstructuredContainer>>}
    */
-  public runPipelineWithFlow(params: AnnotatorForClinicalDataAcdV1.RunPipelineWithFlowParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.Empty>> {
+  public runPipelineWithFlow(params: AnnotatorForClinicalDataAcdV1.RunPipelineWithFlowParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.UnstructuredContainer>> {
     const _params = extend({}, params);
     const requiredParams = ['flowId', 'returnAnalyzedText', 'analyticFlowBeanInput'];
 
@@ -798,7 +830,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'flow_id': _params.flowId
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'runPipelineWithFlow');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'runPipelineWithFlow');
+      };
 
       const parameters = {
         options: {
@@ -827,9 +862,9 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
    *
    * @param {Object} [params] - The parameters to send to the service.
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.Empty>>}
+   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.AcdAnnotators>>}
    */
-  public getAnnotators(params?: AnnotatorForClinicalDataAcdV1.GetAnnotatorsParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.Empty>> {
+  public getAnnotators(params?: AnnotatorForClinicalDataAcdV1.GetAnnotatorsParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.AcdAnnotators>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
@@ -837,7 +872,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'version': this.version
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getAnnotators');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getAnnotators');
+      };
 
       const parameters = {
         options: {
@@ -863,9 +901,9 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
    * @param {Object} params - The parameters to send to the service.
    * @param {string} params.id - The ID the Service API was registered under.
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.Empty>>}
+   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.AcdAnnotator>>}
    */
-  public getAnnotatorsById(params: AnnotatorForClinicalDataAcdV1.GetAnnotatorsByIdParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.Empty>> {
+  public getAnnotatorsById(params: AnnotatorForClinicalDataAcdV1.GetAnnotatorsByIdParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.AcdAnnotator>> {
     const _params = extend({}, params);
     const requiredParams = ['id'];
 
@@ -883,7 +921,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'id': _params.id
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getAnnotatorsById');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getAnnotatorsById');
+      };
 
       const parameters = {
         options: {
@@ -919,7 +960,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'version': this.version
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteUserSpecificArtifacts');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteUserSpecificArtifacts');
+      };
 
       const parameters = {
         options: {
@@ -948,17 +992,19 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
    *
    * @param {Object} [params] - The parameters to send to the service.
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
-   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.ListStringWrapper>>}
+   * @returns {Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.AcdCartridgesList>>}
    */
-  public cartridgesGet(params?: AnnotatorForClinicalDataAcdV1.CartridgesGetParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.ListStringWrapper>> {
+  public cartridgesGet(params?: AnnotatorForClinicalDataAcdV1.CartridgesGetParams): Promise<AnnotatorForClinicalDataAcdV1.Response<AnnotatorForClinicalDataAcdV1.AcdCartridgesList>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const query = {
         'version': this.version
       };
-
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'cartridgesGet');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'cartridgesGet');
+      };
 
       const parameters = {
         options: {
@@ -1003,7 +1049,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'version': this.version
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'cartridgesPostMultipart');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'cartridgesPostMultipart');
+      };
 
       const parameters = {
         options: {
@@ -1050,7 +1099,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'version': this.version
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'cartridgesPutMultipart');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'cartridgesPutMultipart');
+      };
 
       const parameters = {
         options: {
@@ -1099,7 +1151,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'id': _params.id
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'cartridgesGetId');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'cartridgesGetId');
+      };
 
       const parameters = {
         options: {
@@ -1147,7 +1202,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'update': _params.update
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'deployCartridge');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'deployCartridge');
+      };
 
       const parameters = {
         options: {
@@ -1192,7 +1250,10 @@ class AnnotatorForClinicalDataAcdV1 extends BaseService {
         'format': _params.format
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getHealthCheckStatus');
+      var sdkHeaders = {};
+      if (this.baseOptions.serviceUrl.indexOf("rch") < 0){
+        sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataAcdV1.DEFAULT_SERVICE_NAME, 'v1', 'getHealthCheckStatus');
+      };
 
       const parameters = {
         options: {
@@ -1471,6 +1532,16 @@ namespace AnnotatorForClinicalDataAcdV1 {
    * model interfaces
    ************************/
 
+  /** AcdAnnotator. */
+  export interface AcdAnnotator {
+    description?: string;
+  }
+
+  /** AcdAnnotators */
+  export interface AcdAnnotators {
+    [annotatorId:string]: AcdAnnotator;
+  }
+
   /** AcdCartridges. */
   export interface AcdCartridges {
     id?: string;
@@ -1486,6 +1557,11 @@ namespace AnnotatorForClinicalDataAcdV1 {
     artifact_response?: ServiceError[];
   }
 
+  /** AcdCartridgesList. */
+  export interface AcdCartridgesList {
+    cartridges?: AcdCartridges[];
+  }
+
   /** AcdFlow. */
   export interface AcdFlow {
     id?: string;
@@ -1498,6 +1574,12 @@ namespace AnnotatorForClinicalDataAcdV1 {
     annotator_flows?: AnnotatorFlow[];
   }
 
+  /** AcdFlows */
+  export interface AcdFlows {
+    /** Map of key: AcdFlow. */
+    [flowName: string]: AcdFlow;
+  }
+
   /** AcdProfile. */
   export interface AcdProfile {
     id?: string;
@@ -1508,6 +1590,12 @@ namespace AnnotatorForClinicalDataAcdV1 {
     version?: string;
     cartridge_id?: string;
     annotators?: Annotator[];
+  }
+
+  /** AcdProfiles. */
+  export interface AcdProfiles {
+    /** Map of key: AcdProfile. */
+    [profileName: string]: AcdProfile;
   }
 
   /** AnalyticFlowBeanInput. */
@@ -1565,6 +1653,7 @@ namespace AnnotatorForClinicalDataAcdV1 {
 
   /** FlowEntry. */
   export interface FlowEntry {
+    anntator: Annotator;
   }
 
   /** ListStringWrapper. */

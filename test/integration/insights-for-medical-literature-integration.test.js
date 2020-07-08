@@ -20,20 +20,27 @@ const extend = require('extend');
 const core = require('ibm-cloud-sdk-core');
 const { NoAuthAuthenticator, IamAuthenticator } = core;
 const PropertiesReader = require('properties-reader');
-const props = PropertiesReader('test/properties.ini');
+const props = PropertiesReader('test/iml.ini');
 
 const InsightsForMedicalLiteratureServiceV1 = require('../../dist/insights-for-medical-literature/v1');
 const apikey = props.get('apikey');
+const iamUrl = props.get('iam_url');
 const serverUrl = props.get('server_url');
 const apiVersion = props.get('version');
 const corpus = props.get('corpus');
 const authenticatorType = new NoAuthAuthenticator();
 const disableSsl = true;
 
-if (apikey !== 'undefined' && apikey !== null) {
-    authenticatorType = new IamAuthenticator(apkey)
-    console.log("iam auth")
-    disableSsl = false;
+if (apikey !== 'undefined' && apikey !== null && apikey.length > 0) {
+  console.log(apikey)
+  const baseOptions = {
+    disableSslVerification: false,
+    url: iamUrl
+  }
+  
+  authenticatorType = new IamAuthenticator(baseOptions)
+  console.log("iam auth")
+
 }
 
   describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
@@ -560,7 +567,6 @@ if (apikey !== 'undefined' && apikey !== null) {
       expect(response.status).toEqual(200);
       const { result } = response || {}
       expect(result.aggregations).not.toBeNull();
-      console.log(result.aggregations);
       done();
     });
 

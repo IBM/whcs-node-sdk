@@ -1,10 +1,10 @@
 {
-  "name": "mysdk",
+  "name": "whcs-node-sdk",
   "version": "0.0.1",
-  "description": "IBM Cloud Node SDK",
+  "description": "WHCS Node.js SDK",
   "repository": {
     "type": "git",
-    "url": "https://github.ibm.com/CloudEngineering/node-sdk-template"
+    "url": "https://github.ibm.com/dlangst/whcs-node-sdk"
   },
   "keywords": [
     "ibm"

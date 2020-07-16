@@ -4,47 +4,18 @@
 [![npm-version](https://img.shields.io/npm/v/CloudEngineering/node-sdk-template.svg)](https://www.npmjs.com/package/node-sdk-template)
 [![codecov](https://codecov.io/gh/CloudEngineering/node-sdk-template/branch/master/graph/badge.svg)](https://codecov.io/gh/CloudEngineering/node-sdk-template)
 -->
-# IBM Cloud MySDK Node.js SDK
-Node.js client library to interact with various [MySDK APIs](https://cloud.ibm.com/apidocs?category=<service-category>).
-
-Disclaimer: this SDK is being released initially as a **pre-release** version.
-Changes might occur which impact applications that use this SDK.
-
-## Table of Contents
-
-<!--
-  The TOC below is generated using the `markdown-toc` node package.
-
-      https://github.com/jonschlinkert/markdown-toc
-
-  You should regenerate the TOC after making changes to this file.
-
-      npx markdown-toc -i README.md
-  -->
-
-<!-- toc -->
-
-- [Overview](#overview)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Using the SDK](#using-the-sdk)
-- [Questions](#questions)
-- [Issues](#issues)
-- [Open source @ IBM](#open-source--ibm)
-- [Contributing](#contributing)
-- [License](#license)
-
-<!-- tocstop -->
+# Watson Health Cognitive Services Node.js SDK
+Node.js client library to interact with various [MySDK APIs](https://cloud.ibm.com/apidocs?category=wh-acd).
 
 <!-- --------------------------------------------------------------- -->
 ## Overview
 
-The IBM Cloud MySDK Node.js SDK allows developers to programmatically interact with the following
+The IBM Watson Health Cognitive Services Node.js SDK allows developers to programmatically interact with the following
 IBM Cloud services:
 
 Service Name | Import Path
 --- | ---
-[Example Service](https://cloud.ibm.com/apidocs/example-service) | mysdk/example-service/v1
+[Annotator for Clinical Data](https://cloud.ibm.com/apidocs/wh-acd) | whcs-node-sdk/annotator-for-clinical-data/v1
 
 ## Prerequisites
 * You need an [IBM Cloud][ibm-cloud-onboarding] account.
@@ -55,7 +26,7 @@ Service Name | Import Path
 ## Installation
 
 ```sh
-npm install mysdk
+npm install whcs-node-sdk
 ```
 
 ## Using the SDK

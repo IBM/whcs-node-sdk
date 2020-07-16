@@ -59,7 +59,8 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-eslint-rules": "^5.4.0",
     "typedoc": "^0.15.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "properties-reader": "^2.0.0"
   },
   "jest": {
     "collectCoverage": true,

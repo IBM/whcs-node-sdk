@@ -22,6 +22,10 @@ const { NoAuthAuthenticator, unitTestUtils } = core;
 
 const AnnotatorForClinicalDataV1 = require('../../dist/annotator-for-clinical-data/v1');
 
+// TODO: don't know what this should look like
+const entityModel = {
+}
+
 const {
   getOptions,
   checkUrlAndMethod,

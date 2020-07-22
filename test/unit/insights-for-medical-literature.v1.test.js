@@ -71,8 +71,12 @@ describe('InsightsForMedicalLiteratureV1', () => {
 
       expect(getAuthenticatorMock).toHaveBeenCalled();
       expect(testInstance.baseOptions.authenticator).toBeInstanceOf(NoAuthAuthenticator);
-      expect(testInstance.baseOptions.serviceName).toBe(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME);
-      expect(testInstance.baseOptions.serviceUrl).toBe(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_URL);
+      expect(testInstance.baseOptions.serviceName).toBe(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME
+      );
+      expect(testInstance.baseOptions.serviceUrl).toBe(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_URL
+      );
       expect(testInstance).toBeInstanceOf(InsightsForMedicalLiteratureV1);
     });
 
@@ -117,7 +121,9 @@ describe('InsightsForMedicalLiteratureV1', () => {
 
       const testInstance = new InsightsForMedicalLiteratureV1(options);
 
-      expect(testInstance.baseOptions.serviceUrl).toBe(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_URL);
+      expect(testInstance.baseOptions.serviceUrl).toBe(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_URL
+      );
     });
   });
   describe('service-level tests', () => {
@@ -203,7 +209,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
       test('should pass the right params to createRequest', () => {
         // Construct the params object for operation addCorpusDocument
         const corpus = 'testString';
-        const document = { 'key1' : { foo: 'bar' } };
+        const document = { 'key1': { foo: 'bar' } };
         const acdUrl = 'testString';
         const apiKey = 'testString';
         const flowId = 'testString';
@@ -379,7 +385,9 @@ describe('InsightsForMedicalLiteratureV1', () => {
           includeText: includeText,
         };
 
-        const getDocumentAnnotationsResult = insightsForMedicalLiterature.getDocumentAnnotations(params);
+        const getDocumentAnnotationsResult = insightsForMedicalLiterature.getDocumentAnnotations(
+          params
+        );
 
         // all methods should return a Promise
         expectToBePromise(getDocumentAnnotationsResult);
@@ -389,7 +397,11 @@ describe('InsightsForMedicalLiteratureV1', () => {
 
         const options = getOptions(createRequestMock);
 
-        checkUrlAndMethod(options, '/v1/corpora/{corpus}/documents/{document_id}/annotations', 'GET');
+        checkUrlAndMethod(
+          options,
+          '/v1/corpora/{corpus}/documents/{document_id}/annotations',
+          'GET'
+        );
         const expectedAccept = undefined;
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -472,7 +484,9 @@ describe('InsightsForMedicalLiteratureV1', () => {
           limit: limit,
         };
 
-        const getDocumentCategoriesResult = insightsForMedicalLiterature.getDocumentCategories(params);
+        const getDocumentCategoriesResult = insightsForMedicalLiterature.getDocumentCategories(
+          params
+        );
 
         // all methods should return a Promise
         expectToBePromise(getDocumentCategoriesResult);
@@ -482,7 +496,11 @@ describe('InsightsForMedicalLiteratureV1', () => {
 
         const options = getOptions(createRequestMock);
 
-        checkUrlAndMethod(options, '/v1/corpora/{corpus}/documents/{document_id}/categories', 'GET');
+        checkUrlAndMethod(
+          options,
+          '/v1/corpora/{corpus}/documents/{document_id}/categories',
+          'GET'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -547,8 +565,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
       // Request models needed by this operation.
 
       // StringBuilder
-      const stringBuilderModel = {
-      };
+      const stringBuilderModel = {};
 
       // AnnotationModel
       const annotationModelModel = {
@@ -566,7 +583,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
         end: 38,
         score: 36.0,
         timestamp: 26,
-        features: { 'key1' : 'testString' },
+        features: { 'key1': 'testString' },
         hits: 38,
       };
 
@@ -578,9 +595,9 @@ describe('InsightsForMedicalLiteratureV1', () => {
         const highlightedTitle = stringBuilderModel;
         const highlightedAbstract = stringBuilderModel;
         const highlightedBody = stringBuilderModel;
-        const highlightedSections = { 'key1' : stringBuilderModel };
-        const passages = { 'key1' : { 'key1' : entryModelModel } };
-        const annotations = { 'key1' : annotationModelModel };
+        const highlightedSections = { 'key1': stringBuilderModel };
+        const passages = { 'key1': { 'key1': entryModelModel } };
+        const annotations = { 'key1': annotationModelModel };
         const highlightTagBegin = 'testString';
         const highlightTagEnd = 'testString';
         const fields = 'testString';
@@ -601,7 +618,9 @@ describe('InsightsForMedicalLiteratureV1', () => {
           limit: limit,
         };
 
-        const getDocumentMultipleCategoriesResult = insightsForMedicalLiterature.getDocumentMultipleCategories(params);
+        const getDocumentMultipleCategoriesResult = insightsForMedicalLiterature.getDocumentMultipleCategories(
+          params
+        );
 
         // all methods should return a Promise
         expectToBePromise(getDocumentMultipleCategoriesResult);
@@ -611,7 +630,11 @@ describe('InsightsForMedicalLiteratureV1', () => {
 
         const options = getOptions(createRequestMock);
 
-        checkUrlAndMethod(options, '/v1/corpora/{corpus}/documents/{document_id}/categories', 'POST');
+        checkUrlAndMethod(
+          options,
+          '/v1/corpora/{corpus}/documents/{document_id}/categories',
+          'POST'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = 'application/json';
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -716,7 +739,11 @@ describe('InsightsForMedicalLiteratureV1', () => {
 
         const options = getOptions(createRequestMock);
 
-        checkUrlAndMethod(options, '/v1/corpora/{corpus}/documents/{document_id}/search_matches', 'GET');
+        checkUrlAndMethod(
+          options,
+          '/v1/corpora/{corpus}/documents/{document_id}/search_matches',
+          'GET'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -792,7 +819,9 @@ describe('InsightsForMedicalLiteratureV1', () => {
           format: format,
         };
 
-        const getHealthCheckStatusResult = insightsForMedicalLiterature.getHealthCheckStatus(params);
+        const getHealthCheckStatusResult = insightsForMedicalLiterature.getHealthCheckStatus(
+          params
+        );
 
         // all methods should return a Promise
         expectToBePromise(getHealthCheckStatusResult);
@@ -1129,7 +1158,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
         const enrichmentTargets = [{ foo: 'bar' }];
         const metadataFields = [{ foo: 'bar' }];
         const corpusName = 'testString';
-        const references = { 'key1' : { foo: 'bar' } };
+        const references = { 'key1': { foo: 'bar' } };
         const params = {
           enrichmentTargets: enrichmentTargets,
           metadataFields: metadataFields,
@@ -1382,7 +1411,9 @@ describe('InsightsForMedicalLiteratureV1', () => {
           enableTracking: enableTracking,
         };
 
-        const enableCorpusSearchTrackingResult = insightsForMedicalLiterature.enableCorpusSearchTracking(params);
+        const enableCorpusSearchTrackingResult = insightsForMedicalLiterature.enableCorpusSearchTracking(
+          params
+        );
 
         // all methods should return a Promise
         expectToBePromise(enableCorpusSearchTrackingResult);
@@ -1896,7 +1927,11 @@ describe('InsightsForMedicalLiteratureV1', () => {
 
         const options = getOptions(createRequestMock);
 
-        checkUrlAndMethod(options, '/v1/corpora/{corpus}/concepts/{name_or_id}/related_concepts', 'GET');
+        checkUrlAndMethod(
+          options,
+          '/v1/corpora/{corpus}/concepts/{name_or_id}/related_concepts',
+          'GET'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -1985,7 +2020,11 @@ describe('InsightsForMedicalLiteratureV1', () => {
 
         const options = getOptions(createRequestMock);
 
-        checkUrlAndMethod(options, '/v1/corpora/{corpus}/concepts/{name_or_id}/similar_concepts', 'GET');
+        checkUrlAndMethod(
+          options,
+          '/v1/corpora/{corpus}/concepts/{name_or_id}/similar_concepts',
+          'GET'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);

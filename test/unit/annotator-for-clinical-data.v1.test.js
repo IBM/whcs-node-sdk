@@ -23,8 +23,7 @@ const { NoAuthAuthenticator, unitTestUtils } = core;
 const AnnotatorForClinicalDataV1 = require('../../dist/annotator-for-clinical-data/v1');
 
 // TODO: don't know what this should look like
-const entityModel = {
-}
+const entityModel = {};
 
 const {
   getOptions,
@@ -72,8 +71,12 @@ describe('AnnotatorForClinicalDataV1', () => {
 
       expect(getAuthenticatorMock).toHaveBeenCalled();
       expect(testInstance.baseOptions.authenticator).toBeInstanceOf(NoAuthAuthenticator);
-      expect(testInstance.baseOptions.serviceName).toBe(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME);
-      expect(testInstance.baseOptions.serviceUrl).toBe(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_URL);
+      expect(testInstance.baseOptions.serviceName).toBe(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME
+      );
+      expect(testInstance.baseOptions.serviceUrl).toBe(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_URL
+      );
       expect(testInstance).toBeInstanceOf(AnnotatorForClinicalDataV1);
     });
 
@@ -118,7 +121,9 @@ describe('AnnotatorForClinicalDataV1', () => {
 
       const testInstance = new AnnotatorForClinicalDataV1(options);
 
-      expect(testInstance.baseOptions.serviceUrl).toBe(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_URL);
+      expect(testInstance.baseOptions.serviceUrl).toBe(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_URL
+      );
     });
   });
   describe('service-level tests', () => {
@@ -190,7 +195,7 @@ describe('AnnotatorForClinicalDataV1', () => {
       // Annotator
       const annotatorModel = {
         name: 'testString',
-        parameters: { 'key1' : ['testString'] },
+        parameters: { 'key1': ['testString'] },
         configurations: [configurationEntityModel],
       };
 
@@ -346,7 +351,7 @@ describe('AnnotatorForClinicalDataV1', () => {
       // Annotator
       const annotatorModel = {
         name: 'testString',
-        parameters: { 'key1' : ['testString'] },
+        parameters: { 'key1': ['testString'] },
         configurations: [configurationEntityModel],
       };
 
@@ -579,8 +584,8 @@ describe('AnnotatorForClinicalDataV1', () => {
         flow: flowModel,
         id: 'testString',
         type: 'testString',
-        data: { 'key1' : [entityModel] },
-        metadata: { 'key1' : { foo: 'bar' } },
+        data: { 'key1': [entityModel] },
+        metadata: { 'key1': { foo: 'bar' } },
         globalConfigurations: [configurationEntityModel],
         uid: 26,
       };
@@ -746,8 +751,8 @@ describe('AnnotatorForClinicalDataV1', () => {
         flow: flowModel,
         id: 'testString',
         type: 'testString',
-        data: { 'key1' : [entityModel] },
-        metadata: { 'key1' : { foo: 'bar' } },
+        data: { 'key1': [entityModel] },
+        metadata: { 'key1': { foo: 'bar' } },
         globalConfigurations: [configurationEntityModel],
         uid: 26,
       };
@@ -921,8 +926,8 @@ describe('AnnotatorForClinicalDataV1', () => {
         text: 'testString',
         id: 'testString',
         type: 'testString',
-        data: { 'key1' : [entityModel] },
-        metadata: { 'key1' : { foo: 'bar' } },
+        data: { 'key1': [entityModel] },
+        metadata: { 'key1': { foo: 'bar' } },
         uid: 26,
       };
 
@@ -946,8 +951,8 @@ describe('AnnotatorForClinicalDataV1', () => {
         flow: flowModel,
         id: 'testString',
         type: 'testString',
-        data: { 'key1' : [entityModel] },
-        metadata: { 'key1' : { foo: 'bar' } },
+        data: { 'key1': [entityModel] },
+        metadata: { 'key1': { foo: 'bar' } },
         globalConfigurations: [configurationEntityModel],
         uid: 26,
       };
@@ -1032,8 +1037,8 @@ describe('AnnotatorForClinicalDataV1', () => {
         flow: flowModel,
         id: 'testString',
         type: 'testString',
-        data: { 'key1' : [entityModel] },
-        metadata: { 'key1' : { foo: 'bar' } },
+        data: { 'key1': [entityModel] },
+        metadata: { 'key1': { foo: 'bar' } },
         globalConfigurations: [configurationEntityModel],
         uid: 26,
       };
@@ -1043,8 +1048,8 @@ describe('AnnotatorForClinicalDataV1', () => {
         text: 'testString',
         id: 'testString',
         type: 'testString',
-        data: { 'key1' : [entityModel] },
-        metadata: { 'key1' : { foo: 'bar' } },
+        data: { 'key1': [entityModel] },
+        metadata: { 'key1': { foo: 'bar' } },
         uid: 26,
       };
 
@@ -1257,7 +1262,9 @@ describe('AnnotatorForClinicalDataV1', () => {
         // Construct the params object for operation deleteUserSpecificArtifacts
         const params = {};
 
-        const deleteUserSpecificArtifactsResult = annotatorForClinicalData.deleteUserSpecificArtifacts(params);
+        const deleteUserSpecificArtifactsResult = annotatorForClinicalData.deleteUserSpecificArtifacts(
+          params
+        );
 
         // all methods should return a Promise
         expectToBePromise(deleteUserSpecificArtifactsResult);
@@ -1352,7 +1359,9 @@ describe('AnnotatorForClinicalDataV1', () => {
           archiveFileContentType: archiveFileContentType,
         };
 
-        const cartridgesPostMultipartResult = annotatorForClinicalData.cartridgesPostMultipart(params);
+        const cartridgesPostMultipartResult = annotatorForClinicalData.cartridgesPostMultipart(
+          params
+        );
 
         // all methods should return a Promise
         expectToBePromise(cartridgesPostMultipartResult);
@@ -1404,7 +1413,9 @@ describe('AnnotatorForClinicalDataV1', () => {
           archiveFileContentType: archiveFileContentType,
         };
 
-        const cartridgesPutMultipartResult = annotatorForClinicalData.cartridgesPutMultipart(params);
+        const cartridgesPutMultipartResult = annotatorForClinicalData.cartridgesPutMultipart(
+          params
+        );
 
         // all methods should return a Promise
         expectToBePromise(cartridgesPutMultipartResult);

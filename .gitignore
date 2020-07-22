@@ -6,7 +6,8 @@ auth/*.js
 **/*.js.map
 
 # service-specific tsc outputs (js files)
-annotator-for-clinical-data-acd/*.js
+annotator-for-clinical-data/*.js
+insights-for-medical-literature/*.js
 # IGNORE YOUR SERVICE FILES HERE
 
 # file holding service credentials

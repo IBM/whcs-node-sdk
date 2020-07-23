@@ -5,10 +5,7 @@ const axios = require('axios');
 const test_output = fs.readFileSync(path.resolve('test-output.log'), { encoding: 'utf8' });
 const test_ouput_json = JSON.parse(test_output);
 const ansi_regex = new RegExp(
-  [
-    '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
-    '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))',
-  ].join('|'),
+  ['[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)', '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))'].join('|'),
   'g'
 );
 
@@ -29,9 +26,7 @@ failed_suits.map(suite => {
 
   failed_tests.map(result => {
     const message_clean = result.failureMessages.join('\n').replace(ansi_regex, '');
-    error_suite[message_clean.indexOf(/^Received: 5/m) > 0 ? 'service' : 'test'].push(
-      `${result.fullName}\n${message_clean}`
-    );
+    error_suite[message_clean.indexOf(/^Received: 5/m) > 0 ? 'service' : 'test'].push(`${result.fullName}\n${message_clean}`);
   });
 
   errors.service.push(`${error_suite.name}\n${error_suite.service.join('\n')}`);

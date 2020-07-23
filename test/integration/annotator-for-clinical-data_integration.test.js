@@ -40,6 +40,7 @@ if (apikey !== 'undefined' && apikey !== null && apikey.length > 0) {
 }
 
 describe('AnnotatorForClinicalDataAcdV1_integration', () => {
+  jest.setTimeout(10000);
   let ACD;
   let response;
   let service;

@@ -25,14 +25,7 @@ const AnnotatorForClinicalDataV1 = require('../../dist/annotator-for-clinical-da
 // TODO: don't know what this should look like
 const entityModel = {};
 
-const {
-  getOptions,
-  checkUrlAndMethod,
-  checkMediaHeaders,
-  expectToBePromise,
-  checkUserHeader,
-  checkForSuccessfulExecution,
-} = unitTestUtils;
+const { getOptions, checkUrlAndMethod, checkMediaHeaders, expectToBePromise, checkUserHeader, checkForSuccessfulExecution } = unitTestUtils;
 
 const service = {
   authenticator: new NoAuthAuthenticator(),
@@ -71,12 +64,8 @@ describe('AnnotatorForClinicalDataV1', () => {
 
       expect(getAuthenticatorMock).toHaveBeenCalled();
       expect(testInstance.baseOptions.authenticator).toBeInstanceOf(NoAuthAuthenticator);
-      expect(testInstance.baseOptions.serviceName).toBe(
-        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME
-      );
-      expect(testInstance.baseOptions.serviceUrl).toBe(
-        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_URL
-      );
+      expect(testInstance.baseOptions.serviceName).toBe(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME);
+      expect(testInstance.baseOptions.serviceUrl).toBe(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_URL);
       expect(testInstance).toBeInstanceOf(AnnotatorForClinicalDataV1);
     });
 
@@ -121,9 +110,7 @@ describe('AnnotatorForClinicalDataV1', () => {
 
       const testInstance = new AnnotatorForClinicalDataV1(options);
 
-      expect(testInstance.baseOptions.serviceUrl).toBe(
-        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_URL
-      );
+      expect(testInstance.baseOptions.serviceUrl).toBe(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_URL);
     });
   });
   describe('service-level tests', () => {
@@ -1262,9 +1249,7 @@ describe('AnnotatorForClinicalDataV1', () => {
         // Construct the params object for operation deleteUserSpecificArtifacts
         const params = {};
 
-        const deleteUserSpecificArtifactsResult = annotatorForClinicalData.deleteUserSpecificArtifacts(
-          params
-        );
+        const deleteUserSpecificArtifactsResult = annotatorForClinicalData.deleteUserSpecificArtifacts(params);
 
         // all methods should return a Promise
         expectToBePromise(deleteUserSpecificArtifactsResult);
@@ -1359,9 +1344,7 @@ describe('AnnotatorForClinicalDataV1', () => {
           archiveFileContentType: archiveFileContentType,
         };
 
-        const cartridgesPostMultipartResult = annotatorForClinicalData.cartridgesPostMultipart(
-          params
-        );
+        const cartridgesPostMultipartResult = annotatorForClinicalData.cartridgesPostMultipart(params);
 
         // all methods should return a Promise
         expectToBePromise(cartridgesPostMultipartResult);
@@ -1413,9 +1396,7 @@ describe('AnnotatorForClinicalDataV1', () => {
           archiveFileContentType: archiveFileContentType,
         };
 
-        const cartridgesPutMultipartResult = annotatorForClinicalData.cartridgesPutMultipart(
-          params
-        );
+        const cartridgesPutMultipartResult = annotatorForClinicalData.cartridgesPutMultipart(params);
 
         // all methods should return a Promise
         expectToBePromise(cartridgesPutMultipartResult);

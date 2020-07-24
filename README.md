@@ -1,21 +1,15 @@
-[![Build Status](https://travis.ibm.com/CloudEngineering/node-sdk-template.svg?token=eW5FVD71iyte6tTby8gr&branch=master)](https://travis.ibm.com/CloudEngineering/node-sdk-template)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-<!--
-[![npm-version](https://img.shields.io/npm/v/CloudEngineering/node-sdk-template.svg)](https://www.npmjs.com/package/node-sdk-template)
-[![codecov](https://codecov.io/gh/CloudEngineering/node-sdk-template/branch/master/graph/badge.svg)](https://codecov.io/gh/CloudEngineering/node-sdk-template)
--->
-# Watson Health Cognitive Services Node.js SDK
-Node.js client library to interact with various [MySDK APIs](https://cloud.ibm.com/apidocs?category=wh-acd).
 
-<!-- --------------------------------------------------------------- -->
+# Watson Health Cognitive Services Node.js SDK
+Node.js client library to interact with various IBM Watson Health Cognitive Services APIs.
+
 ## Overview
 
-The IBM Watson Health Cognitive Services Node.js SDK allows developers to programmatically interact with the following
-IBM Cloud services:
+The IBM Watson Health Cognitive Services Node.js SDK allows developers to programmatically interact with the following IBM Cloud services:
 
 Service Name | Import Path
 --- | ---
-[Annotator for Clinical Data](https://cloud.ibm.com/apidocs/wh-acd) | whcs-node-sdk/annotator-for-clinical-data/v1
+[Annotator for Clinical Data](https://cloud.ibm.com/apidocs/wh-acd) | whcs-node-sdk/annotator-for-clinical-data/v1 |
+[Insights for Medical Literature](https://cloud.ibm.com/apidocs/wh-iml) | whcs-node-sdk/insights-for-medical-literature/v1 |
 
 ## Prerequisites
 * You need an [IBM Cloud][ibm-cloud-onboarding] account.

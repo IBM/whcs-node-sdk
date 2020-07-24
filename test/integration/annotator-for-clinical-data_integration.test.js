@@ -65,6 +65,11 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     const params = {};
     response = await ACD.getProfiles(params);
     expect(response.status).toEqual(200);
+    const { result } = response || {};
+    expect(result).not.toBeNull();
+    for (var profileId in result) {
+      expect(profileId).not.toBeNull();
+    }
     return;
   });
 
@@ -131,6 +136,11 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     const params = {};
     response = await ACD.getFlows(params);
     expect(response.status).toEqual(200);
+    const { result } = response || {};
+    expect(result).not.toBeNull();
+    for (var flowId in result) {
+      expect(flowId).not.toBeNull();
+    }
     return;
   });
 
@@ -249,10 +259,15 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     response = await ACD.runPipeline(params);
     expect(response.status).toEqual(200);
     const { result } = response || {};
-    expect(result.data).not.toBeNull();
     result.unstructured.forEach(element => {
       expect(element.data).not.toBeNull();
-      expect(element.data['concepts']).not.toBeNull();
+      expect(element.data.concepts).not.toBeNull();
+      element.data.concepts.forEach(concept => {
+        expect(concept.cui).not.toBeNull();
+        expect(concept.begin).not.toBeNull();
+        expect(concept.end).not.toBeNull();
+        expect(concept.coveredText).not.toBeNull();
+      });
     });
     return;
   });
@@ -273,17 +288,33 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     response = await ACD.runPipelineWithFlow(params);
     expect(response.status).toEqual(200);
     const { result } = response || {};
-    expect(result.data).not.toBeNull();
     result.unstructured.forEach(element => {
       expect(element.data).not.toBeNull();
-      expect(element.data['concepts']).not.toBeNull();
+      expect(element.data.concepts).not.toBeNull();
+      element.data.concepts.forEach(concept => {
+        expect(concept.cui).not.toBeNull();
+        expect(concept.begin).not.toBeNull();
+        expect(concept.end).not.toBeNull();
+        expect(concept.coveredText).not.toBeNull();
+      });
+      element.data.SymptomDiseaseInd.forEach(symptomDisease => {
+        expect(symptomDisease.type).not.toBeNull();
+        expect(symptomDisease.begin).not.toBeNull();
+        expect(symptomDisease.end).not.toBeNull();
+        expect(symptomDisease.coveredText).not.toBeNull();
+      });
+      element.data.attributeValues.forEach(attributeValue => {
+        expect(attributeValue.name).not.toBeNull();
+        expect(attributeValue.begin).not.toBeNull();
+        expect(attributeValue.end).not.toBeNull();
+        expect(attributeValue.coveredText).not.toBeNull();
+      });
     });
     return;
   });
 
   test('Get Annotators', async () => {
     const params = {};
-
     response = await ACD.getAnnotators(params);
     expect(response.status).toEqual(200);
     return;
@@ -318,8 +349,9 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result.cartridges).not.toBeNull();
-    result.cartridges.forEach(element => {
-      expect(element.id).not.toBeNull();
+    result.cartridges.forEach(cartridge => {
+      expect(cartridge.id).not.toBeNull();
+      expect(cartridge.status).not.toBeNull();
     });
     return;
   });

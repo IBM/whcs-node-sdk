@@ -67,8 +67,10 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result).not.toBeNull();
-    for (var profileId in result) {
-      expect(profileId).not.toBeNull();
+    for (const profileId in result) {
+      if (result.hasOwnProperty(profileId)) {
+        expect(profileId).not.toBeNull();
+      }
     }
     return;
   });
@@ -138,8 +140,10 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result).not.toBeNull();
-    for (var flowId in result) {
-      expect(flowId).not.toBeNull();
+    for (const flowId in result) {
+      if (result.hasOwnProperty(flowId)) {
+        expect(flowId).not.toBeNull();
+      }
     }
     return;
   });

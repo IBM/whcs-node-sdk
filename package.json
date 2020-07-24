@@ -24,9 +24,6 @@
     "test": "npm run build && npm run lint && jest test/",
     "test-unit": "npm run build && jest test/unit/",
     "test-integration": "npm run build && jest test/integration",
-    "test-travis": "jest --runInBand --testNamePattern='^((?!@slow).)*$' test/",
-    "test-unit-travis": "jest --runInBand test/unit/",
-    "test-integration-travis": "jest --runInBand --no-colors --testNamePattern='^((?!@slow).)*$' --json test/integration > test-output.log",
     "report-coverage": "codecov",
     "check-packages": "installed-check -e -d -v"
   },

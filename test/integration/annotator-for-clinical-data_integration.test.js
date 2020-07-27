@@ -98,7 +98,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     const params = {
       newId: 'my-profile',
       newName: 'My Profile',
-      newDescription: 'Test update profile',
+      newDescription: 'Test create profile',
       newVersion: '1.0',
       newAnnotators: annotators,
     };
@@ -116,7 +116,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
       id: 'my-profile',
       newId: 'my-profile',
       newName: 'My Profile',
-      newDescription: 'Test create profile',
+      newDescription: 'Test update profile',
       newVersion: '1.0',
       newAnnotators: annotators,
     };
@@ -186,7 +186,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     const params = {
       newId: 'my_flow',
       newName: 'My Flow',
-      newDescription: 'Test craete flow',
+      newDescription: 'Test create flow',
       version: '1.0',
       newAnnotatorFlows: flows,
     };

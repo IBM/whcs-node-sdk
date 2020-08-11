@@ -4,5 +4,5 @@
 ./node_modules/.bin/typedoc --mode file --theme ./scripts/typedoc/theme --excludeExternals \
     --out .doc \
     ./annotator-for-clinical-data/v1.ts \
-    .insights-for-medical-literature/v1.ts \ 
+    ./insights-for-medical-literature/v1.ts \ 
     --target "ES5"

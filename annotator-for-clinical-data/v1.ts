@@ -1584,6 +1584,24 @@ namespace AnnotatorForClinicalDataV1 {
     annotatorFlows?: AnnotatorFlow[];
   }
 
+  /** AdverseEvent. */
+  export interface AdverseEvent {
+    score?: number;
+    allergyScore?: number;
+    usage?: Usage;
+  }
+
+  /** Annotation. */
+  export interface Annotation {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    id?: string;
+    type?: string;
+    uid?: number;
+    insightModelData?: InsightModel;
+  }
+
   /** Annotator. */
   export interface Annotator {
     name: string;
@@ -1603,6 +1621,139 @@ namespace AnnotatorForClinicalDataV1 {
     uid?: number;
   }
 
+  export interface AssistanceAnnotation {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    id?: string;
+    type?: string;
+    uid?: number;
+    hypothetical?: boolean;
+    negated?: boolean;
+    modality?: string;
+    primaryActionNormalizedName?: string;
+    primaryActionSurfaceForm?: string;
+    SectionNormalizedName?: string;
+    SectionSurfaceForm?: string;
+    insightModelData?: InsightModel;
+  }
+
+  /** AttributeValueAnnotation. */
+  export interface AttributeValueAnnotation {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    id?: string;
+    type?: string;
+    uid?: number;
+    hypothetical?: boolean;
+    negated?: boolean;
+    concept?: Concept;
+    disambiguationData?: Disambiguation;
+    sectionNormalizedName?: string;
+    sectionSurfaceForm?: string;
+    cptCode?: string;
+    icd9Code?: string;
+    icd10Code?: string;
+    loincId?: string;
+    meshId?: string;
+    name?: string;
+    nciCode?: string;
+    preferredName?: string;
+    rxNormId?: string;
+    snomedConceptId?: string;
+    source?: string;
+    sourceVersion?: string;
+    values?: AttributeValueEntry[];
+    vocabs?: string;
+    insightModelData?: InsightModel;
+    ccsCode?: string;
+    hccCode?: string;
+    ruleId?: string;
+    derivedFrom?: Concept[];
+  }
+
+  /** AttributeValueEntry. */
+  export interface AttributeValueEntry {
+    value?: string;
+    unit?: string;
+    frequency?: string;
+    duration?: string;
+    dimension?: string;
+  }
+
+  /** CancerAnnotation. */
+  export interface CancerAnnotation {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    id?: string;
+    type?: string;
+    uid?: number;
+    hypothetical?: boolean;
+    negated?: boolean;
+    cui?: string;
+    modality?: string;
+    cancer?: JsonObject[];
+    disambiguationData?: Disambiguation;
+    sectionNormalizedName?: string;
+    sectionSurfaceForm?: string;
+    insightModelData?: InsightModel;
+  }
+
+  /** Concept. */
+  export interface Concept {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    id?: string;
+    type?: string;
+    uid?: number;
+    hypothetical?: boolean;
+    negated?: boolean;
+    cui?: string;
+    disambiguationData?: Disambiguation;
+    sectionNormalizedName?: string;
+    sectionSurfaceForm?: string;
+    cptCode?: string;
+    icd9Code?: string;
+    icd10Code?: string;
+    loincId?: string;
+    meshId?: string;
+    name?: string;
+    nciCode?: string;
+    preferredName?: string;
+    rxNormId?: string;
+    snomedConceptId?: string;
+    source?: string;
+    sourceVersion?: string;
+    semanticType?: string;
+    vocabs?: string;
+    insightModelData?: InsightModel;
+    ruleId?: string;
+    derivedFrom?: Concept[];
+  }
+
+  /** ConceptValue. */
+  export interface ConceptValue {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    id?: string;
+    type?: string;
+    uid?: number;
+    hypothetical?: boolean;
+    negated?: boolean;
+    cui?: string;
+    dimension?: string;
+    sectionNormalizedName?: string;
+    sectionSurfaceForm?: string;
+    preferredName?: string;
+    trigger?: string;
+    value?: string;
+    source?: string;
+  }
+
   /** ConfigurationEntity. */
   export interface ConfigurationEntity {
     id?: string;
@@ -1611,10 +1762,80 @@ namespace AnnotatorForClinicalDataV1 {
     mergeid?: number;
   }
 
+  /** ContainerAnnotation. */
+  export interface ContainerAnnotation {
+    allergyInd?: Annotation[];
+    allergyMedicationInd?: Annotation[];
+    attributeValues?: AttributeValueAnnotation[];
+    bathingAssistanceInd?: AssistanceAnnotation[];
+    icaCancerDiagnosisInd?: CancerAnnotation[];
+    concepts?: Concept[];
+    conceptValues?: ConceptValue[];
+    ejectionFractionInd?: EjectionFractionAnnotation[];
+    hypotheticalSpans?: Annotation[];
+    labValueInd?: LabValueAnnotation[];
+    medicationInd?: MedicationAnnotation[];
+    emailAddressInd?: Annotation[];
+    personInd?: Annotation[];
+    US_PhoneNumberInd?: Annotation[];
+    medicalInstitutionInd?: Annotation[];
+    organizationInd?: Annotation[];
+    negatedSpans?: NegatedSpan[];
+    procedureInd?: ProcedureAnnotation[];
+    seeingAssistanceInd?: AssistanceAnnotation[];
+    smokingInd?: SmokingAnnotation[];
+    symptomDiseaseInd?: SymptomDiseaseAnnotation[];
+    toiletingAssistanceInd?: AssistanceAnnotation[];
+    walkingAssistanceInd?: AssistanceAnnotation[];
+    sections?: SectionAnnotation[];
+    nluEntities?: NluEntities[];
+    relations?: Relations[];
+    spellingCorrections?: SpellingCorrection[];
+    spellCorrectedText?: SpellCorrectedText[];
+  }
+
   /** DeployCartridgeResponse. */
   export interface DeployCartridgeResponse {
     code?: number;
     artifactResponse?: ServiceError[];
+  }
+
+  /** DiagnosisInsight. */
+  export interface DiagnosisInsight {
+    usage?: Usage;
+    suspectedScore?: number;
+    symptomScore?: number;
+    traumaScore?: number;
+    familyHistoryScore?: number;
+  }
+
+  /** Disambiguation. */
+  export interface Disambiguation {
+    validity?: string;
+  }
+
+  /** EjectionFractionAnnotation. */
+  export interface EjectionFractionAnnotation {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    id?: string;
+    type?: string;
+    uid?: number;
+    hypothetical?: boolean;
+    negated?: boolean;
+    isRange?: string;
+    firstValue?: string;
+    secondValue?: string;
+    efAlphabeticValueNormalizedName?: string;
+    efAlphabeticValueSurfaceForm?: string;
+    efSuffixNormalizedName?: string;
+    efSuffixSurfaceForm?: string;
+    efTermNormalizedName?: string;
+    efTermSurfaceForm?: string;
+    sectionNormalizedName?: string;
+    sectionSurfaceForm?: string;
+    insightModelData?: InsightModel;
   }
 
   /** Entity. */
@@ -1625,10 +1846,44 @@ namespace AnnotatorForClinicalDataV1 {
     mergeid?: number;
   }
 
+  /** Evidence. */
+  export interface Evidence {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+  }
+
   /** Flow. */
   export interface Flow {
     elements?: JsonObject[];
     async?: boolean;
+  }
+
+  /** InsightModel. */
+  export interface InsightModel {
+    procedure?: ProcedureInsight;
+    diagnosis?: DiagnosisInsight;
+    medication?: MedicationInsight;
+    normality?: NormalityInsight;
+  }
+
+  /** LabValueAnnotation. */
+  export interface LabValueAnnotation {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    id?: string;
+    type?: string;
+    uid?: number;
+    hypothetical?: boolean;
+    negated?: boolean;
+    dateInMilliseconds?: string;
+    labValue?: string;
+    labTypeNormalizedName?: string;
+    labTypeSurfaceForm?: string;
+    sectionNormalizedName?: string;
+    sectionSurfaceForm?: string;
+    insightModelData?: InsightModel;
   }
 
   /** ListStringWrapper. */
@@ -1636,14 +1891,245 @@ namespace AnnotatorForClinicalDataV1 {
     data?: string[];
   }
 
+  /** MedicationAnnotation . */
+  export interface MedicationAnnotation {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    id?: string;
+    type?: string;
+    uid?: number;
+    hypothetical?: boolean;
+    negated?: boolean;
+    drug?: JsonObject[];
+    sectionNormalizedName?: string;
+    sectionSurfaceForm?: string;
+    insightModelData?: InsightModel;
+  }
+
+  /** MedicationInsight. */
+  export interface MedicationInsight {
+    usage?: Usage;
+    startedEvent?: Event;
+    stoppedEvent?: Event;
+    doseChangedEvent?: Event;
+    adverseEvent?: AdverseEvent;
+  }
+
+  /** NegatedSpan. */
+  export interface NegatedSpan {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    id?: string;
+    type?: string;
+    uid?: number;
+    hypothetical?: boolean;
+    negated?: boolean;
+    trigger?: JsonObject[];
+  }
+
+  /** NluEntities. */
+  export interface NluEntities {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    type?: string;
+    source?: string;
+    relevance?: number;
+    uid?: number;
+    negated?: boolean;
+    hypothetical?: boolean;
+  }
+
+  /** NodeAnnotation. */
+  export interface NodeAnnotation {
+    entity?: NodeEntityAnnotation;
+  }
+
+  /** NodeEntityAnnotation. */
+  export interface NodeEntityAnnotation {
+    uid?: number;
+  }
+
+  /** NormalityUsage. */
+  export interface NormalityUsage {
+    normalScore?: number;
+    abnormalScore?: number;
+    unknownScore?: number;
+    nonFindingScore?: number;
+  }
+
+  /** NormalityInsight. */
+  export interface NormalityInsight {
+    normalityUsage?: NormalityUsage;
+    evidence?: Evidence[];
+  }
+
+  /** ProcedureAnnotation. */
+  export interface ProcedureAnnotation {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    id?: string;
+    type?: string;
+    uid?: number;
+    hypothetical?: boolean;
+    negated?: boolean;
+    dateInMilliseconds?: string;
+    disambiguationData?: Disambiguation;
+    procedureNormalizedName?: string;
+    procedureSurfaceForm?: string;
+    sectionNormalizedName?: string;
+    sectionSurfaceForm?: string;
+    snomedConceptId?: string;
+    insightModelData?: InsightModel;
+  }
+
+  /** ProcedureInsight. */
+  export interface ProcedureInsight {
+    task?: Task;
+    type?: Type;
+    usage?: Usage;
+  }
+
+  /** Relations. */
+  export interface Relations {
+    source?: string;
+    score?: number;
+    nodes?: NodeAnnotation[];
+    type?: string;
+  }
+
+  /** SectionAnnotation. */
+  export interface SectionAnnotation {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    sectionType?: string;
+    type?: string;
+    trigger?: SectionTrigger;
+  }
+
+  /** SectionTrigger. */
+  export interface SectionTrigger {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    source?: string;
+    type?: string;
+    sectionNormalizedName?: string;
+  }
+
+  /** SmokingAnnotation. */
+  export interface SmokingAnnotation {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    id?: string;
+    type?: string;
+    uid?: number;
+    hypothetical?: boolean;
+    negated?: boolean;
+    modality?: string;
+    current?: string;
+    participation?: string;
+    smokeTermNormalizedName?: string;
+    smokeTermSurfaceForm?: string;
+    sectionNormalizedName?: string;
+    sectionSurfaceForm?: string;
+    insightModelData?: InsightModel;
+  }
+
+  /** SpellCorrectedText. */
+  export interface SpellCorrectedText {
+    correctedText?: string;
+    debugText?: string;
+  }
+
+  /** SpellingCorrection. */
+  export interface SpellingCorrection {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    suggestion?: Suggestion[];
+  }
+
+  /** Event. */
+  export interface Event {
+    score?: number;
+    usage?: Usage;
+  }
+
+  /** Suggestion. */
+  export interface Suggestion {
+    applied?: boolean;
+    confidence?: number;
+    semTypes?: string;
+    text?: string;
+  }
+
+  /** SymptomDiseaseAnnotation. */
+  export interface SymptomDiseaseAnnotation {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    id?: string;
+    type?: string;
+    uid?: number;
+    hypothetical?: boolean;
+    negated?: boolean;
+    dateInMilliseconds?: string;
+    disambiguationData?: Disambiguation;
+    ccsCode?: string;
+    cui?: string;
+    hccCode?: string;
+    icd9Code?: string;
+    icd10Code?: string;
+    modality?: string;
+    snomedConceptId?: string;
+    symptomDiseaseNormalizedName?: string;
+    symptomDiseaseSurfaceForm?: string;
+    sectionNormalizedName?: string;
+    sectionSurfaceForm?: string;
+    insightModelData?: InsightModel;
+  }
+
+  /** Task. */
+  export interface Task {
+    therapeuticScore?: number;
+    diagnosticScore?: number;
+    labTestScore?: number;
+    surgicalTaskScore?: number;
+    clinicalAssessmenttScore?: number;
+  }
+
+  /** Type. */
+  export interface Type {
+    deviceScore?: number;
+    materialScore?: number;
+    medicationScore?: number;
+    procedureScore?: number;
+    conditionManagementScore?: number;
+  }
+
   /** UnstructuredContainer. */
   export interface UnstructuredContainer {
     text?: string;
     id?: string;
     type?: string;
-    data?: JsonObject;
+    data?: ContainerAnnotation;
     metadata?: JsonObject;
     uid?: number;
+  }
+
+  /** Usage. */
+  export interface Usage {
+    explicitScore?: number;
+    patientReportedScore?: number;
+    discussedScore?: number;
+    takenScore?: number;
+    labMeasurementScore?: number;
   }
 
   /** Object representing an HTTP response with an error. */

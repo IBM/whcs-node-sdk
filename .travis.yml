@@ -1,0 +1,34 @@
+language: node_js
+
+sudo: false
+
+matrix:
+  include:
+    - node_js: 10
+    - node_js: 12
+#      before_script:
+#        - >-
+#              [ -z "${TRAVIS_TAG}" ] && [ "${TRAVIS_PULL_REQUEST}" == "false" ]
+#              && openssl aes-256-cbc -K $encrypted_3058bc69cb40_key -iv $encrypted_3058bc69cb40_iv -in ghost.env.enc -out ghost.env -d
+#              || true
+
+script:
+- npm run build
+- npm run test-travis || travis_terminate 1
+- npm run lint
+- npm run check-packages
+# - sh scripts/typedoc/generate_typedoc.sh currently in progress
+
+
+after_success:
+- npm run report-coverage
+
+# To enable semantic-release, uncomment this section.
+# deploy:
+# - provider: script
+#   skip_cleanup: true
+#   script: npx semantic-release
+#   on:
+#     node: 12
+#     branch: master
+

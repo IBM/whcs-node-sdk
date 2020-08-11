@@ -24,6 +24,7 @@
     "test": "npm run build && npm run lint && jest test/",
     "test-unit": "npm run build && jest test/unit/",
     "test-integration": "npm run build && jest test/integration",
+    "test-travis": "jest --runInBand test/unit/",
     "report-coverage": "codecov",
     "check-packages": "installed-check -e -d -v"
   },
@@ -65,6 +66,8 @@
     "coveragePathIgnorePatterns": [
       "<rootDir>/test/"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "verbose": false,
+    "silent": false
   }
 }

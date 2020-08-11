@@ -27,8 +27,10 @@ const apikey = props.get('apikey');
 const iamUrl = props.get('iam_url');
 const serverUrl = props.get('server_url');
 const apiVersion = props.get('version');
+const archive = props.get('archive');
 let authenticatorType = new NoAuthAuthenticator();
 const disableSsl = true;
+const analyzeText = 'The patient has cancer and patient is currently taking 400 ml sisplatin chemotherapy.  Aspirin from once daily to twice daily.\nHISTORY:  Patient is allergic to latex.  Patient cannot walk and needs help bathing and getting around.  The lab values were: white blood cell count 4.6, hemoglobin 12.2.  Echocardiogram demonstrated ejection fraction of approx 60%.  Patient cannot dress or feed without help as the patient can not see.  Patient may die soon but has not died yet.  Patient smoked for 20 years.  Patient can not clean up after defacating in toilet.  Jone Doe was seen at Baylor Hospitall in Austin, TX.  Johndoe@testaddress.com - (555) 555-5555.  The patient started on metformin because his blood sugar was too high.'
 
 if (apikey !== 'undefined' && apikey !== null && apikey.length > 0) {
   const baseOptions = {
@@ -237,7 +239,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
 
   test('Run Pipeline', async () => {
     const container = {
-      text: 'The patient has diabetes',
+      text: analyzeText,
     };
     const containers = [container];
     const annotator = {
@@ -278,7 +280,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
 
   test('Run Pipeline with Flow', async () => {
     const container = {
-      text: 'The patient has diabetes',
+      text: analyzeText,
     };
     const containers = [container];
     const annotatorBean = {
@@ -386,7 +388,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
   });
 
   test('Deploy Cartridge', async () => {
-    const readerStream = fs.createReadStream('/Users/dangst/Downloads/deb_test_0414_v2.0.zip');
+    const readerStream = fs.createReadStream(archive);
     const params = {
       archiveFile: readerStream,
       archiveFileContentType: 'application/octet-stream',
@@ -399,7 +401,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
   });
 
   test('Cartridges Post Multipart', async () => {
-    const readerStream = fs.createReadStream('/Users/dangst/Downloads/deb_test_0414_v2.0.zip');
+    const readerStream = fs.createReadStream(archive);
     const params = {
       archiveFile: readerStream,
       archiveFileContentType: 'application/octet-stream',
@@ -417,7 +419,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
   });
 
   test('Cartridges Put Multipart', async () => {
-    const readerStream = fs.createReadStream('/Users/dangst/Downloads/deb_test_0414_v2.0.zip');
+    const readerStream = fs.createReadStream(archive);
     const params = {
       archiveFile: readerStream,
       archiveFileContentType: 'application/octet-stream',

@@ -5,10 +5,10 @@ please ask a question at
 
 # Issues
 If you encounter an issue with the SDK, you are welcome to submit
-a [bug report](<github-repo-url>/issues).
+a [bug report](https://github.com/IBM/whcs-node-sdk/issues).
 Before that, please search for similar issues. It's possible someone has
 already encountered this issue.
 
 # General Information
 For general guidance on contributing to this project, please see
-[this link](https://github.ibm.com/dlangst/whcs-node-sdk/blob/master/CONTRIBUTING_nodejs.md)
+[this link](https://github.com/IBM/ibm-cloud-sdk-common/blob/master/CONTRIBUTING_nodejs.md)

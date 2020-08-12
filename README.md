@@ -20,7 +20,7 @@ Service Name | Import Path
 ## Installation
 
 ```sh
-npm install whcs-node-sdk
+npm install ibm-whcs-sdk
 ```
 
 ## Using the SDK
@@ -35,7 +35,7 @@ please ask a question at
 
 ## Issues
 If you encounter an issue with the SDK, you are welcome to submit
-a [bug report](<github-repo-url>/issues).
+a [bug report](https://github.com/IBM/whcs-node-sdk/issues).
 Before that, please search for similar issues. It's possible someone has
 already encountered this issue.
 

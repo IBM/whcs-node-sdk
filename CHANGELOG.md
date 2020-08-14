@@ -1,3 +1,10 @@
+## [0.0.3](https://github.com/IBM/whcs-node-sdk/compare/v0.0.2...v0.0.3) (2020-08-14)
+
+
+### Bug Fixes
+
+* **insight model:** clarify class description ([aa68aa3](https://github.com/IBM/whcs-node-sdk/commit/aa68aa374e3a7ec6c676167d2b13f224ca6b98d2))
+
 ## [0.0.2](https://github.com/IBM/whcs-node-sdk/compare/v0.0.1...v0.0.2) (2020-08-12)
 
 

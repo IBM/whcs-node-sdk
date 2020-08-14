@@ -1584,7 +1584,7 @@ namespace AnnotatorForClinicalDataV1 {
     annotatorFlows?: AnnotatorFlow[];
   }
 
-  /** AdverseEvent. */
+  /** AdverseEvent. InsightModel. */
   export interface AdverseEvent {
     score?: number;
     allergyScore?: number;
@@ -1846,7 +1846,7 @@ namespace AnnotatorForClinicalDataV1 {
     mergeid?: number;
   }
 
-  /** Evidence. */
+  /** Evidence. InsightModel. */
   export interface Evidence {
     begin?: number;
     end?: number;
@@ -1952,7 +1952,7 @@ namespace AnnotatorForClinicalDataV1 {
     uid?: number;
   }
 
-  /** NormalityUsage. */
+  /** NormalityUsage. InsightModel. */
   export interface NormalityUsage {
     normalScore?: number;
     abnormalScore?: number;
@@ -2055,7 +2055,7 @@ namespace AnnotatorForClinicalDataV1 {
     suggestion?: Suggestion[];
   }
 
-  /** Event. */
+  /** Event. InsightModel. */
   export interface Event {
     score?: number;
     usage?: Usage;
@@ -2095,7 +2095,7 @@ namespace AnnotatorForClinicalDataV1 {
     insightModelData?: InsightModel;
   }
 
-  /** Task. */
+  /** Task. InsightModel. */
   export interface Task {
     therapeuticScore?: number;
     diagnosticScore?: number;
@@ -2104,7 +2104,7 @@ namespace AnnotatorForClinicalDataV1 {
     clinicalAssessmenttScore?: number;
   }
 
-  /** Type. */
+  /** Type. InsightModel. */
   export interface Type {
     deviceScore?: number;
     materialScore?: number;
@@ -2123,7 +2123,7 @@ namespace AnnotatorForClinicalDataV1 {
     uid?: number;
   }
 
-  /** Usage. */
+  /** Usage. InsightModel. */
   export interface Usage {
     explicitScore?: number;
     patientReportedScore?: number;

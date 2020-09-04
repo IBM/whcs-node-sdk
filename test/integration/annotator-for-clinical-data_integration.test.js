@@ -24,19 +24,17 @@ const props = propertiesReader('test/acd.ini');
 
 const AnnotatorForClinicalDataAcdV1 = require('../../dist/annotator-for-clinical-data/v1');
 const apikey = props.get('apikey');
-const iamUrl = props.get('iam_url');
 const serverUrl = props.get('server_url');
 const apiVersion = props.get('version');
 const archive = props.get('archive');
 let authenticatorType = new NoAuthAuthenticator();
 const disableSsl = true;
 const analyzeText =
-  'The patient has cancer and patient is currently taking 400 ml sisplatin chemotherapy.  Aspirin from once daily to twice daily.\nHISTORY:  Patient is allergic to latex.  Patient cannot walk and needs help bathing and getting around.  The lab values were: white blood cell count 4.6, hemoglobin 12.2.  Echocardiogram demonstrated ejection fraction of approx 60%.  Patient cannot dress or feed without help as the patient can not see.  Patient may die soon but has not died yet.  Patient smoked for 20 years.  Patient can not clean up after defacating in toilet.  Jone Doe was seen at Baylor Hospitall in Austin, TX.  Johndoe@testaddress.com - (555) 555-5555.  The patient started on metformin because his blood sugar was too high.';
+  'The patient has cancer and patient is currently taking 400 ml sisplatin chemotherapy.  CT scan detected tumor in left lung.  Aspirin from once daily to twice daily.\nHISTORY:  Patient is allergic to latex.  Patient cannot walk and needs help bathing and getting around.  The lab values were: white blood cell count 4.6, hemoglobin 12.2.  Echocardiogram demonstrated ejection fraction of approx 60%.  Patient cannot dress or feed without help as the patient can not see.  Patient may die soon but has not died yet.  Patient smoked for 20 years.  Patient can not clean up after defacating in toilet.  Jone Doe was seen at Baylor Hospitall in Austin, TX.  Johndoe@testaddress.com - (555) 555-5555.  The patient started on metformin because his blood sugar was too high.';
 
 if (apikey !== 'undefined' && apikey !== null && apikey.length > 0) {
   const baseOptions = {
-    disableSslVerification: false,
-    url: iamUrl,
+    apikey: apikey,
   };
 
   authenticatorType = new IamAuthenticator(baseOptions);

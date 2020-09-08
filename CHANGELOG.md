@@ -1,3 +1,11 @@
+# [0.1.0](https://github.com/IBM/whcs-node-sdk/compare/v0.0.3...v0.1.0) (2020-09-08)
+
+
+### Features
+
+* remove extend from tsconfig.json ([e2b72ad](https://github.com/IBM/whcs-node-sdk/commit/e2b72ad3eb55eac55fadb94072a1678d6294e40e))
+* WHS-406 additional insight model normality features ([99e447c](https://github.com/IBM/whcs-node-sdk/commit/99e447c1aee29af0824e133c567af2c2a654f0fc))
+
 ## [0.0.3](https://github.com/IBM/whcs-node-sdk/compare/v0.0.2...v0.0.3) (2020-08-14)
 
 

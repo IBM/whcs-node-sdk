@@ -1752,6 +1752,12 @@ namespace AnnotatorForClinicalDataV1 {
     trigger?: string;
     value?: string;
     source?: string;
+    ruleId?: string;
+    derivedFrom?: Concept[];
+    unit?: string;
+    values?:  JsonObject[];
+    range_begin?: string;
+    range_end?: string;
   }
 
   /** ConfigurationEntity. */
@@ -1807,6 +1813,13 @@ namespace AnnotatorForClinicalDataV1 {
     symptomScore?: number;
     traumaScore?: number;
     familyHistoryScore?: number;
+    modifiers?: DiagnosisModifier;
+  }
+
+  /** DiagnosisModifier. */
+  export interface DiagnosisModifier {
+    associatedProcedures?: Evidence[];
+    sites?: Site[];
   }
 
   /** Disambiguation. */
@@ -1964,6 +1977,7 @@ namespace AnnotatorForClinicalDataV1 {
   export interface NormalityInsight {
     normalityUsage?: NormalityUsage;
     evidence?: Evidence[];
+    directlyAffectedScore?: number;
   }
 
   /** ProcedureAnnotation. */
@@ -1991,6 +2005,13 @@ namespace AnnotatorForClinicalDataV1 {
     task?: Task;
     type?: Type;
     usage?: Usage;
+    modifiers?: ProcedureModifier;
+  }
+
+  /** ProcedureModifier. */
+  export interface ProcedureModifier {
+    associatedDiagnosis?: Evidence[];
+    sites?: Site[];
   }
 
   /** Relations. */
@@ -2019,6 +2040,14 @@ namespace AnnotatorForClinicalDataV1 {
     source?: string;
     type?: string;
     sectionNormalizedName?: string;
+  }
+
+  /** Site. */
+  export interface Site {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    type?: string;
   }
 
   /** SmokingAnnotation. */
@@ -2058,6 +2087,7 @@ namespace AnnotatorForClinicalDataV1 {
   /** Event. InsightModel. */
   export interface Event {
     score?: number;
+    allergyScore?: number;
     usage?: Usage;
   }
 

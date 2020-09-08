@@ -23,7 +23,6 @@ const props = propertiesReader('test/iml.ini');
 
 const InsightsForMedicalLiteratureServiceV1 = require('../../dist/insights-for-medical-literature/v1');
 const apikey = props.get('apikey');
-const iamUrl = props.get('iam_url');
 const serverUrl = props.get('server_url');
 const apiVersion = props.get('version');
 const corpus = props.get('corpus');
@@ -32,8 +31,7 @@ const disableSsl = true;
 
 if (apikey !== 'undefined' && apikey !== null && apikey.length > 0) {
   const baseOptions = {
-    disableSslVerification: false,
-    url: iamUrl,
+    apikey: apikey,
   };
 
   authenticatorType = new IamAuthenticator(baseOptions);

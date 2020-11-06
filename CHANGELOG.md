@@ -1,3 +1,10 @@
+# [0.2.0](https://github.com/IBM/whcs-node-sdk/compare/v0.1.0...v0.2.0) (2020-11-06)
+
+
+### Features
+
+* WHS-688 support temporal ([4aaaeb2](https://github.com/IBM/whcs-node-sdk/commit/4aaaeb2ebd5d29eb83b1c15c27d495c4b5c7663b))
+
 # [0.1.0](https://github.com/IBM/whcs-node-sdk/compare/v0.0.3...v0.1.0) (2020-09-08)
 
 

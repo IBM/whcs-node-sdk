@@ -1671,6 +1671,7 @@ namespace AnnotatorForClinicalDataV1 {
     hccCode?: string;
     ruleId?: string;
     derivedFrom?: Concept[];
+    temporal?: Temporal[];
   }
 
   /** AttributeValueEntry. */
@@ -1732,6 +1733,7 @@ namespace AnnotatorForClinicalDataV1 {
     insightModelData?: InsightModel;
     ruleId?: string;
     derivedFrom?: Concept[];
+    temporal?: Temporal[];
   }
 
   /** ConceptValue. */
@@ -1798,6 +1800,7 @@ namespace AnnotatorForClinicalDataV1 {
     relations?: Relations[];
     spellingCorrections?: SpellingCorrection[];
     spellCorrectedText?: SpellCorrectedText[];
+    temporalSpans?: Temporal[];
   }
 
   /** DeployCartridgeResponse. */
@@ -1918,6 +1921,7 @@ namespace AnnotatorForClinicalDataV1 {
     sectionNormalizedName?: string;
     sectionSurfaceForm?: string;
     insightModelData?: InsightModel;
+    temporal?: Temporal[];
   }
 
   /** MedicationInsight. */
@@ -1998,6 +2002,7 @@ namespace AnnotatorForClinicalDataV1 {
     sectionSurfaceForm?: string;
     snomedConceptId?: string;
     insightModelData?: InsightModel;
+    temporal?: Temporal[];
   }
 
   /** ProcedureInsight. */
@@ -2123,6 +2128,7 @@ namespace AnnotatorForClinicalDataV1 {
     sectionNormalizedName?: string;
     sectionSurfaceForm?: string;
     insightModelData?: InsightModel;
+    temporal?: Temporal[];
   }
 
   /** Task. InsightModel. */
@@ -2132,6 +2138,15 @@ namespace AnnotatorForClinicalDataV1 {
     labTestScore?: number;
     surgicalTaskScore?: number;
     clinicalAssessmenttScore?: number;
+  }
+
+  /** Temporal. */
+  export interface Temporal {
+    begin?: number;
+    end?: number;
+    coveredText?: string;
+    temporalType?: JsonObject;
+    relationTypes?: JsonObject;
   }
 
   /** Type. InsightModel. */

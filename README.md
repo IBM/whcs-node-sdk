@@ -1,21 +1,23 @@
 
-# Watson Health Cognitive Services Node.js SDK
-Node.js client library to interact with various IBM Watson Health Cognitive Services APIs.
+# IBM Watson Health Cognitive Services Node.js SDK
 
 ## Overview
 
-The IBM Watson Health Cognitive Services Node.js SDK allows developers to programmatically interact with the following IBM Cloud services:
+The IBM Watson Health Cognitive Services (WHCS) Node.js SDK allows developers to programmatically interact with the following IBM Cloud service:
 
 Service Name | Import Path
 --- | ---
 [Annotator for Clinical Data](https://cloud.ibm.com/apidocs/wh-acd) | whcs-node-sdk/annotator-for-clinical-data/v1 |
-[Insights for Medical Literature](https://cloud.ibm.com/apidocs/wh-iml) | whcs-node-sdk/insights-for-medical-literature/v1 |
+
+NOTE:  You must be signed in to IBM Cloud to see the docs.
 
 ## Prerequisites
-* You need an [IBM Cloud][ibm-cloud-onboarding] account.
-* **Node.js >=10**: This SDK is tested with Node.js versions 10 and up. It may work on previous versions but this is not officially supported.
 
 [ibm-cloud-onboarding]: http://cloud.ibm.com/registration
+
+* An [IBM Cloud][ibm-cloud-onboarding] account.
+* An IAM API key to allow the SDK to access your service instance. For instructions about copying the credentials of an existing service instance, or creating a new service instance, refer to Getting Started [here](https://cloud.ibm.com/docs/wh-acd?topic=wh-acd-getting-started).
+* **Node.js >=10**: This SDK is tested with Node.js versions 10 and up. It may work on previous versions but this is not officially supported.
 
 ## Installation
 
@@ -47,6 +49,6 @@ See [CONTRIBUTING](CONTRIBUTING.md).
 
 ## License
 
-This project is released under the Apache 2.0 license.
+The IBM Watson Health Cognitive Services Node.js SDK is released under the Apache 2.0 license.
 The license's full text can be found in
 [LICENSE](LICENSE).

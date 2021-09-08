@@ -1,5 +1,5 @@
 /**
- * (C) Copyright IBM Corp. 2020.
+ * (C) Copyright IBM Corp. 2021.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -301,6 +301,11 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
         expect(concept.begin).not.toBeNull();
         expect(concept.end).not.toBeNull();
         expect(concept.coveredText).not.toBeNull();
+        if (typeof concept.derivedFrom !== 'undefined') {
+          concept.derivedFrom.forEach(derivedFrom => {
+            expect(derivedFrom.uid).not.toBeNull();
+          });
+        }
       });
       element.data.SymptomDiseaseInd.forEach(symptomDisease => {
         expect(symptomDisease.type).not.toBeNull();

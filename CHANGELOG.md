@@ -1,3 +1,10 @@
+## [0.2.1](https://github.com/IBM/whcs-node-sdk/compare/v0.2.0...v0.2.1) (2021-09-08)
+
+
+### Bug Fixes
+
+* selection label and evidence spans features ([01457be](https://github.com/IBM/whcs-node-sdk/commit/01457be4ae7d28d9b71da16d854508d25cf8148c))
+
 # [0.2.0](https://github.com/IBM/whcs-node-sdk/compare/v0.1.0...v0.2.0) (2020-11-06)
 
 

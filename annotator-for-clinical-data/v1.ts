@@ -1,5 +1,5 @@
 /**
- * (C) Copyright IBM Corp. 2020.
+ * (C) Copyright IBM Corp. 2021.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1672,6 +1672,7 @@ namespace AnnotatorForClinicalDataV1 {
     ruleId?: string;
     derivedFrom?: Concept[];
     temporal?: Temporal[];
+    evidenceSpans?: Reference[];
   }
 
   /** AttributeValueEntry. */
@@ -1734,6 +1735,8 @@ namespace AnnotatorForClinicalDataV1 {
     ruleId?: string;
     derivedFrom?: Concept[];
     temporal?: Temporal[];
+    selectionLabel?: string;
+    valueIndex?: number;
   }
 
   /** ConceptValue. */
@@ -1801,6 +1804,9 @@ namespace AnnotatorForClinicalDataV1 {
     spellingCorrections?: SpellingCorrection[];
     spellCorrectedText?: SpellCorrectedText[];
     temporalSpans?: Temporal[];
+    lines?: Annotation[];
+    sentences?: Annotation[];
+    paragraphs?: Annotation[];
   }
 
   /** DeployCartridgeResponse. */
@@ -2017,6 +2023,13 @@ namespace AnnotatorForClinicalDataV1 {
   export interface ProcedureModifier {
     associatedDiagnosis?: Evidence[];
     sites?: Site[];
+  }
+
+  /** Reference. */
+  export interface Reference {
+    uid?: number;
+    selectionLabel?: string;
+    valueIndex?: number;
   }
 
   /** Relations. */

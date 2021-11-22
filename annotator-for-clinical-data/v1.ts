@@ -16,7 +16,13 @@
 
 import * as extend from 'extend';
 import { IncomingHttpHeaders, OutgoingHttpHeaders } from 'http';
-import { Authenticator, BaseService, getAuthenticatorFromEnvironment, getMissingParams, UserOptions } from 'ibm-cloud-sdk-core';
+import {
+  Authenticator,
+  BaseService,
+  getAuthenticatorFromEnvironment,
+  getMissingParams,
+  UserOptions,
+} from 'ibm-cloud-sdk-core';
 import { getSdkHeaders } from '../lib/common';
 
 /**
@@ -25,8 +31,9 @@ import { getSdkHeaders } from '../lib/common';
  */
 
 class AnnotatorForClinicalDataV1 extends BaseService {
+  static DEFAULT_SERVICE_URL: string =
+    'https://annotator-for-clinical-data.cloud.ibm.com/services/clinical_data_annotator/api';
 
-  static DEFAULT_SERVICE_URL: string = 'https://annotator-for-clinical-data.cloud.ibm.com/services/clinical_data_annotator/api';
   static DEFAULT_SERVICE_NAME: string = 'annotator_for_clinical_data';
 
   /*************************
@@ -59,7 +66,6 @@ class AnnotatorForClinicalDataV1 extends BaseService {
     }
     return service;
   }
-
 
   /** The release date of the version of the API you want to use. Specify dates in YYYY-MM-DD format. */
   version: string;
@@ -106,15 +112,21 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ListStringWrapper>>}
    */
-  public getProfiles(params?: AnnotatorForClinicalDataV1.GetProfilesParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ListStringWrapper>> {
+  public getProfiles(
+    params?: AnnotatorForClinicalDataV1.GetProfilesParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ListStringWrapper>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'getProfiles');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getProfiles'
+      );
 
       const parameters = {
         options: {
@@ -123,15 +135,20 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Persist a new profile.
@@ -169,7 +186,9 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>>}
    */
-  public createProfile(params?: AnnotatorForClinicalDataV1.CreateProfileParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
+  public createProfile(
+    params?: AnnotatorForClinicalDataV1.CreateProfileParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
@@ -181,14 +200,18 @@ class AnnotatorForClinicalDataV1 extends BaseService {
         'publish': _params.newPublish,
         'version': _params.newVersion,
         'cartridgeId': _params.newCartridgeId,
-        'annotators': _params.newAnnotators
+        'annotators': _params.newAnnotators,
       };
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'createProfile');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'createProfile'
+      );
 
       const parameters = {
         options: {
@@ -198,15 +221,20 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Content-Type': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Content-Type': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Get details of a specific profile.
@@ -218,7 +246,9 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.AcdProfile>>}
    */
-  public getProfile(params: AnnotatorForClinicalDataV1.GetProfileParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.AcdProfile>> {
+  public getProfile(
+    params: AnnotatorForClinicalDataV1.GetProfileParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.AcdProfile>> {
     const _params = extend({}, params);
     const requiredParams = ['id'];
 
@@ -229,14 +259,18 @@ class AnnotatorForClinicalDataV1 extends BaseService {
       }
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
       const path = {
-        'id': _params.id
+        'id': _params.id,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'getProfile');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getProfile'
+      );
 
       const parameters = {
         options: {
@@ -246,15 +280,20 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Update a persisted profile definition.
@@ -275,7 +314,9 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>>}
    */
-  public updateProfile(params: AnnotatorForClinicalDataV1.UpdateProfileParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
+  public updateProfile(
+    params: AnnotatorForClinicalDataV1.UpdateProfileParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
     const _params = extend({}, params);
     const requiredParams = ['id'];
 
@@ -293,18 +334,22 @@ class AnnotatorForClinicalDataV1 extends BaseService {
         'publish': _params.newPublish,
         'version': _params.newVersion,
         'cartridgeId': _params.newCartridgeId,
-        'annotators': _params.newAnnotators
+        'annotators': _params.newAnnotators,
       };
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
       const path = {
-        'id': _params.id
+        'id': _params.id,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'updateProfile');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'updateProfile'
+      );
 
       const parameters = {
         options: {
@@ -315,15 +360,20 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Content-Type': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Content-Type': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Delete a persisted profile.
@@ -335,7 +385,9 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>>}
    */
-  public deleteProfile(params: AnnotatorForClinicalDataV1.DeleteProfileParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
+  public deleteProfile(
+    params: AnnotatorForClinicalDataV1.DeleteProfileParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
     const _params = extend({}, params);
     const requiredParams = ['id'];
 
@@ -346,14 +398,18 @@ class AnnotatorForClinicalDataV1 extends BaseService {
       }
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
       const path = {
-        'id': _params.id
+        'id': _params.id,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteProfile');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'deleteProfile'
+      );
 
       const parameters = {
         options: {
@@ -363,14 +419,13 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-          }, _params.headers),
+          headers: extend(true, sdkHeaders, {}, _params.headers),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /*************************
    * flows
@@ -385,15 +440,21 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ListStringWrapper>>}
    */
-  public getFlows(params?: AnnotatorForClinicalDataV1.GetFlowsParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ListStringWrapper>> {
+  public getFlows(
+    params?: AnnotatorForClinicalDataV1.GetFlowsParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ListStringWrapper>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'getFlows');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getFlows'
+      );
 
       const parameters = {
         options: {
@@ -402,15 +463,20 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Persist a new flow definition.
@@ -452,7 +518,9 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>>}
    */
-  public createFlows(params?: AnnotatorForClinicalDataV1.CreateFlowsParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
+  public createFlows(
+    params?: AnnotatorForClinicalDataV1.CreateFlowsParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
@@ -464,14 +532,18 @@ class AnnotatorForClinicalDataV1 extends BaseService {
         'publish': _params.newPublish,
         'version': _params.newVersion,
         'cartridgeId': _params.newCartridgeId,
-        'annotatorFlows': _params.newAnnotatorFlows
+        'annotatorFlows': _params.newAnnotatorFlows,
       };
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'createFlows');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'createFlows'
+      );
 
       const parameters = {
         options: {
@@ -481,15 +553,20 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Content-Type': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Content-Type': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Get details of a specific flow.
@@ -501,7 +578,9 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.AcdFlow>>}
    */
-  public getFlowsById(params: AnnotatorForClinicalDataV1.GetFlowsByIdParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.AcdFlow>> {
+  public getFlowsById(
+    params: AnnotatorForClinicalDataV1.GetFlowsByIdParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.AcdFlow>> {
     const _params = extend({}, params);
     const requiredParams = ['id'];
 
@@ -512,14 +591,18 @@ class AnnotatorForClinicalDataV1 extends BaseService {
       }
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
       const path = {
-        'id': _params.id
+        'id': _params.id,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'getFlowsById');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getFlowsById'
+      );
 
       const parameters = {
         options: {
@@ -529,15 +612,20 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Update a persisted flow definition.
@@ -558,7 +646,9 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>>}
    */
-  public updateFlows(params: AnnotatorForClinicalDataV1.UpdateFlowsParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
+  public updateFlows(
+    params: AnnotatorForClinicalDataV1.UpdateFlowsParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
     const _params = extend({}, params);
     const requiredParams = ['id'];
 
@@ -576,18 +666,22 @@ class AnnotatorForClinicalDataV1 extends BaseService {
         'publish': _params.newPublish,
         'version': _params.newVersion,
         'cartridgeId': _params.newCartridgeId,
-        'annotatorFlows': _params.newAnnotatorFlows
+        'annotatorFlows': _params.newAnnotatorFlows,
       };
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
       const path = {
-        'id': _params.id
+        'id': _params.id,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'updateFlows');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'updateFlows'
+      );
 
       const parameters = {
         options: {
@@ -598,15 +692,20 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Content-Type': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Content-Type': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Delete a persisted flow.
@@ -618,7 +717,9 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>>}
    */
-  public deleteFlows(params: AnnotatorForClinicalDataV1.DeleteFlowsParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
+  public deleteFlows(
+    params: AnnotatorForClinicalDataV1.DeleteFlowsParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
     const _params = extend({}, params);
     const requiredParams = ['id'];
 
@@ -629,14 +730,18 @@ class AnnotatorForClinicalDataV1 extends BaseService {
       }
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
       const path = {
-        'id': _params.id
+        'id': _params.id,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteFlows');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'deleteFlows'
+      );
 
       const parameters = {
         options: {
@@ -646,14 +751,13 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-          }, _params.headers),
+          headers: extend(true, sdkHeaders, {}, _params.headers),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /*************************
    * aCD
@@ -716,22 +820,28 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>>}
    */
-  public runPipeline(params?: AnnotatorForClinicalDataV1.RunPipelineParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
+  public runPipeline(
+    params?: AnnotatorForClinicalDataV1.RunPipelineParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const body = {
         'unstructured': _params.unstructured,
-        'annotatorFlows': _params.annotatorFlows
+        'annotatorFlows': _params.annotatorFlows,
       };
 
       const query = {
         'version': this.version,
         'debug_text_restore': _params.debugTextRestore,
-        'return_analyzed_text': _params.returnAnalyzedText
+        'return_analyzed_text': _params.returnAnalyzedText,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'runPipeline');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'runPipeline'
+      );
 
       const parameters = {
         options: {
@@ -741,15 +851,20 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Content-Type': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Content-Type': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * analyze with a pre-specified flow.
@@ -777,7 +892,9 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>>}
    */
-  public runPipelineWithFlow(params: AnnotatorForClinicalDataV1.RunPipelineWithFlowParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
+  public runPipelineWithFlow(
+    params: AnnotatorForClinicalDataV1.RunPipelineWithFlowParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
     const _params = extend({}, params);
     const requiredParams = ['flowId', 'returnAnalyzedText', 'analyticFlowBeanInput'];
 
@@ -791,14 +908,18 @@ class AnnotatorForClinicalDataV1 extends BaseService {
       const query = {
         'version': this.version,
         'return_analyzed_text': _params.returnAnalyzedText,
-        'debug_text_restore': _params.debugTextRestore
+        'debug_text_restore': _params.debugTextRestore,
       };
 
       const path = {
-        'flow_id': _params.flowId
+        'flow_id': _params.flowId,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'runPipelineWithFlow');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'runPipelineWithFlow'
+      );
 
       const parameters = {
         options: {
@@ -809,15 +930,20 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Content-Type': _params.contentType
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Content-Type': _params.contentType,
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Get list of available annotators.
@@ -829,15 +955,21 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>>}
    */
-  public getAnnotators(params?: AnnotatorForClinicalDataV1.GetAnnotatorsParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
+  public getAnnotators(
+    params?: AnnotatorForClinicalDataV1.GetAnnotatorsParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'getAnnotators');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getAnnotators'
+      );
 
       const parameters = {
         options: {
@@ -846,14 +978,13 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-          }, _params.headers),
+          headers: extend(true, sdkHeaders, {}, _params.headers),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Get details of a specific annotator.
@@ -865,7 +996,9 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>>}
    */
-  public getAnnotatorsById(params: AnnotatorForClinicalDataV1.GetAnnotatorsByIdParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
+  public getAnnotatorsById(
+    params: AnnotatorForClinicalDataV1.GetAnnotatorsByIdParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
     const _params = extend({}, params);
     const requiredParams = ['id'];
 
@@ -876,14 +1009,18 @@ class AnnotatorForClinicalDataV1 extends BaseService {
       }
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
       const path = {
-        'id': _params.id
+        'id': _params.id,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'getAnnotatorsById');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getAnnotatorsById'
+      );
 
       const parameters = {
         options: {
@@ -893,14 +1030,13 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-          }, _params.headers),
+          headers: extend(true, sdkHeaders, {}, _params.headers),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Delete tenant specific artifacts.
@@ -911,15 +1047,21 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>>}
    */
-  public deleteUserSpecificArtifacts(params?: AnnotatorForClinicalDataV1.DeleteUserSpecificArtifactsParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
+  public deleteUserSpecificArtifacts(
+    params?: AnnotatorForClinicalDataV1.DeleteUserSpecificArtifactsParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.Empty>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteUserSpecificArtifacts');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'deleteUserSpecificArtifacts'
+      );
 
       const parameters = {
         options: {
@@ -928,14 +1070,13 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-          }, _params.headers),
+          headers: extend(true, sdkHeaders, {}, _params.headers),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /*************************
    * cartridges
@@ -950,15 +1091,21 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ListStringWrapper>>}
    */
-  public cartridgesGet(params?: AnnotatorForClinicalDataV1.CartridgesGetParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ListStringWrapper>> {
+  public cartridgesGet(
+    params?: AnnotatorForClinicalDataV1.CartridgesGetParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ListStringWrapper>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'cartridgesGet');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'cartridgesGet'
+      );
 
       const parameters = {
         options: {
@@ -967,15 +1114,20 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Create a cartridge deployment.
@@ -988,41 +1140,54 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.DeployCartridgeResponse>>}
    */
-  public cartridgesPostMultipart(params?: AnnotatorForClinicalDataV1.CartridgesPostMultipartParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.DeployCartridgeResponse>> {
+  public cartridgesPostMultipart(
+    params?: AnnotatorForClinicalDataV1.CartridgesPostMultipartParams
+  ): Promise<
+    AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.DeployCartridgeResponse>
+  > {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const formData = {
         'archive_file': {
           data: _params.archiveFile,
-          contentType: _params.archiveFileContentType
-        }
+          contentType: _params.archiveFileContentType,
+        },
       };
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'cartridgesPostMultipart');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'cartridgesPostMultipart'
+      );
 
       const parameters = {
         options: {
           url: '/v1/cartridges',
           method: 'POST',
           qs: query,
-          formData
+          formData,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-            'Content-Type': 'multipart/form-data',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+              'Content-Type': 'multipart/form-data',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Create a cartridge deployment.
@@ -1035,41 +1200,54 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.DeployCartridgeResponse>>}
    */
-  public cartridgesPutMultipart(params?: AnnotatorForClinicalDataV1.CartridgesPutMultipartParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.DeployCartridgeResponse>> {
+  public cartridgesPutMultipart(
+    params?: AnnotatorForClinicalDataV1.CartridgesPutMultipartParams
+  ): Promise<
+    AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.DeployCartridgeResponse>
+  > {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const formData = {
         'archive_file': {
           data: _params.archiveFile,
-          contentType: _params.archiveFileContentType
-        }
+          contentType: _params.archiveFileContentType,
+        },
       };
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'cartridgesPutMultipart');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'cartridgesPutMultipart'
+      );
 
       const parameters = {
         options: {
           url: '/v1/cartridges',
           method: 'PUT',
           qs: query,
-          formData
+          formData,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-            'Content-Type': 'multipart/form-data',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+              'Content-Type': 'multipart/form-data',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Get details of a specific deployment.
@@ -1081,7 +1259,9 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.AcdCartridges>>}
    */
-  public cartridgesGetId(params: AnnotatorForClinicalDataV1.CartridgesGetIdParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.AcdCartridges>> {
+  public cartridgesGetId(
+    params: AnnotatorForClinicalDataV1.CartridgesGetIdParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.AcdCartridges>> {
     const _params = extend({}, params);
     const requiredParams = ['id'];
 
@@ -1092,14 +1272,18 @@ class AnnotatorForClinicalDataV1 extends BaseService {
       }
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
       const path = {
-        'id': _params.id
+        'id': _params.id,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'cartridgesGetId');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'cartridgesGetId'
+      );
 
       const parameters = {
         options: {
@@ -1109,15 +1293,20 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Deploy a cartridge.
@@ -1131,42 +1320,55 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.DeployCartridgeResponse>>}
    */
-  public deployCartridge(params?: AnnotatorForClinicalDataV1.DeployCartridgeParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.DeployCartridgeResponse>> {
+  public deployCartridge(
+    params?: AnnotatorForClinicalDataV1.DeployCartridgeParams
+  ): Promise<
+    AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.DeployCartridgeResponse>
+  > {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const formData = {
         'archive_file': {
           data: _params.archiveFile,
-          contentType: _params.archiveFileContentType
-        }
+          contentType: _params.archiveFileContentType,
+        },
       };
 
       const query = {
         'version': this.version,
-        'update': _params.update
+        'update': _params.update,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'deployCartridge');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'deployCartridge'
+      );
 
       const parameters = {
         options: {
           url: '/v1/deploy',
           method: 'POST',
           qs: query,
-          formData
+          formData,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-            'Content-Type': 'multipart/form-data',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+              'Content-Type': 'multipart/form-data',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /*************************
    * status
@@ -1182,16 +1384,22 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ServiceStatus>>}
    */
-  public getServiceStatus(params?: AnnotatorForClinicalDataV1.GetServiceStatusParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ServiceStatus>> {
+  public getServiceStatus(
+    params?: AnnotatorForClinicalDataV1.GetServiceStatusParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ServiceStatus>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const query = {
         'format': _params.format,
-        'liveness_check': _params.livenessCheck
+        'liveness_check': _params.livenessCheck,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'getServiceStatus');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getServiceStatus'
+      );
 
       const parameters = {
         options: {
@@ -1200,15 +1408,20 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': _params.accept
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': _params.accept,
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Determine if service is running correctly.
@@ -1222,15 +1435,21 @@ class AnnotatorForClinicalDataV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ServiceStatus>>}
    */
-  public getHealthCheckStatus(params?: AnnotatorForClinicalDataV1.GetHealthCheckStatusParams): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ServiceStatus>> {
+  public getHealthCheckStatus(
+    params?: AnnotatorForClinicalDataV1.GetHealthCheckStatusParams
+  ): Promise<AnnotatorForClinicalDataV1.Response<AnnotatorForClinicalDataV1.ServiceStatus>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const query = {
-        'format': _params.format
+        'format': _params.format,
       };
 
-      const sdkHeaders = getSdkHeaders(AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME, 'v1', 'getHealthCheckStatus');
+      const sdkHeaders = getSdkHeaders(
+        AnnotatorForClinicalDataV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getHealthCheckStatus'
+      );
 
       const parameters = {
         options: {
@@ -1239,16 +1458,20 @@ class AnnotatorForClinicalDataV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': _params.accept
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': _params.accept,
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
-
+  }
 }
 
 /*************************
@@ -1256,16 +1479,14 @@ class AnnotatorForClinicalDataV1 extends BaseService {
  ************************/
 
 namespace AnnotatorForClinicalDataV1 {
-
   /** Options for the `AnnotatorForClinicalDataV1` constructor. */
   export interface Options extends UserOptions {
-
     /** The release date of the version of the API you want to use. Specify dates in YYYY-MM-DD format. */
     version: string;
   }
 
   /** An operation response. */
-  export interface Response<T = any>  {
+  export interface Response<T = any> {
     result: T;
     status: number;
     statusText: string;
@@ -1276,7 +1497,7 @@ namespace AnnotatorForClinicalDataV1 {
   export type Callback<T> = (error: any, response?: Response<T>) => void;
 
   /** The body of a service request that returns no response data. */
-  export interface Empty { }
+  export interface Empty {}
 
   /** A standard JS object, defined to avoid the limitations of `Object` and `object` */
   export interface JsonObject {
@@ -1402,7 +1623,7 @@ namespace AnnotatorForClinicalDataV1 {
     /** Set this to true to show the analyzed text in the response. */
     returnAnalyzedText: boolean;
     /** Input request data in TEXT or JSON format . */
-    analyticFlowBeanInput: AnalyticFlowBeanInput|string;
+    analyticFlowBeanInput: AnalyticFlowBeanInput | string;
     /** The type of the input. A character encoding can be specified by including a `charset` parameter. For
      *  example, 'text/plain;charset=utf-8'.
      */
@@ -1449,7 +1670,7 @@ namespace AnnotatorForClinicalDataV1 {
   /** Parameters for the `cartridgesPostMultipart` operation. */
   export interface CartridgesPostMultipartParams {
     /** Cartridge archive file. */
-    archiveFile?: NodeJS.ReadableStream|Buffer;
+    archiveFile?: NodeJS.ReadableStream | Buffer;
     /** The content type of archiveFile. */
     archiveFileContentType?: string;
     headers?: OutgoingHttpHeaders;
@@ -1458,7 +1679,7 @@ namespace AnnotatorForClinicalDataV1 {
   /** Parameters for the `cartridgesPutMultipart` operation. */
   export interface CartridgesPutMultipartParams {
     /** Cartridge archive file. */
-    archiveFile?: NodeJS.ReadableStream|Buffer;
+    archiveFile?: NodeJS.ReadableStream | Buffer;
     /** The content type of archiveFile. */
     archiveFileContentType?: string;
     headers?: OutgoingHttpHeaders;
@@ -1474,7 +1695,7 @@ namespace AnnotatorForClinicalDataV1 {
   /** Parameters for the `deployCartridge` operation. */
   export interface DeployCartridgeParams {
     /** Cartridge archive file. */
-    archiveFile?: NodeJS.ReadableStream|Buffer;
+    archiveFile?: NodeJS.ReadableStream | Buffer;
     /** The content type of archiveFile. */
     archiveFileContentType?: string;
     /** Update resources if they already exist. */
@@ -1760,7 +1981,7 @@ namespace AnnotatorForClinicalDataV1 {
     ruleId?: string;
     derivedFrom?: Concept[];
     unit?: string;
-    values?:  JsonObject[];
+    values?: JsonObject[];
     range_begin?: string;
     range_end?: string;
   }
@@ -2239,7 +2460,6 @@ namespace AnnotatorForClinicalDataV1 {
     /** number of blocked requests. */
     totalBlockedRequests?: number;
   }
-
 }
 
 export = AnnotatorForClinicalDataV1;

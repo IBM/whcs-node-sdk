@@ -13,16 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-'use strict';
 
 const fs = require('fs');
 // need to import the whole package to mock getAuthenticatorFromEnvironment
 const core = require('ibm-cloud-sdk-core');
+
 const { NoAuthAuthenticator, IamAuthenticator } = core;
 const propertiesReader = require('properties-reader');
+
 const props = propertiesReader('test/acd.ini');
 
 const AnnotatorForClinicalDataAcdV1 = require('../../dist/annotator-for-clinical-data/v1');
+
 const apikey = props.get('apikey');
 const serverUrl = props.get('server_url');
 const apiVersion = props.get('version');
@@ -34,7 +36,7 @@ const analyzeText =
 
 if (apikey !== 'undefined' && apikey !== null && apikey.length > 0) {
   const baseOptions = {
-    apikey: apikey,
+    apikey,
   };
 
   authenticatorType = new IamAuthenticator(baseOptions);
@@ -56,7 +58,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     response = undefined;
   });
 
-  test('Create Instance', done => {
+  test('Create Instance', (done) => {
     ACD = new AnnotatorForClinicalDataAcdV1(service);
     expect(ACD).not.toBeNull();
     done();
@@ -68,12 +70,10 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result).not.toBeNull();
-    for (const profileId in result) {
-      if (result.hasOwnProperty(profileId)) {
-        expect(profileId).not.toBeNull();
-      }
-    }
-    return;
+    Object.entries(result).forEach((entry) => {
+      const [profileId, value] = entry;
+      expect(profileId).not.toBeNull();
+    });
   });
 
   test('Get Profile', async () => {
@@ -88,7 +88,6 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     expect(result.description).not.toBeNull();
     expect(result.publishedDate).not.toBeNull();
     expect(result.annotators).not.toBeNull();
-    return;
   });
 
   test('Create Profile', async () => {
@@ -105,7 +104,6 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     };
     response = await ACD.createProfile(params);
     expect(response.status).toEqual(201);
-    return;
   });
 
   test('Update Profile', async () => {
@@ -123,7 +121,6 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     };
     response = await ACD.updateProfile(params);
     expect(response.status).toEqual(200);
-    return;
   });
 
   test('Delete Profile', async () => {
@@ -132,7 +129,6 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     };
     response = await ACD.deleteProfile(params);
     expect(response.status).toEqual(200);
-    return;
   });
 
   test('Get Flows', async () => {
@@ -141,12 +137,10 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result).not.toBeNull();
-    for (const flowId in result) {
-      if (result.hasOwnProperty(flowId)) {
-        expect(flowId).not.toBeNull();
-      }
-    }
-    return;
+    Object.entries(result).forEach((entry) => {
+      const [flowId, value] = entry;
+      expect(flowId).not.toBeNull();
+    });
   });
 
   test('Get Flow', async () => {
@@ -161,11 +155,10 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     expect(result.description).not.toBeNull();
     expect(result.publishedDate).not.toBeNull();
     expect(result.annotatorFlows).not.toBeNull();
-    result.annotatorFlows.forEach(element => {
+    result.annotatorFlows.forEach((element) => {
       expect(element.profile).not.toBeNull();
       expect(element.flow).not.toBeNull();
     });
-    return;
   });
 
   test('Create Flow', async () => {
@@ -173,7 +166,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
       name: 'concept_detection',
     };
     const flowEntry = {
-      annotator: annotator,
+      annotator,
     };
     const flowEntries = [flowEntry];
     const flow = {
@@ -181,7 +174,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
       async: false,
     };
     const annotatorFlow = {
-      flow: flow,
+      flow,
     };
     const flows = [annotatorFlow];
     const params = {
@@ -193,7 +186,6 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     };
     response = await ACD.createFlows(params);
     expect(response.status).toEqual(201);
-    return;
   });
 
   test('Update Flow', async () => {
@@ -201,7 +193,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
       name: 'concept_detection',
     };
     const flowEntry = {
-      annotator: annotator,
+      annotator,
     };
     const flowEntries = [flowEntry];
     const flow = {
@@ -209,7 +201,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
       async: false,
     };
     const annotatorFlow = {
-      flow: flow,
+      flow,
     };
     const flows = [annotatorFlow];
     const params = {
@@ -223,7 +215,6 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     response = await ACD.updateFlows(params);
     expect(response).toBeDefined();
     expect(response.status).toEqual(200);
-    return;
   });
 
   test('Delete Flow', async () => {
@@ -233,7 +224,6 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
 
     response = await ACD.deleteFlows(params);
     expect(response.status).toEqual(200);
-    return;
   });
 
   test('Run Pipeline', async () => {
@@ -245,7 +235,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
       name: 'concept_detection',
     };
     const flowEntry = {
-      annotator: annotator,
+      annotator,
     };
     const flowEntries = [flowEntry];
     const flow = {
@@ -253,7 +243,7 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
       async: false,
     };
     const annotatorFlow = {
-      flow: flow,
+      flow,
     };
     const flows = [annotatorFlow];
     const params = {
@@ -264,17 +254,16 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     response = await ACD.runPipeline(params);
     expect(response.status).toEqual(200);
     const { result } = response || {};
-    result.unstructured.forEach(element => {
+    result.unstructured.forEach((element) => {
       expect(element.data).not.toBeNull();
       expect(element.data.concepts).not.toBeNull();
-      element.data.concepts.forEach(concept => {
+      element.data.concepts.forEach((concept) => {
         expect(concept.cui).not.toBeNull();
         expect(concept.begin).not.toBeNull();
         expect(concept.end).not.toBeNull();
         expect(concept.coveredText).not.toBeNull();
       });
     });
-    return;
   });
 
   test('Run Pipeline with Flow', async () => {
@@ -293,41 +282,39 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     response = await ACD.runPipelineWithFlow(params);
     expect(response.status).toEqual(200);
     const { result } = response || {};
-    result.unstructured.forEach(element => {
+    result.unstructured.forEach((element) => {
       expect(element.data).not.toBeNull();
       expect(element.data.concepts).not.toBeNull();
-      element.data.concepts.forEach(concept => {
+      element.data.concepts.forEach((concept) => {
         expect(concept.cui).not.toBeNull();
         expect(concept.begin).not.toBeNull();
         expect(concept.end).not.toBeNull();
         expect(concept.coveredText).not.toBeNull();
         if (typeof concept.derivedFrom !== 'undefined') {
-          concept.derivedFrom.forEach(derivedFrom => {
+          concept.derivedFrom.forEach((derivedFrom) => {
             expect(derivedFrom.uid).not.toBeNull();
           });
         }
       });
-      element.data.SymptomDiseaseInd.forEach(symptomDisease => {
+      element.data.SymptomDiseaseInd.forEach((symptomDisease) => {
         expect(symptomDisease.type).not.toBeNull();
         expect(symptomDisease.begin).not.toBeNull();
         expect(symptomDisease.end).not.toBeNull();
         expect(symptomDisease.coveredText).not.toBeNull();
       });
-      element.data.attributeValues.forEach(attributeValue => {
+      element.data.attributeValues.forEach((attributeValue) => {
         expect(attributeValue.name).not.toBeNull();
         expect(attributeValue.begin).not.toBeNull();
         expect(attributeValue.end).not.toBeNull();
         expect(attributeValue.coveredText).not.toBeNull();
       });
     });
-    return;
   });
 
   test('Get Annotators', async () => {
     const params = {};
     response = await ACD.getAnnotators(params);
     expect(response.status).toEqual(200);
-    return;
   });
 
   test('Get Annotators By Id', async () => {
@@ -338,7 +325,6 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result.description).not.toBeNull();
-    return;
   });
 
   test('Delete User Specific Artifacts', async () => {
@@ -350,7 +336,6 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     response = await ACD.deleteUserSpecificArtifacts(params);
     expect(response).toBeDefined();
     expect(response.status).toEqual(204);
-    return;
   });
 
   test('Cartridges Get', async () => {
@@ -359,11 +344,10 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result.cartridges).not.toBeNull();
-    result.cartridges.forEach(cartridge => {
+    result.cartridges.forEach((cartridge) => {
       expect(cartridge.id).not.toBeNull();
       expect(cartridge.status).not.toBeNull();
     });
-    return;
   });
 
   test('Cartridges Get Id', async () => {
@@ -382,13 +366,12 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     expect(result.correlationId).not.toBeNull();
     expect(result.artifactResponseCode).not.toBeNull();
     expect(result.artrifactResponse).not.toBeNull();
-    result.artifactResponse.forEach(element => {
+    result.artifactResponse.forEach((element) => {
       expect(element.code).not.toBeNull();
       expect(element.message).not.toBeNull();
       expect(element.level).not.toBeNull();
       expect(element.artifact).not.toBeNull();
     });
-    return;
   });
 
   test('Deploy Cartridge', async () => {
@@ -401,7 +384,6 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     response = await ACD.deployCartridge(params);
     expect(response.status).toBeGreaterThanOrEqual(200);
     expect(response.status).toBeLessThan(299);
-    return;
   });
 
   test('Cartridges Post Multipart', async () => {
@@ -410,16 +392,13 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
       archiveFile: readerStream,
       archiveFileContentType: 'application/octet-stream',
     };
-    let response;
     try {
       response = await ACD.cartridgesPostMultipart(params);
+      expect(response).toBeDefined();
+      expect(response.status).toEqual(202);
     } catch (err) {
       expect(err.status).toEqual(409);
-      return err;
     }
-    expect(response).toBeDefined();
-    expect(response.status).toEqual(202);
-    return;
   });
 
   test('Cartridges Put Multipart', async () => {
@@ -428,16 +407,13 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
       archiveFile: readerStream,
       archiveFileContentType: 'application/octet-stream',
     };
-    let response;
     try {
       response = await ACD.cartridgesPutMultipart(params);
+      expect(response).toBeDefined();
+      expect(response.status).toEqual(202);
     } catch (err) {
       expect(err.status).toEqual(409);
-      return err;
     }
-    expect(response).toBeDefined();
-    expect(response.status).toEqual(202);
-    return;
   });
 
   test('Health Check', async () => {
@@ -445,6 +421,5 @@ describe('AnnotatorForClinicalDataAcdV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result.serviceState).toEqual('OK');
-    return;
   });
 });

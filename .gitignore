@@ -8,7 +8,6 @@ auth/*.js
 # service-specific tsc outputs (js files)
 annotator-for-clinical-data/*.js
 insights-for-medical-literature/*.js
-# IGNORE YOUR SERVICE FILES HERE
 
 # file holding service credentials
 test/resources/auth.js
@@ -84,3 +83,6 @@ secrets.tar
 
 # SDK generator
 .openapi-generator*
+/.openapi-generator/
+/.project
+/.settings/

@@ -1,3 +1,12 @@
+## [0.2.2](https://github.com/IBM/whcs-node-sdk/compare/v0.2.1...v0.2.2) (2021-11-22)
+
+
+### Bug Fixes
+
+* ugprade sdk-core to 2.17.0 ([901c388](https://github.com/IBM/whcs-node-sdk/commit/901c3885fcccc31fd749437fbf1c094ecc73310d))
+* update README tied to sdk-core upgrade ([2110a59](https://github.com/IBM/whcs-node-sdk/commit/2110a59e78fec2e10617253235480cb50ff2972f))
+* upgrade to node 14 for semantic-release ([ed464e4](https://github.com/IBM/whcs-node-sdk/commit/ed464e4ba5f6116fed656e49e61efb4f8eba76f3))
+
 ## [0.2.1](https://github.com/IBM/whcs-node-sdk/compare/v0.2.0...v0.2.1) (2021-09-08)
 
 

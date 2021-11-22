@@ -19,6 +19,6 @@ deploy:
   skip_cleanup: true
   script: npx semantic-release
   on:
-    node: 12
+    node: 14
     branch: master
 

@@ -13,15 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-'use strict';
 
 // need to import the whole package to mock getAuthenticatorFromEnvironment
 const core = require('ibm-cloud-sdk-core');
+
 const { NoAuthAuthenticator, IamAuthenticator } = core;
 const propertiesReader = require('properties-reader');
+
 const props = propertiesReader('test/iml.ini');
 
 const InsightsForMedicalLiteratureServiceV1 = require('../../dist/insights-for-medical-literature/v1');
+
 const apikey = props.get('apikey');
 const serverUrl = props.get('server_url');
 const apiVersion = props.get('version');
@@ -31,7 +33,7 @@ const disableSsl = true;
 
 if (apikey !== 'undefined' && apikey !== null && apikey.length > 0) {
   const baseOptions = {
-    apikey: apikey,
+    apikey,
   };
 
   authenticatorType = new IamAuthenticator(baseOptions);
@@ -53,7 +55,7 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     response = undefined;
   });
 
-  test('Create Instance', done => {
+  test('Create Instance', (done) => {
     IML = new InsightsForMedicalLiteratureServiceV1(service);
     expect(IML).not.toBeNull();
     done();
@@ -66,12 +68,11 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result.corpora).not.toBeNull();
-    return;
   });
 
   test('Get Corpus', async () => {
     const params = {
-      corpus: corpus,
+      corpus,
     };
     response = await IML.getCorpusConfig(params);
 
@@ -80,7 +81,6 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(result.corpusName).not.toBeNull();
     expect(result.descriptiveName).not.toBeNull();
     expect(result.ontologies).not.toBeNull();
-    return;
   });
 
   test('Enable Tracking', async () => {
@@ -88,23 +88,20 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
       enaableTracking: true,
     };
     response = await IML.enableCorpusSearchTracking(params);
-
-    return;
   });
 
   test('Get Documents', async () => {
     const params = {
-      corpus: corpus,
+      corpus,
     };
     response = await IML.getDocuments(params);
 
     expect(response.status).toEqual(200);
-    return;
   });
 
   test('Get Document Info', async () => {
     const params = {
-      corpus: corpus,
+      corpus,
       documentId: '2787890',
     };
     response = await IML.getDocumentInfo(params);
@@ -113,12 +110,11 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     const { result } = response || {};
     expect(result.metadata).not.toBeNull();
     expect(result.title).not.toBeNull();
-    return;
   });
 
   test('Get Document Annotations', async () => {
     const params = {
-      corpus: corpus,
+      corpus,
       documentId: '2787890',
       documentSection: 'title',
     };
@@ -128,7 +124,6 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     const { result } = response || {};
     expect(result.metadata).not.toBeNull();
     expect(result.title).not.toBeNull();
-    return;
   });
 
   test('Get Document Search Matches', async () => {
@@ -141,20 +136,21 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     const searchTagEnd = '</b>';
     const relatedTagBegin = '<i>';
     const relatedTagEnd = '</i>';
-    const fields = 'passages,annotations,highlightedTitle,highlightedAbstract,highlightedBody,highlightedSections';
+    const fields =
+      'passages,annotations,highlightedTitle,highlightedAbstract,highlightedBody,highlightedSections';
     const params = {
-      corpus: corpus,
+      corpus,
       documentId: '2787890',
-      minScore: minScore,
-      cuis: cuis,
-      text: text,
-      types: types,
-      limit: limit,
-      searchTagBegin: searchTagBegin,
-      searchTagEnd: searchTagEnd,
-      relatedTagBegin: relatedTagBegin,
-      relatedTagEnd: relatedTagEnd,
-      fields: fields,
+      minScore,
+      cuis,
+      text,
+      types,
+      limit,
+      searchTagBegin,
+      searchTagEnd,
+      relatedTagBegin,
+      relatedTagEnd,
+      fields,
     };
 
     response = await IML.getSearchMatches(params);
@@ -169,7 +165,6 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(result.externalId).not.toBeNull();
     expect(result.publicationDate).not.toBeNull();
     expect(result.publicationName).not.toBeNull();
-    return;
   });
 
   test('Get Document Categories', async () => {
@@ -177,17 +172,18 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     const limit = 38;
     const highlightTagBegin = '<b>';
     const highlightTagEnd = '</b>';
-    const fields = 'passages,annotations,highlightedTitle,highlightedAbstract,highlightedBody,highlightedSections';
+    const fields =
+      'passages,annotations,highlightedTitle,highlightedAbstract,highlightedBody,highlightedSections';
     const params = {
-      corpus: corpus,
+      corpus,
       documentId: '2787890',
       category: 'disorders',
       onlyNegatedConcepts: false,
-      types: types,
-      limit: limit,
-      highlightTagBegin: highlightTagBegin,
-      highlightTagEnd: highlightTagEnd,
-      fields: fields,
+      types,
+      limit,
+      highlightTagBegin,
+      highlightTagEnd,
+      fields,
     };
 
     response = await IML.getDocumentCategories(params);
@@ -200,7 +196,6 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(result.highlightedAbstract).not.toBeNull();
     expect(result.highlightedSections).not.toBeNull();
     expect(result.modelLicense).not.toBeNull();
-    return;
   });
 
   test('Get Document Multiple Categories', async () => {
@@ -212,15 +207,16 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     const limit = 38;
     const highlightTagBegin = '<b>';
     const highlightTagEnd = '</b>';
-    const fields = 'passages,annotations,highlightedTitle,highlightedAbstract,highlightedBody,highlightedSections';
+    const fields =
+      'passages,annotations,highlightedTitle,highlightedAbstract,highlightedBody,highlightedSections';
     const params = {
-      corpus: corpus,
+      corpus,
       documentId: '2787890',
-      categories: categories,
-      limit: limit,
-      highlightTagBegin: highlightTagBegin,
-      highlightTagEnd: highlightTagEnd,
-      fields: fields,
+      categories,
+      limit,
+      highlightTagBegin,
+      highlightTagEnd,
+      fields,
     };
 
     response = await IML.getDocumentCategories(params);
@@ -233,12 +229,11 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(result.highlightedAbstract).not.toBeNull();
     expect(result.highlightedSections).not.toBeNull();
     expect(result.modelLicense).not.toBeNull();
-    return;
   });
 
   test('Get Concepts', async () => {
     const params = {
-      corpus: corpus,
+      corpus,
       cuis: ['C0018787'],
       preferredNames: ['Sepsis'],
       surfaceForms: ['over eating'],
@@ -252,19 +247,18 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result.concepts).not.toBeNull();
-    result.concepts.forEach(element => {
+    result.concepts.forEach((element) => {
       expect(element.cui).not.toBeNull();
       expect(element.ontology).not.toBeNull();
       expect(element.preferredName).not.toBeNull();
       expect(element.semanticType).not.toBeNull();
-      expect(element.hitCount) > 0;
+      expect(element.hitCount).toBeGreaterThan(0);
     });
-    return;
   });
 
   test('Get Concept Info', async () => {
     const params = {
-      corpus: corpus,
+      corpus,
       nameOrId: 'Sepsis',
       ontology: 'concepts',
       treeLayout: false,
@@ -283,12 +277,11 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(result.hasParents).toEqual(true);
     expect(result.hasChildren).toEqual(true);
     expect(result.hasSiblings).toEqual(true);
-    return;
   });
 
   test('Get Concept Hit Count', async () => {
     const params = {
-      corpus: corpus,
+      corpus,
       nameOrId: 'Sepsis',
       ontology: 'concepts',
     };
@@ -297,13 +290,12 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
 
     expect(response.status).toEqual(200);
     const { result } = response || {};
-    expect(result.hitCount) > 0;
-    return;
+    expect(result.hitCount).toBeGreaterThan(0);
   });
 
   test('Get Related Concepts', async () => {
     const params = {
-      corpus: corpus,
+      corpus,
       nameOrId: 'Sepsis',
       ontology: 'concepts',
       relationship: 'children',
@@ -318,16 +310,15 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result.conceepts).not.toBeNull();
-    result.concepts.forEach(element => {
+    result.concepts.forEach((element) => {
       expect(element.cuik).not.toBeNull();
     });
-    return;
   });
 
   test('Get Similar Concepts', async () => {
     // Construct the params object for operation getSimilarConcepts
     const params = {
-      corpus: corpus,
+      corpus,
       nameOrId: 'Sepsis',
       ontology: 'concepts',
       returnOntologies: ['concepts'],
@@ -339,19 +330,18 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result.conceepts).not.toBeNull();
-    result.concepts.forEach(element => {
+    result.concepts.forEach((element) => {
       expect(element.cui).not.toBeNull();
       expect(element.ontology).not.toBeNull();
       expect(element.preferredName).not.toBeNull();
       expect(element.semanticType).not.toBeNull();
-      expect(element.hitCount) > 0;
+      expect(element.hitCount).toBeGreaterThan(0);
     });
-    return;
   });
 
   test('Get Fields', async () => {
     const params = {
-      corpus: corpus,
+      corpus,
     };
 
     response = await IML.getFields(params);
@@ -364,12 +354,11 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(result.qualifierSectionFieldNames).not.toBeNull();
     expect(result.meshSectionFieldNames).not.toBeNull();
     expect(result.fieldIndexMap).not.toBeNull();
-    return;
   });
 
   test('Typeahead', async () => {
     const params = {
-      corpus: corpus,
+      corpus,
       query: 'Seps',
       ontologies: ['concepts'],
       category: 'disorders',
@@ -384,14 +373,13 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result.conceepts).not.toBeNull();
-    result.concepts.forEach(element => {
+    result.concepts.forEach((element) => {
       expect(element.cui).not.toBeNull();
       expect(element.ontology).not.toBeNull();
       expect(element.preferredName).not.toBeNull();
       expect(element.semanticType).not.toBeNull();
-      expect(element.hitCount) > 0;
+      expect(element.hitCount).toBeGreaterThan(0);
     });
-    return;
   });
 
   test('Search', async () => {
@@ -403,38 +391,37 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     };
     const concepts = [concept];
     const query = {
-      concepts: concepts,
+      concepts,
     };
     const documents = {
       'limit': '10',
       'offset': 0,
     };
     const returns = {
-      documents: documents,
+      documents,
     };
     const body = {
-      query: query,
-      returns: returns,
+      query,
+      returns,
     };
     const params = {
-      corpus: corpus,
-      body: body,
+      corpus,
+      body,
     };
 
     response = await IML.search(params);
 
     expect(response.status).toEqual(200);
     const { result } = response || {};
-    expect(result.pageNumber) > 0;
-    expect(result.totalDocumentCount) > 0;
+    expect(result.pageNumber).toBeGreaterThan(0);
+    expect(result.totalDocumentCount).toBeGreaterThan(0);
     expect(result.documents).not.toBeNull();
-    result.documents.forEach(element => {
+    result.documents.forEach((element) => {
       expect(element.documentId).not.toBeNull();
       expect(element.corpus).not.toBeNull();
       expect(element.links).not.toBeNull();
       expect(element.metadata).not.toBeNull();
     });
-    return;
   });
 
   test('Search - types', async () => {
@@ -443,14 +430,14 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
       'ontology': 'concepts',
     };
     const returns = {
-      types: types,
+      types,
     };
     const body = {
-      returns: returns,
+      returns,
     };
     const params = {
-      corpus: corpus,
-      body: body,
+      corpus,
+      body,
     };
 
     response = await IML.search(params);
@@ -458,7 +445,6 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result.types).not.toBeNull();
-    return;
   });
 
   test('Search - concepts', async () => {
@@ -468,14 +454,14 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
       'mode': 'popular',
     };
     const returns = {
-      concepts: concepts,
+      concepts,
     };
     const body = {
-      returns: returns,
+      returns,
     };
     const params = {
-      corpus: corpus,
-      body: body,
+      corpus,
+      body,
     };
 
     response = await IML.search(params);
@@ -483,28 +469,27 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result.concepts).not.toBeNull();
-    result.concepts.forEach(element => {
-      expect(element.count) > 0;
+    result.concepts.forEach((element) => {
+      expect(element.count).toBeGreaterThan(0);
       expect(element.cui).not.toBeNull();
-      expect(element.hitCount) > 0;
+      expect(element.hitCount).toBeGreaterThan(0);
       expect(element.ontology).not.toBeNull();
       expect(element.preferredName).not.toBeNull();
       expect(element.semanticType).not.toBeNull();
     });
-    return;
   });
 
   test('Search - attributes', async () => {
     const attributes = {};
     const returns = {
-      attributes: attributes,
+      attributes,
     };
     const body = {
-      returns: returns,
+      returns,
     };
     const params = {
-      corpus: corpus,
-      body: body,
+      corpus,
+      body,
     };
 
     response = await IML.search(params);
@@ -512,12 +497,11 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result.attributes).not.toBeNull();
-    result.attributes.forEach(element => {
-      expect(element.count) > 0;
+    result.attributes.forEach((element) => {
+      expect(element.count).toBeGreaterThan(0);
       expect(element.attributeId).not.toBeNull();
       expect(element.displayName).not.toBeNull();
     });
-    return;
   });
 
   test('Search - aggregations', async () => {
@@ -528,14 +512,14 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
       'authors': authors,
     };
     const returns = {
-      aggregations: aggregations,
+      aggregations,
     };
     const body = {
-      returns: returns,
+      returns,
     };
     const params = {
-      corpus: corpus,
-      body: body,
+      corpus,
+      body,
     };
 
     response = await IML.search(params);
@@ -543,7 +527,6 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result.aggregations).not.toBeNull();
-    return;
   });
 
   test('Health Check', async () => {
@@ -552,6 +535,5 @@ describe('InsightsForMedicalLiteratureServiceV1_integration', () => {
     expect(response.status).toEqual(200);
     const { result } = response || {};
     expect(result.serviceState).toEqual('OK');
-    return;
   });
 });

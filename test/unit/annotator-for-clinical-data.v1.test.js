@@ -300,7 +300,7 @@ describe('AnnotatorForClinicalDataV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await annotatorForClinicalData.getProfile({});
@@ -309,7 +309,6 @@ describe('AnnotatorForClinicalDataV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -410,7 +409,7 @@ describe('AnnotatorForClinicalDataV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await annotatorForClinicalData.updateProfile({});
@@ -419,7 +418,6 @@ describe('AnnotatorForClinicalDataV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -479,7 +477,7 @@ describe('AnnotatorForClinicalDataV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await annotatorForClinicalData.deleteProfile({});
@@ -488,7 +486,6 @@ describe('AnnotatorForClinicalDataV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -691,7 +688,7 @@ describe('AnnotatorForClinicalDataV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await annotatorForClinicalData.getFlowsById({});
@@ -700,7 +697,6 @@ describe('AnnotatorForClinicalDataV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -812,7 +808,7 @@ describe('AnnotatorForClinicalDataV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await annotatorForClinicalData.updateFlows({});
@@ -821,7 +817,6 @@ describe('AnnotatorForClinicalDataV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -881,7 +876,7 @@ describe('AnnotatorForClinicalDataV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await annotatorForClinicalData.deleteFlows({});
@@ -890,7 +885,6 @@ describe('AnnotatorForClinicalDataV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -1106,7 +1100,7 @@ describe('AnnotatorForClinicalDataV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await annotatorForClinicalData.runPipelineWithFlow({});
@@ -1115,7 +1109,6 @@ describe('AnnotatorForClinicalDataV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -1220,7 +1213,7 @@ describe('AnnotatorForClinicalDataV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await annotatorForClinicalData.getAnnotatorsById({});
@@ -1229,7 +1222,6 @@ describe('AnnotatorForClinicalDataV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -1483,7 +1475,7 @@ describe('AnnotatorForClinicalDataV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await annotatorForClinicalData.cartridgesGetId({});
@@ -1492,7 +1484,6 @@ describe('AnnotatorForClinicalDataV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {

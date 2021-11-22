@@ -168,7 +168,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.getDocuments({});
@@ -177,7 +177,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -255,7 +254,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.addCorpusDocument({});
@@ -264,7 +263,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -332,7 +330,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.getDocumentInfo({});
@@ -341,7 +339,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -417,7 +414,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.getDocumentAnnotations({});
@@ -426,7 +423,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -512,7 +508,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.getDocumentCategories({});
@@ -521,7 +517,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -644,7 +639,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.getDocumentMultipleCategories({});
@@ -653,7 +648,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -750,7 +744,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.getSearchMatches({});
@@ -759,7 +753,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -878,7 +871,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.search({});
@@ -887,7 +880,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -947,7 +939,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.getFields({});
@@ -956,7 +948,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -1042,7 +1033,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.typeahead({});
@@ -1051,7 +1042,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -1218,7 +1208,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.deleteCorpusSchema({});
@@ -1227,7 +1217,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -1342,7 +1331,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.monitorCorpus({});
@@ -1351,7 +1340,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -1463,7 +1451,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.getCorpusConfig({});
@@ -1472,7 +1460,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -1553,7 +1540,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.getConcepts({});
@@ -1562,7 +1549,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -1670,7 +1656,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.addArtifact({});
@@ -1679,7 +1665,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -1753,7 +1738,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.getCuiInfo({});
@@ -1762,7 +1747,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -1830,7 +1814,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.getHitCount({});
@@ -1839,7 +1823,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -1927,7 +1910,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.getRelatedConcepts({});
@@ -1936,7 +1919,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {
@@ -2012,7 +1994,7 @@ describe('InsightsForMedicalLiteratureV1', () => {
     });
 
     describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
+      test('should enforce required parameters', async () => {
         let err;
         try {
           await insightsForMedicalLiterature.getSimilarConcepts({});
@@ -2021,7 +2003,6 @@ describe('InsightsForMedicalLiteratureV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
-        done();
       });
 
       test('should reject promise when required params are not given', done => {

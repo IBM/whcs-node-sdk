@@ -16,7 +16,13 @@
 
 import * as extend from 'extend';
 import { IncomingHttpHeaders, OutgoingHttpHeaders } from 'http';
-import { Authenticator, BaseService, getAuthenticatorFromEnvironment, getMissingParams, UserOptions } from 'ibm-cloud-sdk-core';
+import {
+  Authenticator,
+  BaseService,
+  getAuthenticatorFromEnvironment,
+  getMissingParams,
+  UserOptions,
+} from 'ibm-cloud-sdk-core';
 import { getSdkHeaders } from '../lib/common';
 
 /**
@@ -74,8 +80,9 @@ import { getSdkHeaders } from '../lib/common';
  */
 
 class InsightsForMedicalLiteratureV1 extends BaseService {
+  static DEFAULT_SERVICE_URL: string =
+    'https://insights-for-medical-literature.cloud.ibm.com/services/medical_insights/api';
 
-  static DEFAULT_SERVICE_URL: string = 'https://insights-for-medical-literature.cloud.ibm.com/services/medical_insights/api';
   static DEFAULT_SERVICE_NAME: string = 'insights_for_medical_literature';
 
   /*************************
@@ -108,7 +115,6 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
     }
     return service;
   }
-
 
   /** The release date of the version of the API you want to use. Specify dates in YYYY-MM-DD format. */
   version: string;
@@ -157,7 +163,9 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CorpusModel>>}
    */
-  public getDocuments(params: InsightsForMedicalLiteratureV1.GetDocumentsParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CorpusModel>> {
+  public getDocuments(
+    params: InsightsForMedicalLiteratureV1.GetDocumentsParams
+  ): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CorpusModel>> {
     const _params = extend({}, params);
     const requiredParams = ['corpus'];
 
@@ -168,14 +176,18 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
       }
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
       const path = {
-        'corpus': _params.corpus
+        'corpus': _params.corpus,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getDocuments');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getDocuments'
+      );
 
       const parameters = {
         options: {
@@ -185,15 +197,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Define enrichment document.
@@ -222,7 +239,9 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>>}
    */
-  public addCorpusDocument(params: InsightsForMedicalLiteratureV1.AddCorpusDocumentParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>> {
+  public addCorpusDocument(
+    params: InsightsForMedicalLiteratureV1.AddCorpusDocumentParams
+  ): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>> {
     const _params = extend({}, params);
     const requiredParams = ['corpus'];
 
@@ -238,18 +257,22 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
         'apiKey': _params.apiKey,
         'flowId': _params.flowId,
         'accessToken': _params.accessToken,
-        'otherAnnotators': _params.otherAnnotators
+        'otherAnnotators': _params.otherAnnotators,
       };
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
       const path = {
-        'corpus': _params.corpus
+        'corpus': _params.corpus,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'addCorpusDocument');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'addCorpusDocument'
+      );
 
       const parameters = {
         options: {
@@ -260,15 +283,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Content-Type': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Content-Type': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Retrieves the external ID, title, abstract and text for a document.
@@ -285,7 +313,11 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.GetDocumentInfoResponse>>}
    */
-  public getDocumentInfo(params: InsightsForMedicalLiteratureV1.GetDocumentInfoParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.GetDocumentInfoResponse>> {
+  public getDocumentInfo(
+    params: InsightsForMedicalLiteratureV1.GetDocumentInfoParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.GetDocumentInfoResponse>
+  > {
     const _params = extend({}, params);
     const requiredParams = ['corpus', 'documentId'];
 
@@ -297,15 +329,19 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
 
       const query = {
         'version': this.version,
-        'verbose': _params.verbose
+        'verbose': _params.verbose,
       };
 
       const path = {
         'corpus': _params.corpus,
-        'document_id': _params.documentId
+        'document_id': _params.documentId,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getDocumentInfo');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getDocumentInfo'
+      );
 
       const parameters = {
         options: {
@@ -315,15 +351,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Retrieves annotations for a document.
@@ -339,7 +380,9 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>>}
    */
-  public getDocumentAnnotations(params: InsightsForMedicalLiteratureV1.GetDocumentAnnotationsParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>> {
+  public getDocumentAnnotations(
+    params: InsightsForMedicalLiteratureV1.GetDocumentAnnotationsParams
+  ): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>> {
     const _params = extend({}, params);
     const requiredParams = ['corpus', 'documentId', 'documentSection'];
 
@@ -353,15 +396,19 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
         'version': this.version,
         'document_section': _params.documentSection,
         'cuis': _params.cuis,
-        'include_text': _params.includeText
+        'include_text': _params.includeText,
       };
 
       const path = {
         'corpus': _params.corpus,
-        'document_id': _params.documentId
+        'document_id': _params.documentId,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getDocumentAnnotations');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getDocumentAnnotations'
+      );
 
       const parameters = {
         options: {
@@ -371,14 +418,13 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-          }, _params.headers),
+          headers: extend(true, sdkHeaders, {}, _params.headers),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Categorizes concepts in a document.
@@ -403,7 +449,11 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CategoriesModel>>}
    */
-  public getDocumentCategories(params: InsightsForMedicalLiteratureV1.GetDocumentCategoriesParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CategoriesModel>> {
+  public getDocumentCategories(
+    params: InsightsForMedicalLiteratureV1.GetDocumentCategoriesParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CategoriesModel>
+  > {
     const _params = extend({}, params);
     const requiredParams = ['corpus', 'documentId'];
 
@@ -421,15 +471,19 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
         'category': _params.category,
         'only_negated_concepts': _params.onlyNegatedConcepts,
         '_fields': _params.fields,
-        '_limit': _params.limit
+        '_limit': _params.limit,
       };
 
       const path = {
         'corpus': _params.corpus,
-        'document_id': _params.documentId
+        'document_id': _params.documentId,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getDocumentCategories');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getDocumentCategories'
+      );
 
       const parameters = {
         options: {
@@ -439,15 +493,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Categorizes concepts in a document.
@@ -500,7 +559,11 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CategoriesModel>>}
    */
-  public getDocumentMultipleCategories(params: InsightsForMedicalLiteratureV1.GetDocumentMultipleCategoriesParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CategoriesModel>> {
+  public getDocumentMultipleCategories(
+    params: InsightsForMedicalLiteratureV1.GetDocumentMultipleCategoriesParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CategoriesModel>
+  > {
     const _params = extend({}, params);
     const requiredParams = ['corpus', 'documentId'];
 
@@ -517,7 +580,7 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
         'highlightedBody': _params.highlightedBody,
         'highlightedSections': _params.highlightedSections,
         'passages': _params.passages,
-        'annotations': _params.annotations
+        'annotations': _params.annotations,
       };
 
       const query = {
@@ -525,15 +588,19 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
         'highlight_tag_begin': _params.highlightTagBegin,
         'highlight_tag_end': _params.highlightTagEnd,
         '_fields': _params.fields,
-        '_limit': _params.limit
+        '_limit': _params.limit,
       };
 
       const path = {
         'corpus': _params.corpus,
-        'document_id': _params.documentId
+        'document_id': _params.documentId,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getDocumentMultipleCategories');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getDocumentMultipleCategories'
+      );
 
       const parameters = {
         options: {
@@ -544,16 +611,21 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Finds concepts in a document matching a set of search concepts.
@@ -600,7 +672,11 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.SearchMatchesModel>>}
    */
-  public getSearchMatches(params: InsightsForMedicalLiteratureV1.GetSearchMatchesParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.SearchMatchesModel>> {
+  public getSearchMatches(
+    params: InsightsForMedicalLiteratureV1.GetSearchMatchesParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.SearchMatchesModel>
+  > {
     const _params = extend({}, params);
     const requiredParams = ['corpus', 'documentId', 'minScore'];
 
@@ -621,15 +697,19 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
         'search_tag_end': _params.searchTagEnd,
         'related_tag_begin': _params.relatedTagBegin,
         'related_tag_end': _params.relatedTagEnd,
-        '_fields': _params.fields
+        '_fields': _params.fields,
       };
 
       const path = {
         'corpus': _params.corpus,
-        'document_id': _params.documentId
+        'document_id': _params.documentId,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getSearchMatches');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getSearchMatches'
+      );
 
       const parameters = {
         options: {
@@ -639,15 +719,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /*************************
    * status
@@ -665,15 +750,23 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ServiceStatus>>}
    */
-  public getHealthCheckStatus(params?: InsightsForMedicalLiteratureV1.GetHealthCheckStatusParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ServiceStatus>> {
+  public getHealthCheckStatus(
+    params?: InsightsForMedicalLiteratureV1.GetHealthCheckStatusParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ServiceStatus>
+  > {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const query = {
-        'format': _params.format
+        'format': _params.format,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getHealthCheckStatus');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getHealthCheckStatus'
+      );
 
       const parameters = {
         options: {
@@ -682,15 +775,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': _params.accept
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': _params.accept,
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /*************************
    * search
@@ -739,7 +837,9 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.SearchModel>>}
    */
-  public search(params: InsightsForMedicalLiteratureV1.SearchParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.SearchModel>> {
+  public search(
+    params: InsightsForMedicalLiteratureV1.SearchParams
+  ): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.SearchModel>> {
     const _params = extend({}, params);
     const requiredParams = ['corpus', 'body'];
 
@@ -749,17 +849,21 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
         return reject(missingParams);
       }
 
-      const body = _params.body;
+      const { body } = _params;
       const query = {
         'version': this.version,
-        'verbose': _params.verbose
+        'verbose': _params.verbose,
       };
 
       const path = {
-        'corpus': _params.corpus
+        'corpus': _params.corpus,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'search');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'search'
+      );
 
       const parameters = {
         options: {
@@ -770,16 +874,21 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Retrieves a list of metadata fields defined in the corpus.
@@ -791,7 +900,11 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.MetadataModel>>}
    */
-  public getFields(params: InsightsForMedicalLiteratureV1.GetFieldsParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.MetadataModel>> {
+  public getFields(
+    params: InsightsForMedicalLiteratureV1.GetFieldsParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.MetadataModel>
+  > {
     const _params = extend({}, params);
     const requiredParams = ['corpus'];
 
@@ -802,14 +915,18 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
       }
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
       const path = {
-        'corpus': _params.corpus
+        'corpus': _params.corpus,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getFields');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getFields'
+      );
 
       const parameters = {
         options: {
@@ -819,15 +936,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Find concepts matching the specified query string.
@@ -851,7 +973,11 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConceptListModel>>}
    */
-  public typeahead(params: InsightsForMedicalLiteratureV1.TypeaheadParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConceptListModel>> {
+  public typeahead(
+    params: InsightsForMedicalLiteratureV1.TypeaheadParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConceptListModel>
+  > {
     const _params = extend({}, params);
     const requiredParams = ['corpus', 'query'];
 
@@ -870,14 +996,18 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
         'verbose': _params.verbose,
         '_limit': _params.limit,
         'max_hit_count': _params.maxHitCount,
-        'no_duplicates': _params.noDuplicates
+        'no_duplicates': _params.noDuplicates,
       };
 
       const path = {
-        'corpus': _params.corpus
+        'corpus': _params.corpus,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'typeahead');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'typeahead'
+      );
 
       const parameters = {
         options: {
@@ -887,15 +1017,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /*************************
    * corpora
@@ -911,16 +1046,24 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CorporaConfig>>}
    */
-  public getCorporaConfig(params?: InsightsForMedicalLiteratureV1.GetCorporaConfigParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CorporaConfig>> {
+  public getCorporaConfig(
+    params?: InsightsForMedicalLiteratureV1.GetCorporaConfigParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CorporaConfig>
+  > {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const query = {
         'version': this.version,
-        'verbose': _params.verbose
+        'verbose': _params.verbose,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorporaConfig');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getCorporaConfig'
+      );
 
       const parameters = {
         options: {
@@ -929,15 +1072,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Define service repository data model.
@@ -973,7 +1121,11 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConfigurationStatusModel>>}
    */
-  public setCorpusSchema(params?: InsightsForMedicalLiteratureV1.SetCorpusSchemaParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConfigurationStatusModel>> {
+  public setCorpusSchema(
+    params?: InsightsForMedicalLiteratureV1.SetCorpusSchemaParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConfigurationStatusModel>
+  > {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
@@ -981,14 +1133,18 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
         'enrichmentTargets': _params.enrichmentTargets,
         'metadataFields': _params.metadataFields,
         'corpusName': _params.corpusName,
-        'references': _params.references
+        'references': _params.references,
       };
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'setCorpusSchema');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'setCorpusSchema'
+      );
 
       const parameters = {
         options: {
@@ -998,16 +1154,21 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Delete a corpus.
@@ -1019,7 +1180,11 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConfigurationStatusModel>>}
    */
-  public deleteCorpusSchema(params: InsightsForMedicalLiteratureV1.DeleteCorpusSchemaParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConfigurationStatusModel>> {
+  public deleteCorpusSchema(
+    params: InsightsForMedicalLiteratureV1.DeleteCorpusSchemaParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConfigurationStatusModel>
+  > {
     const _params = extend({}, params);
     const requiredParams = ['instance'];
 
@@ -1031,10 +1196,14 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
 
       const query = {
         'version': this.version,
-        'instance': _params.instance
+        'instance': _params.instance,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteCorpusSchema');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'deleteCorpusSchema'
+      );
 
       const parameters = {
         options: {
@@ -1043,15 +1212,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Define service repository.
@@ -1071,21 +1245,29 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConfigurationStatusModel>>}
    */
-  public setCorpusConfig(params?: InsightsForMedicalLiteratureV1.SetCorpusConfigParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConfigurationStatusModel>> {
+  public setCorpusConfig(
+    params?: InsightsForMedicalLiteratureV1.SetCorpusConfigParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConfigurationStatusModel>
+  > {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const body = {
         'userName': _params.userName,
         'password': _params.password,
-        'corpusURI': _params.corpusUri
+        'corpusURI': _params.corpusUri,
       };
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'setCorpusConfig');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'setCorpusConfig'
+      );
 
       const parameters = {
         options: {
@@ -1095,16 +1277,21 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Enable monitoring for a custom instance.
@@ -1117,7 +1304,9 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>>}
    */
-  public monitorCorpus(params: InsightsForMedicalLiteratureV1.MonitorCorpusParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>> {
+  public monitorCorpus(
+    params: InsightsForMedicalLiteratureV1.MonitorCorpusParams
+  ): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>> {
     const _params = extend({}, params);
     const requiredParams = ['apikey'];
 
@@ -1129,10 +1318,14 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
 
       const query = {
         'version': this.version,
-        'apikey': _params.apikey
+        'apikey': _params.apikey,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'monitorCorpus');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'monitorCorpus'
+      );
 
       const parameters = {
         options: {
@@ -1141,14 +1334,13 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-          }, _params.headers),
+          headers: extend(true, sdkHeaders, {}, _params.headers),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Toggle Search Activity Tracking.
@@ -1160,16 +1352,22 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>>}
    */
-  public enableCorpusSearchTracking(params?: InsightsForMedicalLiteratureV1.EnableCorpusSearchTrackingParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>> {
+  public enableCorpusSearchTracking(
+    params?: InsightsForMedicalLiteratureV1.EnableCorpusSearchTrackingParams
+  ): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>> {
     const _params = extend({}, params);
 
     return new Promise((resolve, reject) => {
       const query = {
         'version': this.version,
-        'enable_tracking': _params.enableTracking
+        'enable_tracking': _params.enableTracking,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'enableCorpusSearchTracking');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'enableCorpusSearchTracking'
+      );
 
       const parameters = {
         options: {
@@ -1178,14 +1376,13 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           qs: query,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-          }, _params.headers),
+          headers: extend(true, sdkHeaders, {}, _params.headers),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Retrieves the corpus configuration.
@@ -1198,7 +1395,11 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CorporaConfig>>}
    */
-  public getCorpusConfig(params: InsightsForMedicalLiteratureV1.GetCorpusConfigParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CorporaConfig>> {
+  public getCorpusConfig(
+    params: InsightsForMedicalLiteratureV1.GetCorpusConfigParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.CorporaConfig>
+  > {
     const _params = extend({}, params);
     const requiredParams = ['corpus'];
 
@@ -1210,14 +1411,18 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
 
       const query = {
         'version': this.version,
-        'verbose': _params.verbose
+        'verbose': _params.verbose,
       };
 
       const path = {
-        'corpus': _params.corpus
+        'corpus': _params.corpus,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getCorpusConfig');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getCorpusConfig'
+      );
 
       const parameters = {
         options: {
@@ -1227,15 +1432,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /*************************
    * concepts
@@ -1265,7 +1475,11 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConceptListModel>>}
    */
-  public getConcepts(params: InsightsForMedicalLiteratureV1.GetConceptsParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConceptListModel>> {
+  public getConcepts(
+    params: InsightsForMedicalLiteratureV1.GetConceptsParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConceptListModel>
+  > {
     const _params = extend({}, params);
     const requiredParams = ['corpus'];
 
@@ -1283,14 +1497,18 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
         'attributes': _params.attributes,
         'verbose': _params.verbose,
         '_sort': _params.sort,
-        '_limit': _params.limit
+        '_limit': _params.limit,
       };
 
       const path = {
-        'corpus': _params.corpus
+        'corpus': _params.corpus,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getConcepts');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getConcepts'
+      );
 
       const parameters = {
         options: {
@@ -1300,15 +1518,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Add cartridge artifact.
@@ -1320,7 +1543,9 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>>}
    */
-  public addArtifact(params: InsightsForMedicalLiteratureV1.AddArtifactParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>> {
+  public addArtifact(
+    params: InsightsForMedicalLiteratureV1.AddArtifactParams
+  ): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.Empty>> {
     const _params = extend({}, params);
     const requiredParams = ['corpus'];
 
@@ -1332,18 +1557,22 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
 
       const body = {
         'dictionaryEntry': _params.dictionaryEntry,
-        'attributeEntry': _params.attributeEntry
+        'attributeEntry': _params.attributeEntry,
       };
 
       const query = {
-        'version': this.version
+        'version': this.version,
       };
 
       const path = {
-        'corpus': _params.corpus
+        'corpus': _params.corpus,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'addArtifact');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'addArtifact'
+      );
 
       const parameters = {
         options: {
@@ -1354,15 +1583,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Content-Type': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Content-Type': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Retrieve information for a concept.
@@ -1383,7 +1617,11 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConceptInfoModel>>}
    */
-  public getCuiInfo(params: InsightsForMedicalLiteratureV1.GetCuiInfoParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConceptInfoModel>> {
+  public getCuiInfo(
+    params: InsightsForMedicalLiteratureV1.GetCuiInfoParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConceptInfoModel>
+  > {
     const _params = extend({}, params);
     const requiredParams = ['corpus', 'nameOrId'];
 
@@ -1397,15 +1635,19 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
         'version': this.version,
         'ontology': _params.ontology,
         '_fields': _params.fields,
-        'tree_layout': _params.treeLayout
+        'tree_layout': _params.treeLayout,
       };
 
       const path = {
         'corpus': _params.corpus,
-        'name_or_id': _params.nameOrId
+        'name_or_id': _params.nameOrId,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getCuiInfo');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getCuiInfo'
+      );
 
       const parameters = {
         options: {
@@ -1415,15 +1657,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Retrieves a count of the number of times a concept is mentioned in the corpus.
@@ -1437,7 +1684,9 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.HitCount>>}
    */
-  public getHitCount(params: InsightsForMedicalLiteratureV1.GetHitCountParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.HitCount>> {
+  public getHitCount(
+    params: InsightsForMedicalLiteratureV1.GetHitCountParams
+  ): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.HitCount>> {
     const _params = extend({}, params);
     const requiredParams = ['corpus', 'nameOrId'];
 
@@ -1449,15 +1698,19 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
 
       const query = {
         'version': this.version,
-        'ontology': _params.ontology
+        'ontology': _params.ontology,
       };
 
       const path = {
         'corpus': _params.corpus,
-        'name_or_id': _params.nameOrId
+        'name_or_id': _params.nameOrId,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getHitCount');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getHitCount'
+      );
 
       const parameters = {
         options: {
@@ -1467,15 +1720,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Retrieve concepts related to a concept.
@@ -1506,7 +1764,11 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.RelatedConceptsModel>>}
    */
-  public getRelatedConcepts(params: InsightsForMedicalLiteratureV1.GetRelatedConceptsParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.RelatedConceptsModel>> {
+  public getRelatedConcepts(
+    params: InsightsForMedicalLiteratureV1.GetRelatedConceptsParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.RelatedConceptsModel>
+  > {
     const _params = extend({}, params);
     const requiredParams = ['corpus', 'nameOrId', 'relationship'];
 
@@ -1524,15 +1786,19 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
         'sources': _params.sources,
         'recursive': _params.recursive,
         'tree_layout': _params.treeLayout,
-        'max_depth': _params.maxDepth
+        'max_depth': _params.maxDepth,
       };
 
       const path = {
         'corpus': _params.corpus,
-        'name_or_id': _params.nameOrId
+        'name_or_id': _params.nameOrId,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getRelatedConcepts');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getRelatedConcepts'
+      );
 
       const parameters = {
         options: {
@@ -1542,15 +1808,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
+  }
 
   /**
    * Find similar concepts.
@@ -1567,7 +1838,11 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConceptListModel>>}
    */
-  public getSimilarConcepts(params: InsightsForMedicalLiteratureV1.GetSimilarConceptsParams): Promise<InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConceptListModel>> {
+  public getSimilarConcepts(
+    params: InsightsForMedicalLiteratureV1.GetSimilarConceptsParams
+  ): Promise<
+    InsightsForMedicalLiteratureV1.Response<InsightsForMedicalLiteratureV1.ConceptListModel>
+  > {
     const _params = extend({}, params);
     const requiredParams = ['corpus', 'nameOrId', 'returnOntologies'];
 
@@ -1581,15 +1856,19 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
         'version': this.version,
         'return_ontologies': _params.returnOntologies,
         'ontology': _params.ontology,
-        '_limit': _params.limit
+        '_limit': _params.limit,
       };
 
       const path = {
         'corpus': _params.corpus,
-        'name_or_id': _params.nameOrId
+        'name_or_id': _params.nameOrId,
       };
 
-      const sdkHeaders = getSdkHeaders(InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME, 'v1', 'getSimilarConcepts');
+      const sdkHeaders = getSdkHeaders(
+        InsightsForMedicalLiteratureV1.DEFAULT_SERVICE_NAME,
+        'v1',
+        'getSimilarConcepts'
+      );
 
       const parameters = {
         options: {
@@ -1599,16 +1878,20 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
           path,
         },
         defaultOptions: extend(true, {}, this.baseOptions, {
-          headers: extend(true, sdkHeaders, {
-            'Accept': 'application/json',
-          }, _params.headers),
+          headers: extend(
+            true,
+            sdkHeaders,
+            {
+              'Accept': 'application/json',
+            },
+            _params.headers
+          ),
         }),
       };
 
       return resolve(this.createRequest(parameters));
     });
-  };
-
+  }
 }
 
 /*************************
@@ -1616,16 +1899,14 @@ class InsightsForMedicalLiteratureV1 extends BaseService {
  ************************/
 
 namespace InsightsForMedicalLiteratureV1 {
-
   /** Options for the `InsightsForMedicalLiteratureV1` constructor. */
   export interface Options extends UserOptions {
-
     /** The release date of the version of the API you want to use. Specify dates in YYYY-MM-DD format. */
     version: string;
   }
 
   /** An operation response. */
-  export interface Response<T = any>  {
+  export interface Response<T = any> {
     result: T;
     status: number;
     statusText: string;
@@ -1636,7 +1917,7 @@ namespace InsightsForMedicalLiteratureV1 {
   export type Callback<T> = (error: any, response?: Response<T>) => void;
 
   /** The body of a service request that returns no response data. */
-  export interface Empty { }
+  export interface Empty {}
 
   /** A standard JS object, defined to avoid the limitations of `Object` and `object` */
   export interface JsonObject {
@@ -2212,8 +2493,7 @@ namespace InsightsForMedicalLiteratureV1 {
   }
 
   /** StringBuilder. */
-  export interface StringBuilder {
-  }
+  export interface StringBuilder {}
 
   /** Model for field aggregations. */
   export interface AggregationModel {
@@ -2693,7 +2973,6 @@ namespace InsightsForMedicalLiteratureV1 {
     /** Model representing ontology artifacts. */
     data?: DataModel;
   }
-
 }
 
 export = InsightsForMedicalLiteratureV1;

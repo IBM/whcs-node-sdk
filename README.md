@@ -17,7 +17,7 @@ NOTE:  You must be signed in to IBM Cloud to see the docs.
 
 * An [IBM Cloud][ibm-cloud-onboarding] account.
 * An IAM API key to allow the SDK to access your service instance. For instructions about copying the credentials of an existing service instance, or creating a new service instance, refer to Getting Started [here](https://cloud.ibm.com/docs/wh-acd?topic=wh-acd-getting-started).
-* **Node.js >=10**: This SDK is tested with Node.js versions 10 and up. It may work on previous versions but this is not officially supported.
+* **Node.js >=12**: This SDK is tested with Node.js versions 10 and up. It may work on previous versions but this is not officially supported.
 
 ## Installation
 

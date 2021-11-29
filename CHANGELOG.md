@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/IBM/whcs-node-sdk/compare/v0.2.2...v0.3.0) (2021-11-29)
+
+
+### Features
+
+* Support SDoH v1 features ([0fbffcb](https://github.com/IBM/whcs-node-sdk/commit/0fbffcb603067b2aa54bde2612a8a86958bdf8f7))
+
 ## [0.2.2](https://github.com/IBM/whcs-node-sdk/compare/v0.2.1...v0.2.2) (2021-11-22)
 
 

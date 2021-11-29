@@ -2108,6 +2108,121 @@ namespace AnnotatorForClinicalDataV1 {
     diagnosis?: DiagnosisInsight;
     medication?: MedicationInsight;
     normality?: NormalityInsight;
+    tobacco?: InsightModelTobacco;
+    alcohol?: InsightModelAlcohol;
+    illicitDrug?: InsightModelIllicitDrug;
+    substance?: InsightModelSubstanceAbuse;
+  }
+
+  /** InsightModelAlcohol. */
+  export interface InsightModelAlcohol {
+    usage?: InsightModelAlcoholUsage;
+    useStatus?: InsightModelAlcoholUseStatus;
+    useQualifier?: InsightModelAlcoholUseQualifier;
+    exposureScore?: number;
+    nonPatientScore?: number;
+    treatmentScore?: number;
+  }
+
+  /** InsightModelAlcoholUsage. */
+  export interface InsightModelAlcoholUsage {
+    useScore?: number;
+    noneScore?: number;
+    unknownScore?: number;
+    discussedScore?: number;
+  }
+
+  /** InsightModelAlcoholUseQualifier. */
+  export interface InsightModelAlcoholUseQualifier {
+    lightScore?: number;
+    moderateScore?: number;
+    heavyScore?: number;
+    abuseScore?: number;
+  }
+
+  /** InsightModelAlcoholUseStatus. */
+  export interface InsightModelAlcoholUseStatus {
+    stoppedScore?: number;
+    neverScore?: number;
+  }
+
+  /** InsightModelIllicitDrug. */
+  export interface InsightModelIllicitDrug {
+    usage?: InsightModelIllicitDrugUsage;
+    useStatus?: InsightModelIllicitDrugUseStatus;
+    useQualifier?: InsightModelIllicitDrugUseQualifier;
+    useDimension?: InsightModelIllicitDrugUseDimension;
+    exposureScore?: number;
+    nonPatientScore?: number;
+    treatmentScore?: number;
+  }
+
+  /** InsightModelIllicitDrugUsage. */
+  export interface InsightModelIllicitDrugUsage {
+    useScore?: number;
+    noneScore?: number;
+    unknownScore?: number;
+    discussedScore?: number;
+    treatmentScore?: number;
+  }
+
+  /** InsightModelIllicitDrugUseDimension. */
+  export interface InsightModelIllicitDrugUseDimension {
+    abuseScore?: number;
+    medicalScore?: number;
+  }
+
+  /** InsightModelIllicitDrugUseQualifier. */
+  export interface InsightModelIllicitDrugUseQualifier {
+    lightScore?: number;
+    moderateScore?: number;
+    heavyScore?: number;
+  }
+
+  /** InsightModelIllicitDrugUseStatus. */
+  export interface InsightModelIllicitDrugUseStatus {
+    currentScore?: number;
+    stoppedScore?: number;
+    neverScore?: number;
+    complianceScore?: number;
+  }
+
+  /** InsightModelSubstanceAbuse. */
+  export interface InsightModelSubstanceAbuse {
+    treatmentScore?: number;
+    nonPatientScore?: number;
+    treatment?: InsightModelSubstanceAbuseTreatment;
+  }
+
+  /** InsightModelSubstanceAbuseTreatment. */
+  export interface InsightModelSubstanceAbuseTreatment {
+    discussedScore?: number;
+    complianceScore?: number;
+  }
+
+  /** InsightModelTobacco. */
+  export interface InsightModelTobacco {
+    usage?: InsightModelTobaccoUsage;
+    useStatus?: InsightModelTobaccoUseStatus;
+    exposureScore?: number;
+    familyHistoryScore?: number;
+    nonPatientScore?: number;
+    treatmentScore?: number;
+  }
+
+  /** InsightModelTobaccoUsage. */
+  export interface InsightModelTobaccoUsage {
+    useScore?: number;
+    noneScore?: number;
+    unknownScore?: number;
+    discussedScore?: number;
+  }
+
+  /** InsightModelTobaccoUseStatus. */
+  export interface InsightModelTobaccoUseStatus {
+    currentScore?: number;
+    stoppedScore?: number;
+    neverScore?: number;
   }
 
   /** LabValueAnnotation. */
@@ -2149,6 +2264,7 @@ namespace AnnotatorForClinicalDataV1 {
     sectionSurfaceForm?: string;
     insightModelData?: InsightModel;
     temporal?: Temporal[];
+    disambiguationData?: Disambiguation;
   }
 
   /** MedicationInsight. */

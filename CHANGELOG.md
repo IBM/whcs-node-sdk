@@ -1,3 +1,10 @@
+## [0.3.1](https://github.com/IBM/whcs-node-sdk/compare/v0.3.0...v0.3.1) (2022-02-08)
+
+
+### Bug Fixes
+
+* use npm v8 and latest sdk core ([d9c139d](https://github.com/IBM/whcs-node-sdk/commit/d9c139dfce95541ed325651c0a90e5c72427b762))
+
 # [0.3.0](https://github.com/IBM/whcs-node-sdk/compare/v0.2.2...v0.3.0) (2021-11-29)
 
 

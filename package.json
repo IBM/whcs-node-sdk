@@ -39,14 +39,13 @@
   "dependencies": {
     "@types/node": "^12.0.8",
     "extend": "^3.0.2",
-    "ibm-cloud-sdk-core": "^2.17.0"
+    "ibm-cloud-sdk-core": "^2.17.9"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "6.0.0",
-    "@semantic-release/git": "10.0.0",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/git": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
-    "axios": "^0.21.4",
     "dotenv": "^8.2.0",
     "eslint": "^7.26.0",
     "eslint-config-airbnb-base": "^14.2.1",
@@ -61,9 +60,8 @@
     "jest": "^27.2.5",
     "prettier": "^2.3.0",
     "properties-reader": "^2.2.0",
-    "semantic-release": "^18.0.0",
+    "semantic-release": "^18.0.1",
     "tsc-publish": "^0.5.2",
-    "typedoc": "^0.20.36",
     "typescript": "^3.8.3"
   },
   "jest": {
@@ -73,6 +71,8 @@
       "<rootDir>/test/",
       "<rootDir>/examples/"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "verbose": false,
+    "silent": false
   }
 }

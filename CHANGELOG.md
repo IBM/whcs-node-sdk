@@ -1,3 +1,10 @@
+## [0.3.2](https://github.com/IBM/whcs-node-sdk/compare/v0.3.1...v0.3.2) (2022-05-23)
+
+
+### Bug Fixes
+
+* Update README ([8f23689](https://github.com/IBM/whcs-node-sdk/commit/8f23689ff0b60ddaa8f815c959e92f6744d0187b))
+
 ## [0.3.1](https://github.com/IBM/whcs-node-sdk/compare/v0.3.0...v0.3.1) (2022-02-08)
 
 

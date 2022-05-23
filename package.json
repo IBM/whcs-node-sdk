@@ -1,6 +1,6 @@
 {
   "name": "ibm-whcs-sdk",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Node.js client library for IBM Watson Health Cognitive Services",
   "repository": {
     "type": "git",

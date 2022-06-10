@@ -60,7 +60,7 @@
     "jest": "^27.2.5",
     "prettier": "^2.3.0",
     "properties-reader": "^2.2.0",
-    "semantic-release": "^18.0.1",
+    "semantic-release": "^19.0.3",
     "tsc-publish": "^0.5.2",
     "typescript": "^3.8.3"
   },
